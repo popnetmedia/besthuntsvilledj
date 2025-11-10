@@ -537,18 +537,29 @@ const faqSchema = {
 </BaseLayout>
 
 <style>
-  /* Hero Section - Premium Design */
+  /* Modern Black, Red, Gold Theme */
+  :root {
+    --black: #000000;
+    --dark-gray: #030303;
+    --gold: #A1844A;
+    --red: #DC2626;
+    --white: #FFFFFF;
+    --light-gray: #707E89;
+  }
+
+  /* Hero Section - Dark Luxury Design */
   .hero-city {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+    color: var(--white);
     padding: 6rem 2rem 5rem;
     text-align: center;
     position: relative;
     overflow: hidden;
-    min-height: 650px;
+    min-height: 700px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom: 2px solid var(--gold);
   }
 
   .hero-city::before {
@@ -559,9 +570,9 @@ const faqSchema = {
     right: 0;
     bottom: 0;
     background:
-      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06) 0%, transparent 50%),
-      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      radial-gradient(circle at 20% 30%, rgba(161, 132, 74, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(220, 38, 38, 0.1) 0%, transparent 40%),
+      linear-gradient(180deg, transparent 0%, rgba(161, 132, 74, 0.03) 100%);
     opacity: 1;
   }
 
@@ -571,8 +582,8 @@ const faqSchema = {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100px;
-    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.05));
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, rgba(161, 132, 74, 0.1));
   }
 
   .hero-content {
@@ -587,7 +598,10 @@ const faqSchema = {
     font-weight: 900;
     margin-bottom: 1.5rem;
     line-height: 1.1;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    color: var(--gold);
+    text-shadow:
+      0 0 30px rgba(161, 132, 74, 0.5),
+      0 4px 20px rgba(0,0,0,0.5);
     letter-spacing: -0.02em;
     animation: fadeInUp 0.8s ease-out;
   }
@@ -606,13 +620,14 @@ const faqSchema = {
   .subtitle {
     font-size: 1.35rem;
     margin-bottom: 2.5rem;
-    opacity: 0.95;
+    opacity: 0.9;
     font-weight: 400;
     line-height: 1.7;
     max-width: 850px;
     margin-left: auto;
     margin-right: auto;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     animation: fadeInUp 0.8s ease-out 0.2s backwards;
   }
 
@@ -629,27 +644,31 @@ const faqSchema = {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(161, 132, 74, 0.15);
     padding: 0.85rem 1.75rem;
     border-radius: 50px;
     font-weight: 600;
     font-size: 0.95rem;
     backdrop-filter: blur(15px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   }
 
   .badge:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(161, 132, 74, 0.3);
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow:
+      0 8px 25px rgba(0,0,0,0.4),
+      0 0 20px rgba(161, 132, 74, 0.3);
+    border-color: var(--red);
   }
 
   .badge svg {
     width: 20px;
     height: 20px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    color: var(--gold);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
   }
 
   .hero-stats {
@@ -672,9 +691,9 @@ const faqSchema = {
     bottom: -8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
-    height: 3px;
-    background: rgba(255,255,255,0.4);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
     border-radius: 2px;
   }
 
@@ -683,25 +702,30 @@ const faqSchema = {
     font-size: 3rem;
     font-weight: 900;
     margin-bottom: 0.35rem;
-    color: white;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    color: var(--gold);
+    text-shadow:
+      0 0 20px rgba(161, 132, 74, 0.5),
+      0 4px 15px rgba(0,0,0,0.5);
     letter-spacing: -0.02em;
   }
 
   .stat span {
     display: block;
     font-size: 1rem;
-    opacity: 0.95;
+    opacity: 0.9;
     font-weight: 600;
     letter-spacing: 0.3px;
+    color: rgba(255,255,255,0.85);
   }
 
-  /* Quick Summary - Premium */
+  /* Quick Summary - Dark Theme */
   .quick-summary {
-    background: linear-gradient(to bottom, #f7fafc 0%, #ffffff 50%, #f7fafc 100%);
+    background: var(--dark-gray);
     padding: 5rem 2rem;
     position: relative;
     overflow: hidden;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
   }
 
   .quick-summary::before {
@@ -712,8 +736,8 @@ const faqSchema = {
     transform: translateX(-50%);
     width: 150%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #667eea, transparent);
-    opacity: 0.3;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
   }
 
   .summary-box {
@@ -724,25 +748,26 @@ const faqSchema = {
 
   .summary-box h2 {
     font-size: 2.75rem;
-    color: #2d3748;
+    color: var(--gold);
     margin-bottom: 1.5rem;
     font-weight: 800;
     letter-spacing: -0.01em;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   }
 
   .extractive-answer {
     font-size: 1.2rem;
-    color: #4a5568;
+    color: rgba(255,255,255,0.9);
     line-height: 1.9;
     margin: 0 auto 3rem;
     max-width: 850px;
     padding: 2rem 2.5rem;
-    background: white;
+    background: var(--black);
     border-radius: 16px;
     box-shadow:
-      0 4px 6px rgba(0,0,0,0.05),
-      0 10px 25px rgba(102, 126, 234, 0.08);
-    border-left: 5px solid #667eea;
+      0 4px 6px rgba(0,0,0,0.3),
+      0 10px 25px rgba(161, 132, 74, 0.15);
+    border-left: 5px solid var(--red);
     position: relative;
   }
 
@@ -752,7 +777,7 @@ const faqSchema = {
     top: 1rem;
     left: 1.5rem;
     font-size: 3rem;
-    color: #667eea;
+    color: var(--gold);
     opacity: 0.2;
     font-family: Georgia, serif;
   }
@@ -767,41 +792,44 @@ const faqSchema = {
   .summary-item {
     text-align: center;
     padding: 2rem 1.5rem;
-    background: white;
+    background: var(--black);
     border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid transparent;
+    border: 1px solid rgba(161, 132, 74, 0.3);
   }
 
   .summary-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.15);
-    border-color: #667eea;
+    box-shadow: 0 12px 30px rgba(161, 132, 74, 0.3);
+    border-color: var(--gold);
   }
 
   .summary-item strong {
     display: block;
     font-size: 1.4rem;
-    color: #667eea;
+    color: var(--gold);
     margin-bottom: 0.75rem;
     font-weight: 800;
     letter-spacing: -0.01em;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
   }
 
   .summary-item span {
-    color: #4a5568;
+    color: rgba(255,255,255,0.8);
     line-height: 1.7;
     font-size: 0.95rem;
   }
 
-  /* Section Styles */
+  /* Section Styles - Dark Theme */
   .section {
     padding: 5rem 2rem;
+    background: var(--black);
+    color: var(--white);
   }
 
   .section.bg-gray {
-    background: #f7fafc;
+    background: var(--dark-gray);
   }
 
   .container {
@@ -813,14 +841,20 @@ const faqSchema = {
     font-size: 2.25rem;
     text-align: center;
     margin-bottom: 1.5rem;
-    color: #2d3748;
+    color: var(--gold);
     font-weight: 700;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   }
 
-  /* Services Grid */
+  .section .extractive-answer {
+    background: rgba(3, 3, 3, 0.6);
+    border: 1px solid rgba(161, 132, 74, 0.3);
+  }
+
+  /* Services Grid - Dark Theme */
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -829,29 +863,30 @@ const faqSchema = {
   }
 
   .service-card {
-    background: white;
+    background: var(--dark-gray);
     border-radius: 16px;
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 2px solid rgba(161, 132, 74, 0.3);
   }
 
   .service-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(102, 126, 234, 0.15);
-    border-color: #667eea;
+    box-shadow: 0 12px 24px rgba(161, 132, 74, 0.3);
+    border-color: var(--gold);
   }
 
   .service-card h3 {
     font-size: 1.6rem;
-    color: #2d3748;
+    color: var(--gold);
     margin-bottom: 1rem;
     font-weight: 700;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
   }
 
   .service-card > p {
-    color: #4a5568;
+    color: rgba(255,255,255,0.8);
     line-height: 1.7;
     margin-bottom: 1.25rem;
   }
@@ -866,7 +901,7 @@ const faqSchema = {
     padding-left: 1.5rem;
     position: relative;
     margin-bottom: 0.5rem;
-    color: #4a5568;
+    color: rgba(255,255,255,0.8);
     line-height: 1.6;
   }
 
@@ -874,7 +909,7 @@ const faqSchema = {
     content: "✓";
     position: absolute;
     left: 0;
-    color: #48bb78;
+    color: var(--gold);
     font-weight: 700;
     font-size: 1.1rem;
   }
@@ -882,29 +917,29 @@ const faqSchema = {
   .pricing {
     margin-top: 1.5rem;
     padding-top: 1.25rem;
-    border-top: 2px solid #e2e8f0;
-    color: #667eea;
+    border-top: 2px solid rgba(161, 132, 74, 0.3);
+    color: var(--gold);
     font-weight: 600;
   }
 
-  /* Comparison Table */
+  /* Comparison Table - Dark Theme */
   .comparison-table-wrapper {
     overflow-x: auto;
     margin-top: 2.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
   }
 
   .comparison-table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: var(--dark-gray);
     min-width: 800px;
   }
 
   .comparison-table thead {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--gold) 0%, #8a6d3b 100%);
+    color: var(--black);
   }
 
   .comparison-table th {
@@ -916,18 +951,18 @@ const faqSchema = {
 
   .comparison-table td {
     padding: 1rem;
-    border-bottom: 1px solid #e2e8f0;
-    color: #4a5568;
+    border-bottom: 1px solid rgba(161, 132, 74, 0.2);
+    color: rgba(255,255,255,0.8);
   }
 
   .comparison-table tbody tr:hover {
-    background: #f7fafc;
+    background: rgba(161, 132, 74, 0.1);
   }
 
   .comparison-table th:first-child,
   .comparison-table td:first-child {
     font-weight: 600;
-    color: #2d3748;
+    color: var(--gold);
   }
 
   .comparison-recommendations {
@@ -940,18 +975,18 @@ const faqSchema = {
   .comparison-recommendations li {
     padding: 1.25rem;
     margin-bottom: 1rem;
-    background: white;
+    background: var(--black);
     border-radius: 8px;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid var(--red);
     line-height: 1.7;
-    color: #4a5568;
+    color: rgba(255,255,255,0.8);
   }
 
   .comparison-recommendations strong {
-    color: #2d3748;
+    color: var(--gold);
   }
 
-  /* Why Choose Section */
+  /* Why Choose Section - Dark Theme */
   .why-choose-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -960,34 +995,36 @@ const faqSchema = {
   }
 
   .reason-card {
-    background: white;
+    background: var(--dark-gray);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
     transition: all 0.3s ease;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid var(--red);
+    border: 2px solid rgba(161, 132, 74, 0.3);
   }
 
   .reason-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.15);
-    border-left-color: #764ba2;
+    box-shadow: 0 8px 16px rgba(161, 132, 74, 0.3);
+    border-color: var(--gold);
   }
 
   .reason-card h3 {
-    color: #2d3748;
+    color: var(--gold);
     font-size: 1.35rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
   }
 
   .reason-card p {
-    color: #4a5568;
+    color: rgba(255,255,255,0.8);
     line-height: 1.8;
     margin: 0;
   }
 
-  /* Destinations Grid */
+  /* Destinations Grid - Dark Theme */
   .destinations-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -996,18 +1033,19 @@ const faqSchema = {
   }
 
   .destination-card {
-    background: white;
+    background: var(--black);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     transition: all 0.3s ease;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid var(--gold);
+    border: 2px solid rgba(161, 132, 74, 0.3);
   }
 
   .destination-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.12);
-    border-left-color: #764ba2;
+    box-shadow: 0 8px 16px rgba(161, 132, 74, 0.3);
+    border-color: var(--gold);
   }
 
   .destination-card h3 {
@@ -1015,19 +1053,20 @@ const faqSchema = {
   }
 
   .destination-card h3 a {
-    color: #2d3748;
+    color: var(--gold);
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: 700;
     transition: color 0.2s ease;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
   }
 
   .destination-card h3 a:hover {
-    color: #667eea;
+    color: var(--red);
   }
 
   .distance {
-    color: #667eea;
+    color: var(--red);
     font-weight: 600;
     font-size: 0.95rem;
     margin-bottom: 0.75rem;
@@ -1035,34 +1074,36 @@ const faqSchema = {
   }
 
   .destination-card p {
-    color: #4a5568;
+    color: rgba(255,255,255,0.8);
     line-height: 1.7;
   }
 
-  /* FAQ */
+  /* FAQ - Dark Theme */
   .faq-list {
     max-width: 900px;
     margin: 3rem auto 0;
   }
 
   .faq-item {
-    background: white;
+    background: var(--dark-gray);
     border-radius: 12px;
     margin-bottom: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     overflow: hidden;
     transition: all 0.3s ease;
+    border: 1px solid rgba(161, 132, 74, 0.3);
   }
 
   .faq-item:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(161, 132, 74, 0.3);
+    border-color: var(--gold);
   }
 
   .faq-item summary {
     cursor: pointer;
     padding: 1.75rem 2rem;
     font-weight: 600;
-    color: #2d3748;
+    color: var(--gold);
     list-style: none;
     display: flex;
     align-items: center;
@@ -1077,7 +1118,7 @@ const faqSchema = {
   .faq-item summary::after {
     content: "+";
     font-size: 1.75rem;
-    color: #667eea;
+    color: var(--red);
     font-weight: 400;
     transition: transform 0.3s ease;
   }
@@ -1087,7 +1128,7 @@ const faqSchema = {
   }
 
   .faq-item summary:hover {
-    background: #f7fafc;
+    background: rgba(161, 132, 74, 0.1);
   }
 
   .faq-item h3 {
@@ -1097,19 +1138,19 @@ const faqSchema = {
 
   .faq-item p {
     padding: 0 2rem 1.75rem;
-    color: #4a5568;
+    color: rgba(255,255,255,0.8);
     line-height: 1.8;
     margin: 0;
   }
 
-  /* CTAs - Premium */
+  /* CTAs - Gold & Red Theme */
   .cta-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 1.15rem 2.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--gold) 0%, #8a6d3b 100%);
+    color: var(--black);
     text-decoration: none;
     border-radius: 12px;
     font-weight: 700;
@@ -1118,8 +1159,8 @@ const faqSchema = {
     border: none;
     cursor: pointer;
     box-shadow:
-      0 4px 6px rgba(102, 126, 234, 0.2),
-      0 10px 25px rgba(102, 126, 234, 0.15);
+      0 4px 6px rgba(161, 132, 74, 0.3),
+      0 10px 25px rgba(161, 132, 74, 0.2);
     position: relative;
     overflow: hidden;
   }
@@ -1131,7 +1172,7 @@ const faqSchema = {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
     transition: left 0.5s ease;
   }
 
@@ -1142,8 +1183,8 @@ const faqSchema = {
   .cta-button:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow:
-      0 8px 12px rgba(102, 126, 234, 0.25),
-      0 15px 35px rgba(102, 126, 234, 0.2);
+      0 8px 12px rgba(161, 132, 74, 0.4),
+      0 15px 35px rgba(161, 132, 74, 0.3);
   }
 
   .cta-button:active {
@@ -1151,20 +1192,21 @@ const faqSchema = {
   }
 
   .cta-button.primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--gold) 0%, #8a6d3b 100%);
   }
 
   .cta-button.secondary {
-    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    background: linear-gradient(135deg, var(--red) 0%, #b91c1c 100%);
     box-shadow:
-      0 4px 6px rgba(72, 187, 120, 0.2),
-      0 10px 25px rgba(72, 187, 120, 0.15);
+      0 4px 6px rgba(220, 38, 38, 0.3),
+      0 10px 25px rgba(220, 38, 38, 0.2);
+    color: white;
   }
 
   .cta-button.secondary:hover {
     box-shadow:
-      0 8px 12px rgba(72, 187, 120, 0.25),
-      0 15px 35px rgba(72, 187, 120, 0.2);
+      0 8px 12px rgba(220, 38, 38, 0.4),
+      0 15px 35px rgba(220, 38, 38, 0.3);
   }
 
   .cta-button.large {
@@ -1174,18 +1216,34 @@ const faqSchema = {
   }
 
   .contact-box {
-    background: white;
+    background: var(--black);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     min-width: 280px;
+    border: 2px solid rgba(161, 132, 74, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .contact-box:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 12px rgba(161, 132, 74, 0.3);
   }
 
   .contact-box strong {
     display: block;
     margin-bottom: 1rem;
     font-size: 1.2rem;
-    color: #2d3748;
+    color: var(--gold);
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
+  }
+
+  .contact-box a {
+    color: var(--gold);
+  }
+
+  .contact-box a:hover {
+    color: var(--red);
   }
 
   /* Responsive */

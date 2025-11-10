@@ -162,36 +162,35 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <footer>
       <div class="footer-content">
         <div class="footer-section">
-          <h4>Best RV Rental Companies Award</h4>
-          <img src="/images/certifiedgold.webp" alt="BestRV Certified Gold - Your trusted RV rental guide" class="footer-logo" width="250" height="250" />
-          <p>Your trusted guide to RV rentals and camping across America.</p>
+          <h4>Metropolitan DJ</h4>
+          <p>Huntsville's premier wedding and event DJ service since 2008. Professional entertainment backed by 16+ years of proven experience.</p>
+          <p style="margin-top: 1rem;"><strong>📞 256-533-6065</strong></p>
+          <p><strong>📧 amy@metropolitandiscjockey.com</strong></p>
         </div>
         <div class="footer-section">
-          <h4>Quick Links</h4>
+          <h4>Services</h4>
           <ul>
-            <li><a href="/cities">RV Rentals by City</a></li>
-            <li><a href="/campgrounds">Campgrounds</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/sitemap">Sitemap</a></li>
+            <li><a href="/">DJ Services</a></li>
+            <li><a href="/cities">North Alabama Coverage</a></li>
+            <li><a href="/reviews">Reviews</a></li>
             <li><a href="/about">About Us</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
         <div class="footer-section">
-          <h4>Resources</h4>
+          <h4>Service Area</h4>
           <ul>
-            <li><a href="/reviews">RV Rental Reviews</a></li>
-            <li><a href="/how-we-review">How We Review</a></li>
-            <li><a href="/guides">RV Renters Guides</a></li>
-            <li><a href="/blog/first-time-rv-renters-guide">First Time RV Renters Guide</a></li>
-            <li><a href="/blog/rv-maintenance-for-renters">RV Maintenance Tips For Renters</a></li>
-            <li><a href="/blog/rv-renters-camping-essentials">RV Renters Camping Essentials</a></li>
+            <li><a href="/dj-services-huntsville-al">Huntsville, AL</a></li>
+            <li><a href="/dj-services-madison-al">Madison, AL</a></li>
+            <li><a href="/dj-services-decatur-al">Decatur, AL</a></li>
+            <li><a href="/dj-services-athens-al">Athens, AL</a></li>
+            <li><a href="/dj-services-hartselle-al">Hartselle, AL</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 BestRV. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
-        <p class="disclaimer">We may earn a commission when you book through our affiliate links.</p>
+        <p>&copy; 2025 Metropolitan DJ. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        <p class="disclaimer">Professional DJ and event entertainment services for North Alabama.</p>
       </div>
     </footer>
 
@@ -201,9 +200,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
 
       footer {
-        background: #2d3748;
+        background: #000000;
         color: white;
         margin-top: 4rem;
+        border-top: 2px solid #A1844A;
       }
 
       .footer-content {
@@ -217,8 +217,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
       .footer-section h4 {
         margin-bottom: 1rem;
-        color: #c4b5fd; /* Even lighter purple for dark background (WCAG AA 5.1:1) */
+        color: #A1844A;
         font-weight: 700;
+        text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
+      }
+
+      .footer-section p {
+        color: rgba(255,255,255,0.9);
+        line-height: 1.7;
       }
 
       .footer-logo {
@@ -238,7 +244,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
 
       .footer-section a {
-        color: #e2e8f0; /* Lighter gray for better contrast on dark bg (WCAG AA 7:1) */
+        color: rgba(255,255,255,0.9);
         transition: color 0.3s;
         text-decoration: underline;
         text-decoration-thickness: 1px;
@@ -246,32 +252,33 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
 
       .footer-section a:hover {
-        color: white;
+        color: #DC2626;
         text-decoration-thickness: 2px;
       }
 
       .footer-bottom {
-        border-top: 1px solid #4a5568;
+        border-top: 1px solid rgba(161, 132, 74, 0.3);
         padding: 1.5rem 2rem;
         text-align: center;
         font-size: 0.9rem;
-        color: #cbd5e0; /* Lighter gray for better contrast (WCAG AA 4.5:1) */
+        color: rgba(255,255,255,0.8);
       }
 
       .footer-bottom a {
-        color: #e2e8f0; /* Lighter color for links on dark background */
+        color: #A1844A;
         text-decoration: underline;
         text-underline-offset: 2px;
       }
 
       .footer-bottom a:hover {
-        color: white;
+        color: #DC2626;
       }
 
       .disclaimer {
         margin-top: 0.5rem;
         font-size: 0.85rem;
         font-style: italic;
+        color: rgba(255,255,255,0.7);
       }
 
       @media (max-width: 768px) {

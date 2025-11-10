@@ -110,11 +110,12 @@ function isActive(href: string) {
 
 <style>
   .main-nav {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     position: sticky;
     top: 0;
     z-index: 1000;
+    border-bottom: 2px solid #A1844A;
   }
 
   .nav-container {
@@ -141,28 +142,29 @@ function isActive(href: string) {
   .logo-text {
     font-size: 1.5rem;
     font-weight: 700;
-    color: white;
+    color: #A1844A;
     text-decoration: none;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.5);
   }
 
   .mobile-contact-row {
     display: none;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #000000;
     padding: 0.75rem 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(161, 132, 74, 0.3);
   }
 
   .mobile-contact-toggle {
     display: flex;
-    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    background: linear-gradient(135deg, #A1844A 0%, #8a6d3b 100%);
     border: none;
     border-radius: 8px;
-    color: white;
+    color: #000000;
     cursor: pointer;
     padding: 10px 16px;
     font-weight: 600;
     font-size: 0.95rem;
-    box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
+    box-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
     transition: all 0.3s;
     gap: 0.5rem;
     align-items: center;
@@ -171,9 +173,10 @@ function isActive(href: string) {
   }
 
   .mobile-contact-toggle:hover {
-    background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+    background: linear-gradient(135deg, #DC2626 0%, #b91c1c 100%);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+    color: white;
   }
 
   .mobile-contact-toggle:active {
@@ -246,9 +249,10 @@ function isActive(href: string) {
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background: #030303;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     border-radius: 8px;
+    border: 2px solid rgba(161, 132, 74, 0.3);
     list-style: none;
     margin: 8px 0 0 0;
     padding: 0.5rem 0;
@@ -268,26 +272,27 @@ function isActive(href: string) {
   .submenu li a {
     display: block;
     padding: 0.75rem 1.25rem;
-    color: #333;
+    color: rgba(255,255,255,0.9);
     text-decoration: none;
     transition: all 0.2s;
   }
 
   .submenu li a:hover {
-    background: #f5f5f5;
+    background: rgba(161, 132, 74, 0.1);
     padding-left: 1.5rem;
+    color: #A1844A;
   }
 
   .submenu li a.active {
-    color: #667eea;
+    color: #DC2626;
     font-weight: 600;
-    background: #f0f4ff;
+    background: rgba(220, 38, 38, 0.1);
   }
 
   /* Contact Bar Styles */
   .contact-bar-container {
-    background: white;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    background: #000000;
+    border-top: 1px solid rgba(161, 132, 74, 0.3);
     padding: 0.75rem 0;
   }
 
@@ -307,10 +312,11 @@ function isActive(href: string) {
   }
 
   .contact-label {
-    color: #4a5568;
+    color: #A1844A;
     font-weight: 600;
     font-size: 0.95rem;
     white-space: nowrap;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
   }
 
   .contact-methods {
@@ -326,8 +332,8 @@ function isActive(href: string) {
     align-items: center;
     gap: 0.6rem;
     padding: 0.55rem 1rem;
-    background: #f7fafc;
-    border: 2px solid #e2e8f0;
+    background: #030303;
+    border: 2px solid rgba(161, 132, 74, 0.3);
     border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -338,19 +344,19 @@ function isActive(href: string) {
 
   .contact-method svg {
     flex-shrink: 0;
-    color: #667eea;
+    color: #A1844A;
     transition: color 0.3s ease;
   }
 
   .contact-method:hover {
-    border-color: #667eea;
-    background: linear-gradient(135deg, #f6f8ff 0%, #e8edff 100%);
+    border-color: #A1844A;
+    background: rgba(161, 132, 74, 0.1);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+    box-shadow: 0 4px 12px rgba(161, 132, 74, 0.3);
   }
 
   .contact-method:hover svg {
-    color: #5568d3;
+    color: #DC2626;
   }
 
   .contact-info {
@@ -362,7 +368,7 @@ function isActive(href: string) {
   .contact-type {
     font-size: 0.65rem;
     font-weight: 600;
-    color: #718096;
+    color: rgba(255,255,255,0.7);
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -370,44 +376,44 @@ function isActive(href: string) {
   .contact-value {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #2d3748;
+    color: rgba(255,255,255,0.9);
     line-height: 1.2;
   }
 
   .contact-method.phone:hover {
-    border-color: #48bb78;
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-color: #A1844A;
+    background: rgba(161, 132, 74, 0.15);
   }
 
   .contact-method.phone:hover svg {
-    color: #38a169;
+    color: #DC2626;
   }
 
   .contact-method.email:hover {
-    border-color: #f59e0b;
-    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-color: #A1844A;
+    background: rgba(161, 132, 74, 0.15);
   }
 
   .contact-method.email:hover svg {
-    color: #d97706;
+    color: #DC2626;
   }
 
   .contact-method.form:hover {
-    border-color: #667eea;
-    background: linear-gradient(135deg, #f6f8ff 0%, #e8edff 100%);
+    border-color: #A1844A;
+    background: rgba(161, 132, 74, 0.15);
   }
 
   .contact-method.form:hover svg {
-    color: #5568d3;
+    color: #DC2626;
   }
 
   .contact-method.website:hover {
-    border-color: #8b5cf6;
-    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border-color: #A1844A;
+    background: rgba(161, 132, 74, 0.15);
   }
 
   .contact-method.website:hover svg {
-    color: #7c3aed;
+    color: #DC2626;
   }
 
   /* Mobile Styles */
@@ -426,11 +432,12 @@ function isActive(href: string) {
       left: 0;
       right: 0;
       flex-direction: column;
-      background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      background: #030303;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease;
+      border-top: 1px solid rgba(161, 132, 74, 0.3);
     }
 
     .nav-menu.active {
@@ -439,21 +446,21 @@ function isActive(href: string) {
     }
 
     .nav-link {
-      color: #333;
+      color: rgba(255,255,255,0.9);
       border-radius: 0;
       padding: 1rem 2rem;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid rgba(161, 132, 74, 0.2);
     }
 
     .nav-link.active {
-      background: #f0f4ff;
-      color: #667eea;
+      background: rgba(161, 132, 74, 0.1);
+      color: #A1844A;
     }
 
     .submenu {
       position: static;
       box-shadow: none;
-      background: #f9f9f9;
+      background: rgba(0,0,0,0.5);
       margin: 0;
       max-height: 0;
       overflow: hidden;
@@ -489,7 +496,7 @@ function isActive(href: string) {
 
     .contact-bar-container.active {
       max-height: 800px;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-top: 1px solid rgba(161, 132, 74, 0.3);
       padding: 0.75rem 0;
     }
 
