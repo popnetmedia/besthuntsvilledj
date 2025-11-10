@@ -58,58 +58,54 @@ function isActive(href: string) {
     </ul>
   </div>
 
-  {!isHomepage && (
-    <div class="mobile-contact-row">
-      <button class="mobile-contact-toggle" aria-label="Toggle contact info">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>Contact Metropolitan DJ</span>
-      </button>
-    </div>
-  )}
+  <div class="mobile-contact-row">
+    <button class="mobile-contact-toggle" aria-label="Toggle contact info">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Contact Metropolitan DJ</span>
+    </button>
+  </div>
 
-  {!isHomepage && (
-    <div class="contact-bar-container">
-      <div class="contact-bar-inner">
-        <div class="contact-label-wrapper">
-          <span class="contact-label">Contact Us:</span>
-        </div>
+  <div class="contact-bar-container">
+    <div class="contact-bar-inner">
+      <div class="contact-label-wrapper">
+        <span class="contact-label">Contact Us:</span>
+      </div>
 
-        <div class="contact-methods">
-          <a href="tel:2565336065" class="contact-method phone">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <div class="contact-info">
-              <span class="contact-type">Call</span>
-              <span class="contact-value">256-533-6065</span>
-            </div>
-          </a>
+      <div class="contact-methods">
+        <a href="tel:2565336065" class="contact-method phone">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div class="contact-info">
+            <span class="contact-type">Call</span>
+            <span class="contact-value">256-533-6065</span>
+          </div>
+        </a>
 
-          <a href="mailto:amy@metropolitandiscjockey.com" class="contact-method email">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <div class="contact-info">
-              <span class="contact-type">Email</span>
-              <span class="contact-value">amy@metropolitandiscjockey.com</span>
-            </div>
-          </a>
+        <a href="mailto:amy@metropolitandiscjockey.com" class="contact-method email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="contact-info">
+            <span class="contact-type">Email</span>
+            <span class="contact-value">amy@metropolitandiscjockey.com</span>
+          </div>
+        </a>
 
-          <a href="/contact" class="contact-method form">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <div class="contact-info">
-              <span class="contact-type">Contact Form</span>
-              <span class="contact-value">Get a Custom Quote</span>
-            </div>
-          </a>
+        <a href="/contact" class="contact-method form">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div class="contact-info">
+            <span class="contact-type">Get Quote</span>
+            <span class="contact-value">Custom Quote</span>
+          </div>
+        </a>
 
-          <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="contact-method website">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <div class="contact-info">
-              <span class="contact-type">Website</span>
-              <span class="contact-value">metropolitandiscjockey.com</span>
-            </div>
-          </a>
-        </div>
+        <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="contact-method website">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div class="contact-info">
+            <span class="contact-type">Website</span>
+            <span class="contact-value">metropolitandiscjockey.com</span>
+          </div>
+        </a>
       </div>
     </div>
-  )}
+  </div>
 </nav>
 
 <style>
@@ -328,16 +324,16 @@ function isActive(href: string) {
   .contact-method {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.7rem 1.25rem;
+    gap: 0.6rem;
+    padding: 0.55rem 1rem;
     background: #f7fafc;
     border: 2px solid #e2e8f0;
     border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease;
     flex: 1;
-    min-width: 200px;
-    max-width: 280px;
+    min-width: 180px;
+    max-width: 260px;
   }
 
   .contact-method svg {
@@ -360,11 +356,11 @@ function isActive(href: string) {
   .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
+    gap: 0.05rem;
   }
 
   .contact-type {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 600;
     color: #718096;
     text-transform: uppercase;
@@ -372,9 +368,10 @@ function isActive(href: string) {
   }
 
   .contact-value {
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: #2d3748;
+    line-height: 1.2;
   }
 
   .contact-method.phone:hover {
