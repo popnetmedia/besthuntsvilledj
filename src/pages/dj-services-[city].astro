@@ -1,0 +1,395 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { cities, getCityBySlug } from '../data/cities.js';
+
+export async function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+const title = `DJ Services in ${city.name}, ${city.stateAbbr} | Metropolitan DJ`;
+const description = `Professional DJ services in ${city.name}, ${city.state}. Metropolitan DJ brings 16+ years of experience to weddings, corporate events, and parties. Serving ${city.county}. Call 256-533-6065.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="hero-city">
+    <div class="hero-content">
+      <h1>DJ Services in {city.name}, {city.stateAbbr}</h1>
+      <p class="subtitle">Metropolitan DJ - Premier Event Entertainment {city.distance}</p>
+
+      <div class="trust-signals">
+        <div class="badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <span>16+ Years Experience</span>
+        </div>
+        <div class="badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span>Available 24/7</span>
+        </div>
+        <div class="badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>Full Service: DJ + Lighting + AV</span>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>$750+</strong>
+          <span>Starting Price</span>
+        </div>
+        <div class="stat">
+          <strong>{city.distance}</strong>
+          <span>From Huntsville</span>
+        </div>
+        <div class="stat">
+          <strong>50+</strong>
+          <span>Events Per Year</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="cta-button primary large">
+          Book Metropolitan DJ
+        </a>
+        <a href="tel:2565336065" class="cta-button secondary large" style="margin-left: 1rem;">
+          Call: 256-533-6065
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Summary -->
+  <section class="quick-summary">
+    <div class="summary-box">
+      <h2>Why Choose Metropolitan DJ in {city.name}?</h2>
+      <p class="summary-subtitle">Full-service entertainment for unforgettable events</p>
+
+      <div class="summary-grid">
+        <div class="summary-item">
+          <strong>Experience</strong>
+          <span>16+ years serving North Alabama & TN Valley</span>
+        </div>
+        <div class="summary-item">
+          <strong>Full Service</strong>
+          <span>DJ, lighting, photo booths, AV, live streaming</span>
+        </div>
+        <div class="summary-item">
+          <strong>Professional</strong>
+          <span>Award-winning team, backup equipment on-site</span>
+        </div>
+        <div class="summary-item">
+          <strong>Local</strong>
+          <span>Based in Huntsville, serving {city.county}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section">
+    <div class="container">
+      <h2>DJ Services for {city.name} Events</h2>
+      <p class="section-intro">Metropolitan DJ provides complete entertainment packages for every type of event in {city.name} and surrounding areas.</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>💍 Wedding DJ Services</h3>
+          <p>Create unforgettable memories with professional wedding entertainment. We handle ceremony music, cocktail hour, dinner, and reception with seamless transitions.</p>
+          <ul>
+            <li>Custom playlist planning</li>
+            <li>Professional MC services</li>
+            <li>Ceremony & reception coordination</li>
+            <li>Dance floor lighting</li>
+            <li>Wireless microphones</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h3>🏢 Corporate Events</h3>
+          <p>Professional audio-visual services for corporate functions, conferences, and business events in {city.name}.</p>
+          <ul>
+            <li>Corporate party entertainment</li>
+            <li>Conference audio support</li>
+            <li>Presentation equipment</li>
+            <li>Live streaming services</li>
+            <li>Professional sound systems</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h3>🎉 Private Parties</h3>
+          <p>Birthday parties, anniversaries, graduations, and celebrations of all kinds. We bring the energy!</p>
+          <ul>
+            <li>All ages and music genres</li>
+            <li>Interactive entertainment</li>
+            <li>Photo booth rentals</li>
+            <li>Custom lighting packages</li>
+            <li>Sound system rentals</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h3>🎓 School Events</h3>
+          <p>Proms, homecomings, school dances, and fundraisers. Age-appropriate music and professional service.</p>
+          <ul>
+            <li>Appropriate music selection</li>
+            <li>High-energy entertainment</li>
+            <li>Chaperoneapproved playlists</li>
+            <li>Dance floor lighting effects</li>
+            <li>Professional MC services</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="cta-button primary large">
+          View Packages & Pricing
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Metropolitan DJ Section -->
+  <section class="section bg-gray">
+    <div class="container">
+      <h2>The Metropolitan DJ Difference</h2>
+      <p class="section-intro">Based in Huntsville with {city.distance} to {city.name}, we're your local entertainment experts.</p>
+
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <h3>🎵 16+ Years Experience</h3>
+          <p>Over a decade and a half of perfecting event entertainment. We've performed at hundreds of weddings, corporate events, and celebrations across North Alabama.</p>
+        </div>
+
+        <div class="strategy-card">
+          <h3>🎤 Professional Team</h3>
+          <p>Multiple experienced DJs on staff. Award-winning service with backup equipment at every event. Your event is in expert hands.</p>
+        </div>
+
+        <div class="strategy-card">
+          <h3>💡 Full-Service AV</h3>
+          <p>Not just DJs - we're a complete audio-visual company. Lighting, photo booths, live streaming, equipment rental, and more under one roof.</p>
+        </div>
+
+        <div class="strategy-card">
+          <h3>📍 Local Expertise</h3>
+          <p>We know {city.name} and {city.county}. Familiar with local venues, regulations, and community preferences. True local service.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attractions / Local Connection -->
+  <section class="section">
+    <div class="container">
+      <h2>Serving {city.name} & Surrounding Areas</h2>
+      <p class="section-intro">Metropolitan DJ proudly serves {city.name}, {city.county}, and the greater North Alabama region.</p>
+
+      <div class="destination-cards">
+        {city.mainAttractions.map((attraction) => (
+          <div class="attraction-card">
+            <strong>{attraction}</strong>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-radius: 12px; border-left: 4px solid var(--primary);">
+        <h3 style="margin-top: 0; color: var(--primary);">Coverage Area</h3>
+        <p><strong>Population:</strong> {city.population}</p>
+        <p><strong>County:</strong> {city.county}</p>
+        <p><strong>Distance from Huntsville:</strong> {city.distance}</p>
+        <p style="margin-bottom: 0;">We serve all of {city.name} and surrounding communities within a 50-mile radius of Huntsville, including {city.county} and the Tennessee Valley region.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section bg-gray">
+    <div class="container">
+      <h2>Frequently Asked Questions - {city.name} DJ Services</h2>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary><h3>How much does a DJ cost in {city.name}, {city.stateAbbr}?</h3></summary>
+          <p>Metropolitan DJ pricing starts at $750 and ranges up to $7,000+ depending on your event needs, duration, and services. Wedding packages typically range from $1,200-$3,500 for 4-6 hours including DJ services, lighting, and MC. We serve {city.name} which is {city.distance}. Contact us for a custom quote: 256-533-6065.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>Does Metropolitan DJ travel to {city.name}?</h3></summary>
+          <p>Absolutely! {city.name} is {city.distance}, well within our regular service area. We serve all of {city.county} and the greater North Alabama region. No travel fees apply for events in {city.name}.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>What services are included?</h3></summary>
+          <p>Metropolitan DJ offers comprehensive event entertainment: professional DJ services, MC/announcements, ceremony and reception music, wireless microphones, professional sound system, dance floor lighting, online planning tools, and backup equipment. We also offer add-ons like uplighting, photo booths, AV equipment rental, and live streaming.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>How far in advance should I book?</h3></summary>
+          <p>For weddings in {city.name}, book 6-12 months in advance, especially for peak season (May-October). Corporate events and private parties can typically be booked 2-3 months ahead. Popular dates fill quickly, so earlier is always better!</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>Do you provide equipment for outdoor events in {city.name}?</h3></summary>
+          <p>Yes! We have professional-grade outdoor sound systems and weatherproof equipment perfect for outdoor weddings, festivals, and events in {city.name}. We bring backup power sources and weather-protected DJ booths when needed.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>Can I request specific songs?</h3></summary>
+          <p>Absolutely! We encourage song requests and work with you to create a custom playlist. Our online planning tools let you specify must-play songs, do-not-play songs, and preferred genres. We maintain an extensive music library spanning all decades and genres.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="section">
+    <div class="container" style="text-align: center;">
+      <h2>Ready to Book Your {city.name} Event?</h2>
+      <p class="section-intro">Contact Metropolitan DJ today for a free consultation and custom quote.</p>
+
+      <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <div class="contact-box">
+          <strong>📞 Phone</strong>
+          <p><a href="tel:2565336065" style="font-size: 1.5rem; color: var(--primary); text-decoration: none;">256-533-6065</a></p>
+        </div>
+        <div class="contact-box">
+          <strong>📧 Email</strong>
+          <p><a href="mailto:amy@metropolitandiscjockey.com" style="color: var(--primary);">amy@metropolitandiscjockey.com</a></p>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="cta-button primary large">
+          Visit Metropolitan DJ Website
+        </a>
+      </div>
+
+      <div style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center;">
+        <a href="https://www.facebook.com/ExperienceMetropolitan/" target="_blank" rel="noopener" style="color: var(--primary);">Facebook</a>
+        <a href="https://www.instagram.com/metropolitandiscjockey/" target="_blank" rel="noopener" style="color: var(--primary);">Instagram</a>
+        <a href="https://www.youtube.com/user/MetropolitanDJs" target="_blank" rel="noopener" style="color: var(--primary);">YouTube</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Import all the homepage styles - they work great here too! */
+  @import '../pages/index.astro';
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .service-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.12);
+  }
+
+  .service-card h3 {
+    font-size: 1.4rem;
+    color: #2d3748;
+    margin-bottom: 1rem;
+  }
+
+  .service-card p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .service-card li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+    line-height: 1.6;
+  }
+
+  .service-card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #48bb78;
+    font-weight: 700;
+  }
+
+  .attraction-card {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    margin: 0.5rem;
+    font-weight: 600;
+  }
+
+  .destination-cards {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .contact-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 250px;
+  }
+
+  .contact-box strong {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    color: #2d3748;
+  }
+
+  .cta-button.secondary {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  }
+
+  .cta-button.secondary:hover {
+    box-shadow: 0 8px 16px rgba(72, 187, 120, 0.35);
+  }
+
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-button.secondary {
+      margin-left: 0 !important;
+      margin-top: 1rem;
+    }
+  }
+</style>
