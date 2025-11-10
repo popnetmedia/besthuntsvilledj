@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "DJ services in Huntsville, AL by City - Best Huntsville DJs";
+const description = "Find the best DJ services in Huntsville, AL in your city. Compare providers, read reviews, and get expert recommendations.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="section">
+    <div class="container">
+      <h1>DJ services in Huntsville, AL by City</h1>
+      <p>Choose your city to see local providers and reviews.</p>
+
+      <div style="margin-top: 2rem; padding: 2rem; background: #f7fafc; border-radius: 10px;">
+        <h3>📝 Next Steps:</h3>
+        <ol style="margin-left: 2rem; line-height: 2;">
+          <li>Copy <code>src/pages/cities/_TEMPLATE.astro</code></li>
+          <li>Rename to your city (e.g., <code>new-york-ny.astro</code>)</li>
+          <li>Update the cityData object with your content</li>
+          <li>Add your city to this index page</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+</style>

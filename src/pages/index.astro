@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Best Huntsville DJs - Find the Best DJ services in Huntsville, AL";
+const description = "Compare top-rated DJ services in Huntsville, AL providers across the United States. Honest reviews, pricing guides, and expert recommendations.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero-city" style="min-height: 500px;">
+    <div class="hero-content">
+      <h1>Find the Best DJ services in Huntsville, AL</h1>
+      <p class="subtitle">Compare providers, read reviews, and make informed decisions</p>
+
+      <div style="margin-top: 2rem;">
+        <a href="/cities" class="cta-button primary large">Browse by City</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Welcome to Best Huntsville DJs</h2>
+      <p>Your trusted guide to finding and comparing DJ services in Huntsville, AL.</p>
+
+      <div style="margin-top: 2rem; padding: 2rem; background: #f7fafc; border-radius: 10px;">
+        <h3>🚧 Setup Instructions</h3>
+        <ol style="margin-left: 2rem; line-height: 2;">
+          <li>Read <code>SETUP_GUIDE.md</code> for complete setup instructions</li>
+          <li>Update branding in <code>src/layouts/BaseLayout.astro</code></li>
+          <li>Create your first city page using <code>src/pages/cities/_TEMPLATE.astro</code></li>
+          <li>Set up hosting and domain</li>
+          <li>Launch!</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-city {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s;
+    font-size: 1.1rem;
+    text-decoration: none;
+  }
+
+  .cta-button.primary {
+    background: white;
+    color: #667eea;
+  }
+
+  .cta-button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+  }
+
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+</style>

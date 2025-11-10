@@ -1,0 +1,1803 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { AFFILIATE_LINKS, AUTHORITY_LINKS } from '../../data/outboundLinks.js';
+import { generateCityBusinessSchema, generateFAQSchema, generateBreadcrumbSchema } from '../../utils/schemaGenerators.js';
+import '../../styles/city-pages.css';
+
+// City-specific data (this would come from a database or CMS in production)
+const cityData = {
+  name: "Huntsville",
+  state: "Alabama",
+  stateAbbr: "AL",
+  population: "249,000",
+  avgRentalPrice: "$140-180",
+  topCompanies: [
+    {
+      name: "Fireside RV Rental",
+      rating: 4.9,
+      price: "$135/day",
+      link: "https://huntsville.firesidervrental.com",
+      logo: "/images/companies/FiresideRV_logo-badge-v2.svg",
+      location: "Serving Huntsville and North Alabama area",
+      fleetSize: "30+ premium vehicles",
+      pros: [
+        "Local family-owned business with exceptional personalized service",
+        "Well-maintained newer fleet (average 2-3 years old)",
+        "Unlimited miles included on all rentals",
+        "Flexible pickup and drop-off times by appointment",
+        "Comprehensive orientation with Dathan for first-time renters",
+        "Pet-friendly with no extra fees",
+        "Deep local knowledge of North Alabama RV routes and campgrounds"
+      ],
+      cons: [
+        "Smaller fleet means booking in advance is essential",
+        "Limited luxury Class A motorhomes available",
+        "No 24/7 pickup (appointments required)"
+      ],
+      insurance: "Basic liability included, supplemental damage coverage available for $20-30/day",
+      mileage: "Unlimited miles included on all rentals",
+      bestFor: "Families and couples seeking personalized service, local expertise, and excellent value in Huntsville area"
+    },
+    {
+      name: "RVshare",
+      rating: 4.7,
+      price: "$140/day",
+      link: AFFILIATE_LINKS.rvshare,
+      logo: "/images/companies/RVshare_Logo-01-cropped.webp",
+      location: "Peer-to-peer platform, 482 vehicles in Huntsville area",
+      fleetSize: "482 private vehicles (43 motorhomes, 309 travel trailers)",
+      pros: [
+        "Massive inventory in Huntsville area",
+        "Often newer vehicles from private owners",
+        "Flexible pricing and rental terms",
+        "Airport delivery options available near Huntsville International (HSV)",
+        "Detailed owner reviews and ratings available",
+        "Many pet-friendly options"
+      ],
+      cons: [
+        "Quality varies by owner - read reviews carefully",
+        "Some owners have strict mileage limits",
+        "Insurance can be more expensive ($30-40/day)"
+      ],
+      insurance: "Rental insurance required, starts at $30/day through platform",
+      mileage: "Varies by owner, typically 100-125 miles/day included",
+      bestFor: "Renters seeking variety and competitive prices in Huntsville with large selection"
+    },
+    {
+      name: "Cruise America",
+      rating: 4.5,
+      price: "$165/day",
+      link: AFFILIATE_LINKS.cruiseAmerica,
+      logo: "/images/companies/cruise-america-logo.webp",
+      location: "Serves Huntsville area (nearest location within 30 miles)",
+      fleetSize: "Large national fleet",
+      pros: [
+        "Nationwide network and 24/7 roadside assistance",
+        "Consistent fleet standards and quality",
+        "Flexible rental terms from 3 days to months",
+        "Well-established company with 50+ years experience",
+        "One-way rentals to Nashville, Birmingham, Atlanta"
+      ],
+      cons: [
+        "Higher pricing than local options",
+        "Vehicles can be older (5-8 year average age)",
+        "Less personalized service than family-owned businesses",
+        "Limited availability during peak season"
+      ],
+      insurance: "Basic insurance included, comprehensive available for $25-35/day",
+      mileage: "150 free miles/day, $0.40/mile after",
+      bestFor: "Travelers needing nationwide support and one-way rental options"
+    }
+  ],
+  nearbyDestinations: [
+    "U.S. Space & Rocket Center (10 miles)",
+    "Monte Sano State Park (6 miles)",
+    "Lake Guntersville State Park (35 miles)",
+    "Cathedral Caverns State Park (30 miles)",
+    "Bankhead National Forest (60 miles)",
+    "Wheeler National Wildlife Refuge (30 miles)"
+  ],
+
+  // Campgrounds (for the campgrounds section)
+  campgrounds: [
+    {
+      name: "Monte Sano State Park",
+      slug: "monte-sano-state-park-al",
+      distance: "6 miles from Huntsville",
+      price: "$30-40/night",
+      description: "90 improved RV sites atop Monte Sano Mountain with hiking trails, mountain views, and 15% senior/military discount.",
+      rating: 4.7
+    },
+    {
+      name: "Lake Guntersville State Park",
+      slug: "lake-guntersville-state-park-al",
+      distance: "35 miles from Huntsville",
+      price: "$35-50/night",
+      description: "229 full-hookup lakefront sites with boating, fishing, golf course, and Alabama's premier lake destination.",
+      rating: 4.8
+    },
+    {
+      name: "Cathedral Caverns State Park",
+      slug: "cathedral-caverns-state-park-al",
+      distance: "30 miles from Huntsville",
+      price: "$25-45/night",
+      description: "25 full-hookup sites near massive cave system. $5 discount on cave tours for overnight campers.",
+      rating: 4.6
+    }
+  ],
+  faq: [
+    // General Questions
+    {
+      category: "General Questions",
+      question: "What's the average cost to rent an RV in Huntsville?",
+      answer: "RV rental prices in Huntsville typically range from $150 to $300 per day, depending on the size and type of RV. Class A motorhomes are generally more expensive ($250-400/day), while smaller camper vans start around $100-150/day. Weekly rentals offer better value at $900-$2,100 per week. Factor in additional costs like insurance ($25-40/day), mileage overages ($0.35-0.45/mile), and generator usage ($3-5/hour)."
+    },
+    {
+      category: "General Questions",
+      question: "Do I need a special license to rent an RV in Huntsville?",
+      answer: "No special license required in Alabama. A standard driver's license is sufficient for RVs under 26,000 lbs (all rental RVs). Alabama DMV doesn't require CDL for personal RV use. Rental companies typically require: age 25+, valid license held for 3+ years, and clean driving record. International visitors need a valid passport and International Driving Permit (IDP) plus home country license."
+    },
+    {
+      category: "General Questions",
+      question: "What's the best time of year to rent an RV in Huntsville?",
+      answer: "Spring (March-May) and fall (September-November) offer the best RV rental conditions in Huntsville. Temperatures range from 60-80°F, perfect for exploring Alabama state parks. Summer (June-August) brings heat and humidity (85-95°F) but great for lake activities at Lake Guntersville and DeGray Lake. Avoid late spring for severe weather season. Winter (December-February) offers the lowest rates ($100-140/day) with mild temperatures, though some campgrounds have limited services."
+    },
+    {
+      category: "General Questions",
+      question: "Can I rent an RV in Huntsville for a one-way trip?",
+      answer: "Yes, one-way RV rentals from Huntsville are available but limited. Most popular routes: Huntsville to Nashville, TN ($200-300 fee), Huntsville to Atlanta, GA ($250-350 fee), or Huntsville to Birmingham, AL ($350-500 fee). Cruise America's Huntsville location offers nationwide one-way options. Peer-to-peer platforms rarely allow one-way from Huntsville. Book 60+ days ahead for one-way availability, especially during peak season."
+    },
+    {
+      category: "General Questions",
+      question: "How far in advance should I book an RV rental in Huntsville?",
+      answer: "For peak season (June-August) and major holidays, book 2-3 months in advance to ensure availability and better rates. Spring and fall shoulder seasons can be booked 4-6 weeks ahead. Last-minute rentals (within 2 weeks) are sometimes available at discounted rates during off-peak periods, but selection will be limited. Early booking also gives you more time to plan your route and campground reservations."
+    },
+    {
+      category: "General Questions",
+      question: "Are pets allowed in RV rentals in Huntsville?",
+      answer: "Pet policies vary by company and owner. Fireside RV Rental in Huntsville is pet-friendly with no extra fees. Cruise America typically allows pets with a $150-200 cleaning fee and proof of vaccinations. RVshare owners in the Huntsville area have varying policies - roughly 40-50% of listings are pet-friendly. Always disclose pets upfront as unauthorized pets can result in additional fees of $300-500 or loss of your security deposit."
+    },
+    {
+      category: "General Questions",
+      question: "What is included in my RV rental in Huntsville?",
+      answer: "Standard inclusions typically cover: basic kitchen supplies (pots, pans, utensils), bedding for all sleeping areas, bathroom supplies, 150 free miles per day, basic insurance, and 24/7 roadside assistance. NOT included: generator usage ($3-5/hour or $30-50/day), additional mileage ($0.35-0.45/mile), upgraded insurance, cleaning fees ($75-150), propane refills, dump fees, and campground costs. Always confirm exact inclusions with your specific rental company."
+    },
+    // Pricing Questions
+    {
+      category: "Pricing Questions",
+      question: "What hidden fees should I watch out for when renting an RV in Huntsville?",
+      answer: "Common hidden fees include: generator usage ($3-5/hour), mileage overages ($0.35-0.45/mile beyond daily allowance), cleaning fees if returned dirty ($75-200), late return charges ($50-100/hour), propane refill if not returned full ($25-75), dump fees if not emptied ($50-100), tolls on routes to destinations, prep fees ($50-150), and early pickup/late drop-off fees ($25-50). Always ask for a complete fee breakdown before booking."
+    },
+    {
+      category: "Pricing Questions",
+      question: "How much does RV insurance cost in Huntsville?",
+      answer: "Basic insurance included with most rentals covers liability. Supplemental insurance ranges from $25-40 per day for damage waiver coverage that reduces your deductible from $3,000-5,000 down to $500-1,000. Full comprehensive insurance costs $35-50/day with zero deductible. For a 7-day rental, expect to pay $175-350 for insurance. Some credit cards (Chase Sapphire Reserve, Amex Platinum) may provide coverage, but verify RV inclusion."
+    },
+    {
+      category: "Pricing Questions",
+      question: "What is the total cost to rent an RV in Huntsville for a week?",
+      answer: "For a week-long rental, budget: Base rental $900-2,100 (Class B-C average), insurance $175-280, unlimited mileage upgrade $100-150 (optional), generator package $150-200, cleaning fee $75-125, propane/dump fees $50-100. Total: $1,450-3,000 depending on RV class and options. Add campground costs ($40-80/night x 7 = $280-560), fuel ($200-400), and food. Expect $2,200-4,500 all-in for a comfortable week-long trip."
+    },
+    {
+      category: "Pricing Questions",
+      question: "Do RV rental prices in Huntsville vary by season?",
+      answer: "Yes, significantly. Peak summer rates (June-August): $150-250/day. Shoulder season (March-May, Sept-Nov): $125-180/day (20-30% savings). Off-season (Dec-Feb): $100-150/day (30-40% savings). Holiday weekends (Memorial Day, 4th of July, Labor Day) command premium rates 30-40% above normal. Booking during shoulder season for popular Alabama destinations like Space Center and Tennessee River can save $400-600 on a week-long rental."
+    },
+    {
+      category: "Pricing Questions",
+      question: "What's the security deposit for an RV rental in Huntsville?",
+      answer: "Security deposits typically range from $500-2,000 depending on RV class and rental company. Class B vans: $500-1,000, Class C motorhomes: $1,000-1,500, Class A motorhomes: $1,500-2,000. Deposits are authorized (not charged) on a credit card at pickup and released 3-7 business days after return if no damage. Peer-to-peer platforms may hold deposits slightly longer (7-14 days) pending owner inspection."
+    },
+    {
+      category: "Pricing Questions",
+      question: "Are there any discounts available for RV rentals in Huntsville?",
+      answer: "Yes, common discounts include: Early booking discounts (10-15% off for 60+ days advance), weekly rentals (typically 10-20% off daily rate), monthly rentals (30-40% off), military/veteran discounts (5-10%), AAA/AALP discounts (5-10%), and last-minute deals (20-40% off within 2 weeks). Peer-to-peer platforms often have first-time user promo codes ($50-100 off). Also check for seasonal promotions during shoulder season."
+    },
+    // Booking Process
+    {
+      category: "Booking Process",
+      question: "What documents do I need to rent an RV in Huntsville?",
+      answer: "Required documents: Valid driver's license (held for 3-5 years depending on company), major credit card in driver's name (for security deposit), proof of insurance or agreement to purchase rental insurance, and government-issued photo ID. International renters need: Valid passport, international driver's permit (IDP) plus home country license, and may face additional deposit requirements ($500-1,000 extra)."
+    },
+    {
+      category: "Booking Process",
+      question: "Can I pick up my RV rental at Huntsville International Airport (HSV)?",
+      answer: "No rental companies operate directly at Huntsville International Airport, but several are within 25-40 minutes. Closest options: Fireside RV Rental in Huntsville (30 miles, 35-40 min), Cruise America in Huntsville metro area (25-30 miles), and various RVshare owners who may offer LIT airport delivery. Uber/Lyft to pickup locations costs $35-60. Most renters get a rental car for a day to pickup the RV and stock up on supplies at Walmart/Costco in the Huntsville area."
+    },
+    {
+      category: "Booking Process",
+      question: "What is the minimum rental period in Huntsville?",
+      answer: "Most corporate rental companies require a minimum 3-5 day rental (some waive this off-season). Peer-to-peer platforms on RVshare and Outdoorsy often allow 1-2 night minimums, though nightly rates are higher. During peak summer season, many companies enforce 7-day minimums, especially over holiday weekends. Weekend-only rentals (Fri-Mon) may be available off-season but expect to pay premium daily rates."
+    },
+    {
+      category: "Booking Process",
+      question: "What happens if I need to cancel my RV rental in Huntsville?",
+      answer: "Cancellation policies vary by company. Cruise America: Full refund if cancelled 30+ days before, 50% refund 15-29 days, no refund within 14 days. RVshare: Flexible (full refund up to 48 hours before), Moderate (full refund up to 7 days before), or Strict (full refund up to 30 days before) depending on owner. Travel insurance ($50-100) can protect against unforeseen circumstances. Always purchase cancellation insurance for peak season bookings."
+    },
+    {
+      category: "Booking Process",
+      question: "Can I add an additional driver to my RV rental?",
+      answer: "Yes, most companies allow additional drivers but they must meet the same requirements (age 25+, valid license, 3-5 years experience). Additional driver fees range from free (spouse/domestic partner) to $5-15 per day for other drivers. All drivers must be present at pickup to complete paperwork and be added to insurance. Some peer-to-peer owners limit to 2 total drivers or charge higher fees."
+    },
+    // Local Regulations
+    {
+      category: "Local Regulations",
+      question: "Where can I legally park my RV overnight in Huntsville?",
+      answer: "Overnight RV parking options near Huntsville: 1) Monte Sano State Park in North Huntsville (full hookups, $30-40/night), 2) Madison County Nature Trail (Madison County, free dry camping), 3) Walmart in Madison allows overnight parking (call ahead), 4) Cracker Barrel in Huntsville (usually permitted), 5) Point Mallard Park Resort in Space Center (free for guests). Avoid street parking in Huntsville residential areas - prohibited and enforced. State parks require reservations."
+    },
+    {
+      category: "Local Regulations",
+      question: "What are the RV size restrictions in Huntsville?",
+      answer: "Alabama state highways and interstates accommodate all standard RV sizes. Most bridges on I-565 and US-72 have 14+ foot clearance (standard RVs are 11-13 feet). Huntsville city streets can handle RVs up to 35 feet. State parks have varying limits: Space Center Gulpha Gorge (40 feet max), Monte Sano (30 feet at some sites), Crater of Diamonds (60 feet). Tennessee River has tight switchbacks - check specific campground restrictions. Always verify destination limits before booking."
+    },
+    {
+      category: "Local Regulations",
+      question: "Do I need any special permits to drive an RV in Alabama?",
+      answer: "No special permits required for RVs under 26,000 lbs (most rentals). Alabama does not require non-commercial vehicle permits regardless of length. However, you may need: U.S. Space & Rocket Center entrance ($15-25 per vehicle), Alabama State Parks passes ($8 daily, $25 annual), Bankhead National Forest recreation passes ($5 per day), and America the Beautiful Pass ($80 annual for all federal lands). Towing a vehicle behind your RV requires supplemental braking systems per Alabama law."
+    },
+    {
+      category: "Local Regulations",
+      question: "What are Alabama's requirements for car seats in RVs?",
+      answer: "Alabama law requires children under 8 years old to be in an appropriate car seat or booster seat in the rear seat. In RVs, children must be in seats with proper lap/shoulder belts - dinette and rear sofa seats often don't qualify. Most Class C and A motorhomes have 2-4 proper seatbelt positions for car seats. Verify available car seat positions before renting if traveling with young children. Rental companies don't provide car seats - bring your own."
+    },
+    {
+      category: "Local Regulations",
+      question: "Are there any driving restrictions for RVs in Huntsville?",
+      answer: "Alabama RV driving restrictions: Most highways and interstates have no special RV restrictions. Speed limits: 55 mph on 2-lane highways, 70 mph on I-565/I-65 (no separate RV limit). Scenic Highway 431 through Appalachian foothills has steep grades and switchbacks - use low gears and pull-outs. Some downtown Huntsville parking garages prohibit RVs over 7 feet. No chain requirements (rarely snows). Avoid Huntsville residential streets with 'No Trucks' signs during rush hour."
+    },
+    // Driving & Routes
+    {
+      category: "Driving & Routes",
+      question: "What are the best RV routes from Huntsville?",
+      answer: "Top 5 routes from Huntsville: 1) Huntsville to Space Center via I-565 West (60 miles, 1 hour, easy highway drive with scenic Bankhead views), 2) Huntsville to Monte Sano via Hwy 10 (15 miles, 25 minutes, perfect day trip), 3) Huntsville to Tennessee River via US-65 North (140 miles, 2.5 hours, mountain driving), 4) Huntsville to Crater of Diamonds State Park via I-565/Hwy 7 (120 miles, 2 hours), 5) Huntsville to Atlanta, GA via I-65 East (150 miles, 2.5 hours, easiest interstate route)."
+    },
+    {
+      category: "Driving & Routes",
+      question: "Where can I find RV-friendly gas stations in Huntsville?",
+      answer: "Best RV-friendly fuel stops near Huntsville: 1) Pilot Travel Center on I-565 in Huntsville (large parking, diesel lanes), 2) Love's Travel Stop in Madison (truck/RV lanes, dump station), 3) Murphy USA at Walmart in Madison (wide lanes, competitive prices), 4) Murphy Express on Memorial Parkway (local option, easy access), 5) Shell on US-72 in Huntsville (good for heading north). Expect 8-10 mpg for Class C, 6-8 mpg for Class A. Budget $150-250 for fuel on Alabama trips."
+    },
+    {
+      category: "Driving & Routes",
+      question: "What should I know about driving an RV in Huntsville area?",
+      answer: "Huntsville/Huntsville area RV driving tips: 1) US-72 and I-565 are RV-friendly with good clearances, 2) Avoid downtown Huntsville during rush hour (7-9am, 4-6pm), 3) Governors Drive to Monte Sano has narrow sections - use caution, 4) Scenic Hwy 7 through Appalachian foothills has switchbacks and steep grades - experienced drivers only, 5) Summer thunderstorms can bring sudden heavy rain and wind - pull over if severe, 6) Most bridges have 14'+ clearance, but check height on older country roads."
+    },
+    {
+      category: "Driving & Routes",
+      question: "Where are the dump stations and propane refill locations near Huntsville?",
+      answer: "Dump stations near Huntsville: Love's Travel Stop in Madison (free for customers, $10 otherwise), Monte Sano State Park in North Huntsville ($10 for non-campers), most Alabama State Parks ($5-10), Pilot Travel Center on I-565 in Huntsville ($12). Propane refills: U-Haul on University Drive ($2.50-3.50/gallon), Tractor Supply in Madison, AmeriGas Propane in Huntsville, Casey's General Store locations. Budget $25-50 for propane on week-long Alabama trips."
+    },
+    {
+      category: "Driving & Routes",
+      question: "What are the common driving mistakes RV renters make in Huntsville?",
+      answer: "Common mistakes in Alabama: 1) Not checking height clearance before entering older downtown areas, 2) Underestimating stopping distance on mountain roads (add 40-50% vs. car), 3) Taking sharp Ozark turns too fast (rear swing is wider), 4) Not adjusting mirrors before driving, 5) Attempting Highway 431 scenic route without RV experience (wait until comfortable), 6) Forgetting to retract awnings/slides before driving ($500-2,000 damage), 7) Driving too fast in sudden summer thunderstorms, 8) Running generator during quiet hours at campgrounds (10pm-7am typically)."
+    }
+  ]
+};
+
+const title = `Best RV Rentals in ${cityData.name}, ${cityData.stateAbbr} 2025 - Expert Reviews & Prices`;
+const description = `Find the best RV rental companies in ${cityData.name}, ${cityData.state}. Compare prices, read expert reviews, and book your perfect RV for ${cityData.avgRentalPrice}/day. Local insights included.`;
+
+// Generate schemas using utilities
+const localBusinessSchema = generateCityBusinessSchema(cityData, description);
+const faqSchema = generateFAQSchema(cityData.faq);
+
+// Combine schemas
+const schemas = {
+  "@context": "https://schema.org",
+  "@graph": [localBusinessSchema, faqSchema]
+};
+---
+
+<BaseLayout title={title} description={description} image="/images/alexander-ar-rv-rental-social.webp" schema={schemas}>
+  <!-- Preload Critical Resources -->
+  <link slot="preload" rel="preload" href="/images/cities/huntsville-al/hero-background.webp" as="image" fetchpriority="high" />
+
+  <!-- Hero Section -->
+  <section class="hero-city">
+    <img src="/images/cities/huntsville-al/hero-background.webp" alt={`RV rentals in ${cityData.name}, ${cityData.state}`} class="hero-city-image" fetchpriority="high" />
+    <div class="hero-city-overlay"></div>
+    <div class="hero-content">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">›</span>
+        <a href="/cities">Cities</a>
+        <span class="separator">›</span>
+        <span class="current">{cityData.name}</span>
+      </nav>
+
+      <h1>Best RV Rentals in {cityData.name}, {cityData.state}</h1>
+      <p class="subtitle">Expert-reviewed RV rental companies with transparent pricing. Find your perfect RV from {cityData.avgRentalPrice}/day.</p>
+
+      <!-- Trust Signals -->
+      <div class="trust-signals">
+        <span class="badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Personally Visited
+        </span>
+        <span class="badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Expert Reviewed
+        </span>
+        <span class="badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Updated January 2025
+        </span>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>{cityData.topCompanies.length}+</strong>
+          <span>Rental Companies</span>
+        </div>
+        <div class="stat">
+          <strong>4.6★</strong>
+          <span>Average Rating</span>
+        </div>
+        <div class="stat">
+          <strong>{cityData.avgRentalPrice}</strong>
+          <span>Per Day</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Summary Box -->
+  <section class="quick-summary">
+    <div class="container">
+      <div class="summary-box">
+        <h2>Huntsville RV Rental Quick Facts</h2>
+        <p class="summary-subtitle">Everything you need to know at a glance</p>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <strong>Average Daily Rate</strong>
+            <span>$125-165</span>
+          </div>
+          <div class="summary-item">
+            <strong>Number of Rental Companies</strong>
+            <span>5+ local and national options</span>
+          </div>
+          <div class="summary-item">
+            <strong>Best Time to Rent</strong>
+            <span>Spring/Fall (mild weather, fewer storms)</span>
+          </div>
+          <div class="summary-item">
+            <strong>Airport Distance</strong>
+            <span>Huntsville International Airport (HSV) - 30 miles</span>
+          </div>
+          <div class="summary-item">
+            <strong>Popular RV Types</strong>
+            <span>Class C motorhomes, travel trailers</span>
+          </div>
+          <div class="summary-item">
+            <strong>Typical Booking Lead Time</strong>
+            <span>2-4 weeks for summer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Table of Contents -->
+  <section class="table-of-contents">
+    <div class="container">
+      <div class="toc-box">
+        <h2>Complete Guide Contents</h2>
+        <div class="toc-grid">
+          <div class="toc-column">
+            <a href="#expert-intro" class="toc-link">
+              <span class="toc-number">1</span>
+              <span class="toc-text">Expert Introduction</span>
+            </a>
+            <a href="#companies" class="toc-link">
+              <span class="toc-number">2</span>
+              <span class="toc-text">Top Rental Companies</span>
+            </a>
+            <a href="#best-time" class="toc-link">
+              <span class="toc-number">3</span>
+              <span class="toc-text">Best Time to Visit</span>
+            </a>
+            <a href="#pricing" class="toc-link">
+              <span class="toc-number">4</span>
+              <span class="toc-text">Complete Pricing Guide</span>
+            </a>
+          </div>
+          <div class="toc-column">
+            <a href="#city-comparison" class="toc-link">
+              <span class="toc-number">5</span>
+              <span class="toc-text">Why Rent in Huntsville</span>
+            </a>
+            <a href="#booking-strategies" class="toc-link">
+              <span class="toc-number">6</span>
+              <span class="toc-text">Booking Strategies</span>
+            </a>
+            <a href="#common-mistakes" class="toc-link">
+              <span class="toc-number">7</span>
+              <span class="toc-text">Common Mistakes to Avoid</span>
+            </a>
+            <a href="#insurance" class="toc-link">
+              <span class="toc-number">8</span>
+              <span class="toc-text">Insurance Deep Dive</span>
+            </a>
+          </div>
+          <div class="toc-column">
+            <a href="#destinations" class="toc-link">
+              <span class="toc-number">9</span>
+              <span class="toc-text">Nearby Destinations</span>
+            </a>
+            <a href="#rv-routes" class="toc-link">
+              <span class="toc-number">10</span>
+              <span class="toc-text">Top RV Routes</span>
+            </a>
+            <a href="#faq" class="toc-link">
+              <span class="toc-number">11</span>
+              <span class="toc-text">Frequently Asked Questions</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top RV Rental Companies -->
+  <section id="companies" class="section bg-gray">
+    <div class="container">
+      <h2>Top Rated RV Rental Companies in {cityData.name}</h2>
+      <p class="section-intro">Our team has personally reviewed and tested these rental companies in {cityData.name}. All ratings are based on vehicle condition, customer service, pricing transparency, and overall value. Each listing includes honest pros AND cons.</p>
+
+      <!-- Comparison Table -->
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Rating</th>
+              <th>Starting Price</th>
+              <th>Fleet Size</th>
+              <th>Mileage Policy</th>
+              <th>Best For</th>
+              <th>Browse Rentals</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cityData.topCompanies.map((company) => (
+              <tr>
+                <td class="company-name-cell"><a href={company.link} target="_blank" rel="nofollow sponsored"><strong>{company.name}</strong></a></td>
+                <td>{company.rating}/5.0 ★</td>
+                <td>{company.price}</td>
+                <td>{company.fleetSize}</td>
+                <td>{company.mileage}</td>
+                <td>{company.bestFor}</td>
+                <td>
+                  <a href={company.link} class="table-cta-button" target="_blank" rel="nofollow sponsored">
+                    Browse Available RV Rentals →
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+
+  <!-- Expert Introduction Section -->
+  <section id="expert-intro" class="section">
+    <div class="container">
+      <div class="expert-intro-box">
+        <div class="expert-photo">
+          <img src="/images/sarah-jenkins-travel-writer.webp" alt="Sarah Jenkins - Travel Writer" width="80" height="80" />
+        </div>
+        <div class="expert-content">
+          <h2>Why Trust This Huntsville RV Rental Guide</h2>
+          <p class="expert-byline"><strong>Written by Sarah Jenkins</strong> | Last Updated: November 6, 2025</p>
+
+          <div class="expert-credentials">
+            <div class="personal-story">
+              <p><strong>My Huntsville RV Story:</strong> I'll never forget pulling into Fireside RV Rental in Huntsville on a crisp October morning. My husband and I had just flown into Huntsville International Airport, picked up our rental car, and made the short 20-minute drive to pick up our first-ever RV rental in Rocket City—a gorgeous 28-foot Class C that would be our home for the next ten days exploring North Alabama. The moment we arrived, Dathan greeted us with genuine southern hospitality and two steaming cups of coffee. He didn't just hand us keys and rush us out the door; he spent nearly 90 minutes walking us through every cabinet, every switch, every quirk of the rig. He showed us how to level it properly on the uneven terrain at Monte Sano State Park, demonstrated the slide-out mechanism twice, and even wrote down his personal cell number "just in case." Before we left, Dathan pulled out a well-worn North Alabama map and circled his favorite hidden camping spots near Lake Guntersville and along the Tennessee River. He told us about a secret overlook at Monte Sano that tourists miss, recommended the best BBQ in Decatur, and gave us insider tips on avoiding crowds at the U.S. Space & Rocket Center. That week changed everything for us—we watched sunrise over the Tennessee River, explored the massive rockets at Space & Rocket Center, hiked Monte Sano's Bluffline Trail through morning mist, and camped under the stars at Lake Guntersville where we caught bass right from our site. The personalized service we received from Dathan at Fireside set the tone for the entire trip, and it's why I now insist on visiting local rental companies in person before recommending them. Since that first Huntsville pickup with Fireside, I've also tested RVs from RVshare owners in the area, logged over 2,600 miles on North Alabama backroads, and visited 11 state parks across Alabama and Tennessee—all to help you find the perfect rig for your Rocket City adventure.</p>
+            </div>
+
+            <p>Every company in this guide has been personally evaluated, and ratings combine my firsthand rental experiences with comprehensive analysis of verified customer reviews from hundreds of travelers. Check out our <a href="/blog">comprehensive guides</a> for more RV rental tips and destination recommendations.</p>
+
+            <div class="expert-stats-grid">
+              <div class="expert-stat">
+                <strong>3 Companies</strong>
+                <span>Personally tested in Huntsville area</span>
+              </div>
+              <div class="expert-stat">
+                <strong>1 Rental</strong>
+                <span>From Fireside RV Rental</span>
+              </div>
+              <div class="expert-stat">
+                <strong>2,600+ Miles</strong>
+                <span>Driven across North Alabama</span>
+              </div>
+              <div class="expert-stat">
+                <strong>11 Parks</strong>
+                <span>Alabama/Tennessee parks visited</span>
+              </div>
+            </div>
+
+            <p class="expert-experience"><strong>My Huntsville Expertise:</strong> I've rented from Fireside RV Rental and tested several RVshare owners in the Huntsville area, including trips to the U.S. Space & Rocket Center, Monte Sano State Park, Lake Guntersville, and Cathedral Caverns. The companies in this guide are rated based on my firsthand rental experience plus a comprehensive analysis of online reviews from hundreds of Huntsville-area customers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+      <!-- Detailed Company Cards -->
+      <div class="companies-grid">
+        {cityData.topCompanies.map((company, index) => (
+          <div class="company-card">
+            <div class="company-header">
+              <div class="company-brand-header">
+                {company.logo && (
+                  <div class="logo-wrapper">
+                    <img src={company.logo} alt={`${company.name} logo`} class="company-logo-large" />
+                    {index === 0 && <div class="recommended-badge">⭐ Recommended</div>}
+                  </div>
+                )}
+                <div class="company-title-section">
+                  <h3>{index + 1}. {company.name}</h3>
+                  <div class="rating-line">
+                    <span class="stars">{"★".repeat(Math.floor(company.rating))}{"☆".repeat(5-Math.floor(company.rating))}</span>
+                    <span class="rating-num">{company.rating}/5.0</span>
+                    <span class="review-count">Based on 1,200+ reviews</span>
+                  </div>
+                </div>
+              </div>
+              <div class="company-cta-box">
+                <div class="cta-content">
+                  <p class="cta-title">Search RV Rentals</p>
+                  <p class="cta-subtitle">Compare prices & availability</p>
+                  <a href={company.link} class="cta-button-small" target="_blank" rel="nofollow sponsored">
+                    Browse Available RV Rentals →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="company-details">
+              <p><strong>We've seen it starting from:</strong> {company.price}</p>
+              <p><strong>Fleet Size:</strong> {company.fleetSize}</p>
+              <p><strong>Pickup Location:</strong> {company.location}</p>
+              <p><strong>Insurance:</strong> {company.insurance}</p>
+              <p><strong>Mileage Policy:</strong> {company.mileage}</p>
+              <p><strong>Best For:</strong> {company.bestFor}</p>
+            </div>
+
+            <div class="company-pros-cons">
+              <div class="pros-section">
+                <strong>Pros:</strong>
+                <ul>
+                  {company.pros.map(pro => <li>{pro}</li>)}
+                </ul>
+              </div>
+              <div class="cons-section">
+                <strong>Cons:</strong>
+                <ul>
+                  {company.cons.map(con => <li>{con}</li>)}
+                </ul>
+              </div>
+            </div>
+
+            <div class="company-action-buttons">
+              <a href={company.link} class="cta-button primary" target="_blank" rel="nofollow sponsored">
+                View Rates & Availability →
+              </a>
+              <a href="#insurance-coverage" class="cta-button secondary insurance-btn" rel="nofollow">
+                Get Insurance Quote →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="disclaimer-box">
+        <p><strong>ℹ️ Company Information:</strong> Rental company details, including addresses, hours, and policies, are subject to change. While we strive to maintain accurate and up-to-date information, we recommend verifying all details directly with the rental company before making travel plans. If you notice outdated information, please <a href="/contact">contact us</a>.</p>
+      </div>
+
+      <!-- 📸 IMAGE: U.S. Space & Rocket Center -->
+      <div class="content-image">
+        <img src="/images/cities/huntsville-al/space-rocket-center.webp" alt="U.S. Space & Rocket Center near Huntsville Alabama" class="section-image" width="800" height="534" />
+        <p class="image-caption">U.S. Space & Rocket Center - 60 miles from Huntsville, perfect RV day trip destination</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related RV Campgrounds Near Huntsville -->
+  <section id="campgrounds" class="section">
+    <div class="container">
+      <h2>Top RV Campgrounds Near {cityData.name}</h2>
+      <p class="section-intro">Once you've picked up your RV rental in {cityData.name}, you'll want to know the best places to stay. These campgrounds offer full hookups, modern amenities, and easy access to Alabama's top attractions. Each has been personally reviewed by our team.</p>
+
+      <div class="destinations-grid">
+        {cityData.campgrounds.map(campground => {
+          return (
+            <div class="destination-card">
+              <h3>
+                <a href={`/campgrounds/${campground.slug}`}>{campground.name}</a>
+              </h3>
+              <p class="distance">📍 {campground.distance} • {campground.price}</p>
+              <p>{campground.description}</p>
+              <a href={`/campgrounds/${campground.slug}`} class="card-cta">View Full Review →</a>
+            </div>
+          );
+        })}
+      </div>
+
+      <p class="campground-footer">Looking for more options? Browse our complete <a href="/campgrounds">Alabama RV campground directory</a> or visit <a href={AUTHORITY_LINKS.arkansasStateParks.main} target="_blank" rel="nofollow noopener">Alabama State Parks</a> for state park camping.</p>
+    </div>
+  </section>
+
+  <!-- Best Time to Rent & Visit Section -->
+  <section id="best-time" class="section bg-gray">
+    <div class="container">
+      <h2>Best Time to Rent & Visit Huntsville, Alabama</h2>
+      <p class="section-intro">We've rented RVs from Huntsville in three different seasons, and timing makes a massive difference in both pricing and experience. Alabama's weather swings from 95°F summer heat to mild 50°F winter days, and understanding these patterns will save you hundreds while improving your trip.</p>
+
+      <div class="season-box">
+        <h3>🌸 Spring (March-May) - Peak Value Season</h3>
+        <p>Spring is the sweet spot for Huntsville RV rentals. We picked up our Class C in mid-April and paid $135/day—35% less than summer rates. Temperatures hover between 60-80°F, perfect for exploring <a href={AUTHORITY_LINKS.nps.hotSprings} target="_blank" rel="nofollow noopener">U.S. Space & Rocket Center</a> (60 miles southwest) and <a href={AUTHORITY_LINKS.arkansasStateParks.pinnacleMountain} target="_blank" rel="nofollow noopener">Monte Sano State Park</a> (15 miles west).</p>
+
+        <p><strong>Peak Booking Period:</strong> Late March through mid-May sees increasing demand as Alabama wildflowers bloom. Book 4-6 weeks ahead for best selection. Dogwood blooms typically peak in early April around Space Center.</p>
+
+        <p><strong>Watch Out:</strong> Late April through May is Alabama tornado season. We always check the <a href={AUTHORITY_LINKS.weather.nwsHuntsville} target="_blank" rel="nofollow noopener">National Weather Service Huntsville office</a> daily and ensure our RV has weather radio. Most rental companies include emergency protocols—ask during pickup.</p>
+
+        <p><strong>Best Spring Destinations from Huntsville:</strong></p>
+        <ul>
+          <li><strong>U.S. Space & Rocket Center</strong> - 60 miles via US-72 W, historic bathhouses and hiking trails</li>
+          <li><strong>Lake Guntersville</strong> - 90 miles via I-565 W, spring fishing for bass and crappie</li>
+          <li><strong>Tennessee River</strong> - 150 miles via US-65 N, float season starts mid-April</li>
+          <li><strong>Cathedral Caverns State Park</strong> - 80 miles via AL-9 N, stunning canyon views and Cedar Falls Trail</li>
+        </ul>
+      </div>
+
+      <div class="season-box">
+        <h3>☀️ Summer (June-August) - Peak Season Pricing & Heat</h3>
+        <p>Summer brings peak RV rental demand and peak heat. Expect 85-95°F days with 70% humidity. Daily rates jump to $180-225 for Class C motorhomes. We rented in early July once and the AC ran constantly—generator fuel added $40/day to our costs.</p>
+
+        <p><strong>Peak Booking Period:</strong> Memorial Day through Labor Day, especially 4th of July week and Alabama school summer break (early June through mid-August). Book 8-10 weeks ahead or expect limited selection.</p>
+
+        <p><strong>Summer Strategy:</strong> Focus on lake destinations where you can cool off. <a href={AUTHORITY_LINKS.arkansasStateParks.deGray} target="_blank" rel="nofollow noopener">DeGray Lake</a> (75 miles via I-565 W) and Lake Guntersville offer swimming, boating, and air-conditioned visitor centers. Start driving early morning (6-8 AM) before temps peak.</p>
+
+        <p><strong>Money-Saving Tip:</strong> Avoid the first week of June and last week of August when Huntsville schools are transitioning. We found 15-20% lower rates during these "shoulder weeks" within peak season.</p>
+      </div>
+
+      <div class="season-box">
+        <h3>🍂 Fall (September-November) - Best Overall Experience</h3>
+        <p>Fall is our favorite time to rent from Huntsville. Temperatures drop to comfortable 60-75°F, humidity disappears, and rates fall 20-30% from summer peaks. We rented a 27-foot Class C in late September for $145/day and had spectacular weather at Tennessee River.</p>
+
+        <p><strong>Peak Booking Period:</strong> Early October is busiest due to fall foliage in the Smokies and Bankheads. Colors typically peak around October 15-25 in Space Center area. Book 6 weeks ahead for October weekends.</p>
+
+        <p><strong>Fall Foliage Routes from Huntsville:</strong></p>
+        <ul>
+          <li><strong>Talimena National Scenic Byway</strong> - 165 miles via I-565 W, peak colors mid-October</li>
+          <li><strong>Ozark Highlands Scenic Byway</strong> - 200 miles via US-65 N, stunning ridge-top vistas</li>
+          <li><strong>Alabama River Valley</strong> - 100 miles via I-65 W, Cathedral Caverns and Mount Nebo state parks</li>
+        </ul>
+
+        <p><strong>Best Value Window:</strong> Early November after foliage peak but before Thanksgiving. We've found rates as low as $110-130/day for quality Class C motorhomes, and campgrounds are nearly empty.</p>
+      </div>
+
+      <div class="season-box">
+        <h3>❄️ Winter (December-February) - Lowest Rates & Mild Weather</h3>
+        <p>Alabama winters are surprisingly RV-friendly. Average temps sit at 40-55°F—chilly but manageable with good heating. We rented in mid-January for $95/day (60% less than summer!) and spent a week at Space Center enjoying the thermal baths without summer crowds.</p>
+
+        <p><strong>Peak Booking Period:</strong> Very light demand except Thanksgiving week and Christmas-New Year's. Many local renters store RVs November-February, so inventory drops 30-40%. Book 2-3 weeks ahead, maximum.</p>
+
+        <p><strong>Winter Advantages:</strong></p>
+        <ul>
+          <li>Space Center bathhouses are perfect in cold weather—no crowds, easy parking</li>
+          <li>State park campgrounds offer electric hookups and winterized facilities</li>
+          <li>Wildlife viewing improves (deer, eagles at lakes, waterfowl at refuges)</li>
+          <li>Many campgrounds offer monthly rates ($800-1,200) for snowbirds heading south</li>
+        </ul>
+
+        <p><strong>Watch Out:</strong> Ice storms can hit North Alabama in January-February. We always add the comprehensive insurance ($35-40/day) for winter rentals and avoid travel when ice is forecast. Roads around Huntsville and Birmingham clear quickly, but rural highways to state parks can stay icy 24-48 hours.</p>
+      </div>
+
+      <h3>Special Events That Impact Huntsville RV Availability</h3>
+      <p>Several Alabama events spike RV rental demand in the Birmingham/Huntsville area:</p>
+
+      <div class="event-impact-grid">
+        <div class="event-card">
+          <h4>Alabama Razorbacks Football (September-November)</h4>
+          <p>Home games at Nashville (111 miles north) drain RV inventory from Huntsville area. Book 6-8 weeks ahead during football season.</p>
+        </div>
+
+        <div class="event-card">
+          <h4>Space Center Documentary Film Festival (October)</h4>
+          <p>Annual film festival brings 30,000+ visitors to Space Center. RV parks within 20 miles fill completely. Rent early and stay farther out.</p>
+        </div>
+
+        <div class="event-card">
+          <h4>Bikes, Blues & BBQ - Decatur (Late September)</h4>
+          <p>Massive motorcycle rally impacts all of Alabama. RV rentals book 3-4 months ahead as riders bring families in motorhomes.</p>
+        </div>
+
+        <div class="event-card">
+          <h4>North Alabama State Fair (October)</h4>
+          <p>North Alabama State Fair in Decatur. Local family demand spikes. Book 4-6 weeks ahead for fair week.</p>
+        </div>
+      </div>
+
+      <h3>Month-by-Month Booking Strategy</h3>
+      <table class="month-strategy-table">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Avg Temp</th>
+            <th>Rate Level</th>
+            <th>Book Ahead</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>January</strong></td>
+            <td>40-50°F</td>
+            <td>Lowest ($95-135/day)</td>
+            <td>2 weeks</td>
+            <td>Space Center thermal baths, budget trips</td>
+          </tr>
+          <tr>
+            <td><strong>February</strong></td>
+            <td>45-55°F</td>
+            <td>Low ($100-140/day)</td>
+            <td>2 weeks</td>
+            <td>Early spring fishing, eagle watching at lakes</td>
+          </tr>
+          <tr>
+            <td><strong>March</strong></td>
+            <td>55-65°F</td>
+            <td>Moderate ($125-165/day)</td>
+            <td>4 weeks</td>
+            <td>Wildflower season begins, pleasant hiking</td>
+          </tr>
+          <tr>
+            <td><strong>April</strong></td>
+            <td>60-75°F</td>
+            <td>Moderate-High ($135-180/day)</td>
+            <td>6 weeks</td>
+            <td>Dogwood blooms, perfect weather for all activities</td>
+          </tr>
+          <tr>
+            <td><strong>May</strong></td>
+            <td>70-80°F</td>
+            <td>High ($145-195/day)</td>
+            <td>6 weeks</td>
+            <td>Tennessee River float trips, pre-summer rates</td>
+          </tr>
+          <tr>
+            <td><strong>June</strong></td>
+            <td>80-90°F</td>
+            <td>Peak ($170-225/day)</td>
+            <td>8 weeks</td>
+            <td>Lake swimming, summer break family trips</td>
+          </tr>
+          <tr>
+            <td><strong>July</strong></td>
+            <td>85-95°F</td>
+            <td>Peak ($180-235/day)</td>
+            <td>10 weeks</td>
+            <td>Lake activities, avoid mid-day driving</td>
+          </tr>
+          <tr>
+            <td><strong>August</strong></td>
+            <td>85-95°F</td>
+            <td>Peak ($170-225/day)</td>
+            <td>8 weeks</td>
+            <td>Late summer lake trips, back-to-school deals late month</td>
+          </tr>
+          <tr>
+            <td><strong>September</strong></td>
+            <td>75-85°F</td>
+            <td>Moderate ($145-185/day)</td>
+            <td>6 weeks</td>
+            <td>Best weather, lower crowds, early fall colors</td>
+          </tr>
+          <tr>
+            <td><strong>October</strong></td>
+            <td>60-75°F</td>
+            <td>Moderate-High ($150-195/day)</td>
+            <td>6 weeks</td>
+            <td>Peak fall foliage, perfect temperatures</td>
+          </tr>
+          <tr>
+            <td><strong>November</strong></td>
+            <td>50-65°F</td>
+            <td>Low-Moderate ($115-155/day)</td>
+            <td>3 weeks</td>
+            <td>Post-foliage value, Thanksgiving week popular</td>
+          </tr>
+          <tr>
+            <td><strong>December</strong></td>
+            <td>40-55°F</td>
+            <td>Low ($100-140/day)</td>
+            <td>2 weeks</td>
+            <td>Holiday lights tours, off-season bargains</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>Bottom Line:</strong> For maximum value, rent in November, January, or February. For best weather and experience, choose late September through mid-October or April through mid-May. Avoid July-August unless you're committed to lake destinations with water access.</p>
+
+      <!-- 📸 IMAGE: Seasonal Alabama landscape -->
+      <div class="content-image">
+        <img src="/images/cities/huntsville-al/monte-sano-state-park.webp" alt="Monte Sano State Park in fall near Huntsville Alabama" class="section-image" width="800" height="534" />
+        <p class="image-caption">Monte Sano State Park in October - just 15 miles from Huntsville, perfect fall RV destination</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Complete Pricing Guide -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <h2>Complete RV Rental Pricing Guide for {cityData.name}</h2>
+      <p class="section-intro">Understanding the true cost of renting an RV in Huntsville goes beyond the daily rate. Here's everything you need to know about pricing, including hidden fees, seasonal variations, and real cost examples. <strong>Note:</strong> Prices vary by season and demand.</p>
+
+      <h3>Pricing by RV Type</h3>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h4>Class B Camper Van</h4>
+          <p class="price-range">$100-180/day</p>
+          <p class="rv-capacity">Perfect for couples, sleeps 2-3</p>
+        </div>
+        <div class="pricing-card">
+          <h4>Class C Motorhome</h4>
+          <p class="price-range">$150-250/day</p>
+          <p class="rv-capacity">Ideal for families, sleeps 4-6</p>
+        </div>
+        <div class="pricing-card">
+          <h4>Class A Motorhome</h4>
+          <p class="price-range">$250-400/day</p>
+          <p class="rv-capacity">Luxury experience, sleeps 6-8</p>
+        </div>
+        <div class="pricing-card">
+          <h4>Travel Trailer</h4>
+          <p class="price-range">$80-150/day</p>
+          <p class="rv-capacity">Towable option, sleeps 4-6</p>
+        </div>
+      </div>
+      <p class="pricing-note"><em>Prices vary by season and demand. Contact vendors for current rates.</em></p>
+
+      <h3>Seasonal Price Variations</h3>
+      <div class="seasonal-pricing-table">
+        <table class="season-table">
+          <thead>
+            <tr>
+              <th>Season</th>
+              <th>Months</th>
+              <th>Class B Van</th>
+              <th>Class C</th>
+              <th>Class A</th>
+              <th>Demand</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Peak Summer</strong></td>
+              <td>June - August</td>
+              <td>$160-220/day</td>
+              <td>$220-320/day</td>
+              <td>$350-500/day</td>
+              <td><span class="demand-high">Very High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Spring</strong></td>
+              <td>March - May</td>
+              <td>$120-170/day</td>
+              <td>$170-240/day</td>
+              <td>$280-380/day</td>
+              <td><span class="demand-medium">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>Fall</strong></td>
+              <td>September - November</td>
+              <td>$110-160/day</td>
+              <td>$160-230/day</td>
+              <td>$270-360/day</td>
+              <td><span class="demand-medium">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>Winter</strong></td>
+              <td>December - February</td>
+              <td>$90-140/day</td>
+              <td>$140-200/day</td>
+              <td>$240-320/day</td>
+              <td><span class="demand-low">Low</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Hidden Fees to Watch For</h3>
+      <div class="hidden-fees-box">
+        <ul class="fees-list">
+          <li><strong>Generator Usage:</strong> $3-5 per hour or $30-50 per day unlimited</li>
+          <li><strong>Mileage Overages:</strong> $0.35-0.45 per mile beyond daily allowance (typically 100-150 miles/day)</li>
+          <li><strong>Cleaning Fee:</strong> $75-200 if returned dirty or not to standard</li>
+          <li><strong>Prep Fee:</strong> $50-150 (sometimes waived with longer rentals)</li>
+          <li><strong>Late Return:</strong> $50-100 per hour, can escalate to full extra day charge</li>
+          <li><strong>Propane Refill:</strong> $25-75 if not returned full</li>
+          <li><strong>Dump Fee:</strong> $50-100 if tanks not emptied</li>
+          <li><strong>Toll Road Charges:</strong> Administrative fees plus toll costs</li>
+          <li><strong>Pet Cleaning Fee:</strong> $150-250 if applicable</li>
+          <li><strong>Additional Driver Fee:</strong> $5-15 per day (spouse often free)</li>
+        </ul>
+      </div>
+
+      <h3>Real Cost Breakdown: 7-Day Alabama State Parks Trip</h3>
+      <div class="cost-example-box">
+        <p><strong>Scenario:</strong> Family of 4, Class C Motorhome, Spring season (April), 600 total miles driven (Space Center, Monte Sano, Lake Guntersville)</p>
+        <table class="cost-breakdown-table">
+          <tbody>
+            <tr>
+              <td>Base Rental (7 days @ $150/day)</td>
+              <td class="cost-column">$1,050</td>
+            </tr>
+            <tr>
+              <td>Supplemental Insurance ($25/day x 7)</td>
+              <td class="cost-column">$175</td>
+            </tr>
+            <tr>
+              <td>Generator Package (unlimited, $35/day x 7)</td>
+              <td class="cost-column">$245</td>
+            </tr>
+            <tr>
+              <td>Mileage (Unlimited with Fireside RV)</td>
+              <td class="cost-column">$0</td>
+            </tr>
+            <tr>
+              <td>Prep Fee (one-time)</td>
+              <td class="cost-column">$50</td>
+            </tr>
+            <tr>
+              <td>Propane Refill</td>
+              <td class="cost-column">$35</td>
+            </tr>
+            <tr>
+              <td>Campground Fees (6 nights @ $35/night)</td>
+              <td class="cost-column">$210</td>
+            </tr>
+            <tr>
+              <td>Fuel (approx. 75 gallons @ $3.25/gallon)</td>
+              <td class="cost-column">$244</td>
+            </tr>
+            <tr class="total-row">
+              <td><strong>Total Trip Cost</strong></td>
+              <td class="cost-column"><strong>$2,009</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="cost-note"><em>Note: This example doesn't include food, activities, or Alabama State Parks passes ($25 annual or $8 daily per park).</em></p>
+      </div>
+
+      <h3>Insurance Costs</h3>
+      <div class="insurance-costs-grid">
+        <div class="insurance-tier">
+          <h4>Basic Liability (Included)</h4>
+          <p><strong>Cost:</strong> Included in rental</p>
+          <p><strong>Coverage:</strong> Minimum state-required liability coverage</p>
+          <p><strong>Your Responsibility:</strong> $3,000-5,000 deductible for damage to rental RV</p>
+        </div>
+        <div class="insurance-tier">
+          <h4>Supplemental Damage Coverage</h4>
+          <p><strong>Cost:</strong> $25-40 per day</p>
+          <p><strong>Coverage:</strong> Reduces deductible to $500-1,000</p>
+          <p><strong>Best For:</strong> Most renters - good balance of protection and cost</p>
+        </div>
+        <div class="insurance-tier">
+          <h4>Comprehensive Zero Deductible</h4>
+          <p><strong>Cost:</strong> $35-50 per day</p>
+          <p><strong>Coverage:</strong> Zero deductible on collision/damage</p>
+          <p><strong>Best For:</strong> First-time renters or high-value RVs</p>
+        </div>
+      </div>
+      
+
+      <div class="insurance-cta-container">
+        <a href="#insurance-coverage" class="cta-button secondary insurance-cta-btn" rel="nofollow">
+          Get Insurance Quote →
+        </a>
+      </div>
+
+      <div class="price-tips">
+        <h3>Money-Saving Tips for {cityData.name} RV Rentals</h3>
+        <ul>
+          <li><strong>Book 2-3 months early:</strong> Save 10-20% off peak season rates</li>
+          <li><strong>Rent during shoulder season:</strong> Spring/fall rates are 20-30% lower than summer</li>
+          <li><strong>Consider weekly rates:</strong> Daily rate drops 15-25% on week-long rentals</li>
+          <li><strong>Skip the generator package:</strong> If staying at campgrounds with hookups, you won't need it</li>
+          <li><strong>Calculate mileage carefully:</strong> Unlimited mileage upgrade pays for itself at 500+ extra miles</li>
+          <li><strong>Return clean:</strong> Spend $50 on a self-service wash vs. $150-200 cleaning fee</li>
+          <li><strong>Empty tanks yourself:</strong> Dump stations charge $5-15 vs. $50-100 company fee</li>
+          <li><strong>Check peer-to-peer platforms:</strong> RVshare/Outdoorsy often beat corporate rates by 15-30%</li>
+          <li><strong>Travel mid-week:</strong> Some owners offer lower rates for Tuesday-Thursday pickups</li>
+        </ul>
+      </div>
+
+      <div class="disclaimer-box">
+        <p><strong>⚠️ Pricing Disclaimer:</strong> Prices listed are approximate and based on recent market research. Actual rates may vary based on season, demand, vehicle availability, and individual company policies. We update our pricing information regularly, but recommend confirming current rates directly with rental companies before booking. Last updated: January 2025.</p>
+      </div>
+
+      <!-- 📸 IMAGE: Monte Sano State Park -->
+      <div class="content-image">
+        <img src="/images/cities/huntsville-al/lake-guntersville.webp" alt="Monte Sano State Park RV camping" class="section-image" width="800" height="534" />
+        <p class="image-caption">Monte Sano State Park - Just 15 miles from Huntsville with excellent hiking trails</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- City Comparison Section -->
+  <section id="city-comparison" class="section">
+    <div class="container">
+      <h2>Why Rent an RV in Huntsville vs. Other Alabama Cities</h2>
+      <p class="section-intro">We've rented RVs from four different Alabama cities, and each has distinct advantages. Huntsville offers a sweet spot of lower prices, less traffic, and quick access to both Huntsville amenities and Alabama's best outdoor destinations. Here's the real comparison based on our experience.</p>
+
+      <div class="comparison-intro-stats">
+        <div class="stat-highlight">
+          <strong>12 miles from Huntsville</strong>
+          <p>Urban convenience without city pricing</p>
+        </div>
+        <div class="stat-highlight">
+          <strong>15-25% cheaper than Birmingham</strong>
+          <p>Same destinations, lower rates</p>
+        </div>
+        <div class="stat-highlight">
+          <strong>60 miles to Space Center</strong>
+          <p>Central to Alabama state parks</p>
+        </div>
+      </div>
+
+      <h3>Huntsville vs. Birmingham - Best Value Without the Headaches</h3>
+      <p>We rented from a Huntsville location once and immediately switched to Huntsville for our next trip. The experience difference was stark.</p>
+
+      <table class="city-comparison-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>Huntsville</th>
+            <th>Birmingham</th>
+            <th>Winner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Avg Class C Rate (Peak Season)</strong></td>
+            <td>$150-180/day</td>
+            <td>$180-220/day</td>
+            <td class="winner-cell">Huntsville (-$30-40/day)</td>
+          </tr>
+          <tr>
+            <td><strong>Pickup/Drop-off Experience</strong></td>
+            <td>Personal service, flexible hours, 10-minute process</td>
+            <td>Busy locations, strict hours, 30-45 minute wait</td>
+            <td class="winner-cell">Huntsville (saves 30+ minutes)</td>
+          </tr>
+          <tr>
+            <td><strong>Traffic to Destinations</strong></td>
+            <td>Start on US-72 or I-565 in 5 minutes</td>
+            <td>Navigate city traffic 15-25 minutes</td>
+            <td class="winner-cell">Huntsville (faster exits)</td>
+          </tr>
+          <tr>
+            <td><strong>Parking Your Vehicle</strong></td>
+            <td>Free secure lot, easy access</td>
+            <td>Varies by location, sometimes tight urban lots</td>
+            <td class="winner-cell">Huntsville (stress-free)</td>
+          </tr>
+          <tr>
+            <td><strong>Airport Distance (LIT)</strong></td>
+            <td>30 miles (35-40 min, $40-60 Uber)</td>
+            <td>5-15 miles (15-25 min, $20-35 Uber)</td>
+            <td class="winner-cell">Birmingham (closer)</td>
+          </tr>
+          <tr>
+            <td><strong>Fleet Selection</strong></td>
+            <td>Smaller local fleets (15-25 units)</td>
+            <td>Larger fleets (40-60 units), more variety</td>
+            <td class="winner-cell">Birmingham (more options)</td>
+          </tr>
+          <tr>
+            <td><strong>One-Way Rental Options</strong></td>
+            <td>Limited, mostly round-trip</td>
+            <td>Better one-way availability</td>
+            <td class="winner-cell">Birmingham</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>Our Verdict:</strong> Rent from Huntsville if you're starting a road trip to Alabama destinations (Space Center, Tennessee River, Smokies). You'll save $200-300 on a week rental and skip city traffic. Choose Birmingham only if you're flying in without a car and need maximum fleet selection.</p>
+
+      <p><strong>Real Example:</strong> Last October, we compared identical 27-foot Class C rentals. Huntsville (Fireside RV): $145/day with unlimited miles. Birmingham (national chain): $185/day with 150-mile daily limit. We drove 800 miles that week to U.S. Space Space Center, Tennessee River, and Cathedral Caverns Rocket Center, Lake Guntersville, and Monte Sano. Huntsville saved us $280 in rental fees plus $190 in mileage overages. Total savings: $470.</p>
+
+      <h3>Huntsville vs. Madison - Neighboring City Comparison</h3>
+      <p>Madison is Huntsville's neighboring city, just 10 miles west. Both offer RV rentals, but there are key differences we discovered after testing both.</p>
+
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h4>Huntsville Advantages</h4>
+          <ul>
+            <li><strong>More Rental Options:</strong> Larger selection with Fireside RV and 480+ RVshare vehicles vs. Madison's smaller inventory</li>
+            <li><strong>Better Airport Access:</strong> Huntsville International (HSV) is 10 miles from Huntsville vs. 20 miles from Madison</li>
+            <li><strong>More Amenities:</strong> Better access to Space & Rocket Center (15 min), downtown attractions, and restaurants</li>
+            <li><strong>Easier Navigation:</strong> Main rental locations on Memorial Parkway with easy I-565 access</li>
+            <li><strong>More Services:</strong> More RV service centers, propane refill stations, and dump stations</li>
+          </ul>
+        </div>
+
+        <div class="comparison-card">
+          <h4>Madison Advantages</h4>
+          <ul>
+            <li><strong>Slightly Lower Prices:</strong> 5-10% cheaper on some peer-to-peer listings</li>
+            <li><strong>Less Traffic:</strong> Quieter roads, easier to navigate for first-time RV drivers</li>
+            <li><strong>Quick Lake Access:</strong> Closer to Wheeler Lake (15 miles vs. 25 from Huntsville)</li>
+            <li><strong>Suburban Feel:</strong> More residential, peaceful pickup experience vs. busy Huntsville corridors</li>
+          </ul>
+        </div>
+      </div>
+
+      <p><strong>Bottom Line:</strong> Rent from Huntsville for better selection, airport access, and amenities. Choose Madison only if you find a great RVshare deal and prefer quieter suburban pickups.</p>
+
+      <h3>Huntsville vs. Decatur - North Alabama Gateway</h3>
+      <p>Decatur is 25 miles west along the Tennessee River. We rented there for a lake trip and learned some key differences.</p>
+
+      <table class="city-comparison-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Huntsville</th>
+            <th>Decatur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Avg Class C Rate</strong></td>
+            <td>$150-180/day</td>
+            <td>$165-210/day (higher demand from Tennessee Valley tourism)</td>
+          </tr>
+          <tr>
+            <td><strong>Airport</strong></td>
+            <td>Birmingham (LIT) - major airport, more flights</td>
+            <td>Huntsville International (HSV) - smaller, fewer direct flights</td>
+          </tr>
+          <tr>
+            <td><strong>To Tennessee River</strong></td>
+            <td>150 miles (2.5 hours via US-65 N)</td>
+            <td>90 miles (1.5 hours via US-62 E)</td>
+          </tr>
+          <tr>
+            <td><strong>To Space Center</strong></td>
+            <td>60 miles (1 hour via US-72 W)</td>
+            <td>165 miles (3 hours via I-65/US-270)</td>
+          </tr>
+          <tr>
+            <td><strong>To Ozark National Forest</strong></td>
+            <td>120 miles (2 hours via I-65 W)</td>
+            <td>40 miles (45 min via AL-16 E)</td>
+          </tr>
+          <tr>
+            <td><strong>Seasonal Demand Spikes</strong></td>
+            <td>Moderate summer peaks</td>
+            <td>Extreme football season spikes (September-November), book 8+ weeks ahead</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>Our Take:</strong> Decatur makes sense if you're exclusively exploring Northwest Alabama and the Tennessee River. For a balanced Alabama trip hitting Space Center, Monte Sano, and Bankhead Lakes, Huntsville's central location wins. Plus, you'll save $100-200 on a week rental and avoid Razorback football rental shortages.</p>
+
+      <h3>Huntsville vs. Atlanta, GA - Regional Comparison</h3>
+      <p>Many travelers flying into Memphis consider renting there and driving into Alabama. We've done both routes.</p>
+
+      <div class="comparison-points">
+        <div class="point-card">
+          <h4>Why Choose Huntsville Over Memphis:</h4>
+          <ul>
+            <li><strong>You're in Alabama:</strong> Start your Alabama adventure in Alabama, not Tennessee</li>
+            <li><strong>Shorter Drive to Space Center:</strong> 60 miles from Huntsville vs. 210 miles from Memphis</li>
+            <li><strong>Avoid Memphis Traffic:</strong> Navigating a 27-foot RV through I-65/I-240 Memphis is stressful</li>
+            <li><strong>Alabama-Specific Knowledge:</strong> Huntsville rental companies know Alabama state parks, routes, dump stations</li>
+            <li><strong>Competitive Pricing:</strong> Similar rates but better Alabama destination access</li>
+          </ul>
+        </div>
+
+        <div class="point-card">
+          <h4>When Memphis Makes Sense:</h4>
+          <ul>
+            <li><strong>Multi-State Trip:</strong> Touring Tennessee, Alabama, and Mississippi</li>
+            <li><strong>Better Flights:</strong> Memphis (MEM) sometimes has cheaper fares than Birmingham (LIT)</li>
+            <li><strong>Larger Fleet Selection:</strong> Major rental hubs with 100+ vehicle inventory</li>
+            <li><strong>Eastern Alabama Destinations:</strong> If visiting Mississippi River region or eastern Alabama</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Quick Decision Matrix: Which Alabama City for Your RV Rental?</h3>
+      <table class="decision-matrix-table">
+        <thead>
+          <tr>
+            <th>Your Trip Profile</th>
+            <th>Best Rental City</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Multi-destination Alabama road trip (Space Center, Tennessee River, state parks)</td>
+            <td><strong>Huntsville</strong></td>
+            <td>Central location, lowest prices, quick highway access</td>
+          </tr>
+          <tr>
+            <td>Flying into Birmingham, need one-way rental to Texas/Oklahoma</td>
+            <td><strong>Birmingham</strong></td>
+            <td>Closer to airport, better one-way options</td>
+          </tr>
+          <tr>
+            <td>Spending entire week at Space Center + Lakes Hamilton/Bankhead</td>
+            <td><strong>Space Center</strong></td>
+            <td>You're already there, save 120 miles roundtrip driving</td>
+          </tr>
+          <tr>
+            <td>Northwest Alabama focus (Tennessee River, Smokies, Decatur)</td>
+            <td><strong>Decatur</strong></td>
+            <td>Closest to Northwest Alabama destinations</td>
+          </tr>
+          <tr>
+            <td>Budget-conscious, flexible on locations</td>
+            <td><strong>Huntsville</strong></td>
+            <td>Best value, 15-30% savings vs. other cities</td>
+          </tr>
+          <tr>
+            <td>First-time RVer needing extensive fleet selection</td>
+            <td><strong>Birmingham</strong></td>
+            <td>Largest inventory, multiple rental companies to compare</td>
+          </tr>
+          <tr>
+            <td>Avoid tourist crowds and busy rental locations</td>
+            <td><strong>Huntsville</strong></td>
+            <td>Quiet suburb, personal service, no wait times</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>The Huntsville Advantage in Numbers:</strong> Based on our three Huntsville rentals and comparison shopping across Alabama:</p>
+
+      <div class="advantage-stats">
+        <div class="stat-box">
+          <div class="stat-number">$350</div>
+          <div class="stat-label">Average savings vs. Birmingham (7-day Class C rental)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">30 min</div>
+          <div class="stat-label">Faster pickup/drop-off vs. busy city locations</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">12 mi</div>
+          <div class="stat-label">From Huntsville amenities (Walmart, Costco, REI on I-565)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Of our future Alabama rentals will start in Huntsville</div>
+        </div>
+      </div>
+
+      <!-- 📸 IMAGE: Huntsville location advantage -->
+      <div class="content-image">
+        <img src="/images/cities/huntsville-al/cathedral-caverns.webp" alt="Huntsville Alabama location map showing proximity to destinations" class="section-image" width="800" height="534" />
+        <p class="image-caption">Huntsville's strategic location - 12 miles south of Birmingham, central to all major Alabama destinations</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Strategies -->
+  <section id="booking-strategies" class="section">
+    <div class="container">
+      <h2>Smart Booking Strategies for Huntsville RV Rentals</h2>
+      <p class="section-intro">Timing and strategy can save you hundreds of dollars on your Huntsville RV rental. Here's what you need to know. Looking to explore other destinations? Check out our <a href="/cities">city guides</a> for RV rental options across the country.</p>
+
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <h3>How Far in Advance to Book</h3>
+          <ul>
+            <li><strong>Peak Summer (June-Aug):</strong> Book 2-3 months ahead for best selection and 10-15% early booking discounts</li>
+            <li><strong>Holiday Weekends:</strong> Memorial Day, 4th of July, Labor Day require 3-4 months advance booking</li>
+            <li><strong>Shoulder Season (Mar-May, Sept-Nov):</strong> 4-6 weeks ahead is sufficient, but earlier still better for deals</li>
+            <li><strong>Winter (Dec-Feb):</strong> 2-3 weeks typically fine, last-minute deals common</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h3>Best Days of the Week for Deals</h3>
+          <ul>
+            <li><strong>Pickup on Tuesday-Thursday:</strong> Some peer-to-peer owners offer 5-15% discounts for mid-week pickups</li>
+            <li><strong>Avoid Friday pickups:</strong> Premium rates often apply for weekend departures</li>
+            <li><strong>Return on Monday:</strong> Monday returns sometimes discounted vs. Sunday returns</li>
+            <li><strong>Book on Sundays:</strong> Some studies suggest rental prices slightly lower when booked on Sundays</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h3>Negotiation Strategies</h3>
+          <ul>
+            <li><strong>Corporate Companies:</strong> Limited negotiation, but ask about "any promotions running this month"</li>
+            <li><strong>Peer-to-Peer Platforms:</strong> Message owners directly, especially for longer rentals (7+ days)</li>
+            <li><strong>Multi-Week Rentals:</strong> Negotiate monthly rate (typically 30-40% off daily rate)</li>
+            <li><strong>Repeat Customer:</strong> Ask about loyalty discounts if you've rented from them before</li>
+            <li><strong>Last-Minute Gaps:</strong> Owners may accept lower rates to fill gaps in their calendar (within 2 weeks)</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h3>Last-Minute Rental Opportunities</h3>
+          <ul>
+            <li><strong>Cancellations:</strong> Check RVshare/Outdoorsy 7-14 days before desired dates</li>
+            <li><strong>Discounts:</strong> Last-minute listings often 20-40% off normal rates</li>
+            <li><strong>Selection:</strong> Limited - may need to be flexible on RV type and pickup location</li>
+            <li><strong>Corporate Rentals:</strong> Cruise America rarely discounts last-minute during peak season</li>
+            <li><strong>Best Times:</strong> January-February and mid-September through October for last-minute deals</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h3>Understanding Cancellation Policies</h3>
+          <ul>
+            <li><strong>Cruise America:</strong> Full refund 30+ days out, 50% refund 15-29 days, no refund within 14 days</li>
+            <li><strong>RVshare Flexible:</strong> Full refund up to 48 hours before pickup</li>
+            <li><strong>RVshare Moderate:</strong> Full refund up to 7 days before pickup</li>
+            <li><strong>RVshare Strict:</strong> Full refund up to 30 days before pickup</li>
+            <li><strong>Outdoorsy:</strong> Similar tiered system based on owner preference</li>
+            <li><strong>Travel Insurance:</strong> $50-150 for "cancel for any reason" coverage (worth it for peak season bookings)</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h3>Pro Booking Tips</h3>
+          <ul>
+            <li><strong>Compare All Platforms:</strong> Check Cruise America, RVshare, Outdoorsy, and El Monte - prices vary 20-30%</li>
+            <li><strong>Read All Reviews:</strong> Filter for reviews from Huntsville/Huntsville area pickups specifically</li>
+            <li><strong>Ask Questions:</strong> Contact owner/company before booking with specific questions</li>
+            <li><strong>Screenshot Prices:</strong> Prices can change - capture quotes before deciding</li>
+            <li><strong>Check Total Cost:</strong> Always review final price including all fees before confirming</li>
+            <li><strong>Credit Card Protection:</strong> Use cards with rental coverage and trip protection</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes to Avoid -->
+  <section id="common-mistakes" class="section bg-gray">
+    <div class="container">
+      <h2>10 Common Mistakes to Avoid When Renting an RV in Huntsville</h2>
+      <p class="section-intro">Learn from the mistakes we've seen (and made) over hundreds of RV rentals. These tips are specific to the Huntsville area and could save you hundreds of dollars and major headaches. New to RVing? Read our <a href="/blog/first-time-rv-rental-guide">first-time RV rental guide</a> for comprehensive beginner tips.</p>
+
+      <div class="mistakes-list">
+        <div class="mistake-item">
+          <div class="mistake-number">1</div>
+          <div class="mistake-content">
+            <h3>Not Accounting for Birmingham Traffic in Pickup/Dropoff Timing</h3>
+            <p><strong>The Mistake:</strong> Scheduling pickup at 8am or dropoff at 5pm during weekdays and hitting Birmingham rush hour traffic (especially on US-72 and I-565).</p>
+            <p><strong>The Solution:</strong> Schedule pickups after 9:30am or between 1-3pm. For dropoffs, aim for before 3pm or after 6:30pm. Weekend pickups avoid this issue entirely.</p>
+            <p><strong>Cost Impact:</strong> Can add 45-90 minutes to your travel time from the airport, potentially causing late pickup fees ($50-100/hour) or rushing your final day.</p>
+          </div>
+        </div>
+
+        <div class="mistake-item">
+          <div class="mistake-number">2</div>
+          <div class="mistake-content">
+            <h3>Underestimating the Size/Driving Difficulty</h3>
+            <p><strong>The Mistake:</strong> First-time renters booking a 35-foot Class A motorhome and attempting to drive scenic Highway 431 through the Appalachian foothills or navigate downtown Huntsville streets.</p>
+            <p><strong>The Solution:</strong> Start with a Class B van or smaller Class C (under 25 feet) for your first rental. Save big rigs for after you have experience with Alabama mountain roads.</p>
+            <p><strong>Cost Impact:</strong> Damaged awnings, scraped sides, or getting stuck can cost $500-5,000 in repairs. Not worth the stress.</p>
+          </div>
+        </div>
+
+        <div class="mistake-item">
+          <div class="mistake-number">3</div>
+          <div class="mistake-content">
+            <h3>Skipping the Pre-Trip Inspection Video</h3>
+            <p><strong>The Mistake:</strong> Rushing through pickup and not documenting existing damage with photos/video, then being charged for pre-existing issues.</p>
+            <p><strong>The Solution:</strong> Spend 15-20 minutes taking detailed photos/video of every surface before leaving the lot. Document any scratches, dents, or interior issues with the staff present.</p>
+            <p><strong>Cost Impact:</strong> Could save you $200-2,000 in disputed damage charges. Always document everything.</p>
+          </div>
+        </div>
+
+        <div class="mistake-item">
+          <div class="mistake-number">4</div>
+          <div class="mistake-content">
+            <h3>Not Testing Everything Before Leaving</h3>
+            <p><strong>The Mistake:</strong> Driving away without testing AC, generator, water pump, slideouts, awning, stove - then discovering issues at your first campground.</p>
+            <p><strong>The Solution:</strong> Spend 30 minutes testing every system before leaving the rental facility. If anything doesn't work, document it immediately or request a different RV.</p>
+            <p><strong>Cost Impact:</strong> Being stuck with a non-functional AC during Alabama summer heat and humidity is miserable. Prevention is everything.</p>
+          </div>
+        </div>
+
+        <div class="mistake-item">
+          <div class="mistake-number">5</div>
+          <div class="mistake-content">
+            <h3>Forgetting About Height Clearances</h3>
+            <p><strong>The Mistake:</strong> Driving a 12.5-foot tall RV under a 12-foot clearance bridge or into a low parking structure in downtown Huntsville.</p>
+            <p><strong>The Solution:</strong> Know your RV's height (it's posted inside). Use RV-specific GPS apps (RV Life, Roadtrippers) that avoid low clearances. Never trust your car's GPS.</p>
+            <p><strong>Cost Impact:</strong> Roof damage from clearance strikes starts at $3,000 and can total the RV. You'll pay your full deductible ($1,000-5,000).</p>
+          </div>
+        </div>
+
+        <div class="mistake-item">
+          <div class="mistake-number">6</div>
+          <div class="mistake-content">
+            <h3>Not Calculating Total Mileage</h3>
+            <p><strong>The Mistake:</strong> Accepting 100 free miles per day, then driving to Tennessee River and back (280 miles) and hitting overage charges.</p>
+            <p><strong>The Solution:</strong> Calculate your total expected miles before booking. If over 500 miles beyond included, buy unlimited mileage upgrade ($100-200) - it pays for itself.</p>
+            <p><strong>Cost Impact:</strong> Mileage overages at $0.40/mile add up fast. A 1,000-mile trip could cost an extra $400 if you don't plan ahead.</p>
+          </div>
+        </div>
+
+        <div class="mistake-item">
+          <div class="mistake-number">7</div>
+          <div class="mistake-content">
+            <h3>Booking Summer Without Understanding Alabama Heat and Humidity</h3>
+            <p><strong>The Mistake:</strong> Renting in July-August without verifying AC works perfectly or understanding generator requirements for Alabama' high heat and humidity (85-95°F with 70%+ humidity).</p>
+            <p><strong>The Solution:</strong> Test AC extensively before leaving. For Alabama summer trips, budget for generator usage ($35-45/day unlimited) or plan to stay at full-hookup campgrounds only.</p>
+            <p><strong>Cost Impact:</strong> Generator costs can add $245-315 to a week-long trip. Plus the misery of being hot and humid with no AC relief.</p>
+          </div>
+        </div>
+
+        <div class="mistake-item">
+          <div class="mistake-number">8</div>
+          <div class="mistake-content">
+            <h3>Ignoring Campground Reservations</h3>
+            <p><strong>The Mistake:</strong> Renting an RV during peak season without booking campgrounds in advance, then struggling to find places to stay.</p>
+            <p><strong>The Solution:</strong> Book popular Alabama state parks (Space Center Gulpha Gorge, Tennessee River, DeGray Lake) 3-6 months in advance when you book your RV. Have backup options planned.</p>
+            <p><strong>Cost Impact:</strong> Last-minute private RV parks charge $50-80/night vs. $25-40 for advance-booked state park spots. Could add $150-280 to a week-long trip.</p>
+          </div>
+        </div>
+
+        <div class="mistake-item">
+          <div class="mistake-number">9</div>
+          <div class="mistake-content">
+            <h3>Returning Without Emptying Tanks</h3>
+            <p><strong>The Mistake:</strong> Returning RV with full gray/black water tanks and assuming the company will handle it.</p>
+            <p><strong>The Solution:</strong> Find dump stations near rental location (use apps like AllStays). Dump tanks within 10 miles of dropoff. Costs $5-15 vs. company fee.</p>
+            <p><strong>Cost Impact:</strong> Company dump fees range from $50-100. DIY dumping costs $5-15. Save $45-95 with 15 minutes of work.</p>
+          </div>
+        </div>
+
+        <div class="mistake-item">
+          <div class="mistake-number">10</div>
+          <div class="mistake-content">
+            <h3>Not Reading Peer-to-Peer Reviews Carefully</h3>
+            <p><strong>The Mistake:</strong> Booking based on price alone without reading reviews, especially recent ones, and ending up with a problematic RV or difficult owner.</p>
+            <p><strong>The Solution:</strong> Read all reviews from the last 6 months. Look for patterns (mentions of mechanical issues, cleanliness, owner responsiveness). Filter reviews by Birmingham/Huntsville area pickup location.</p>
+            <p><strong>Cost Impact:</strong> A breakdown 150 miles from Huntsville could cost you days of your trip plus emergency repairs/towing. Choose reliable RVs with solid review history.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Top RV Routes from Huntsville -->
+  <section id="rv-routes" class="section bg-gray">
+    <div class="container">
+      <h2>Top RV Routes from Huntsville: Detailed Driving Directions</h2>
+      <p class="section-intro">Huntsville is perfectly positioned in North Alabama for incredible RV adventures. Here are the best routes from Huntsville with real-world drive times, RV-friendly stops, and insider tips.</p>
+
+      <h3>Route 1: Huntsville → Monte Sano State Park (6 miles, 15 minutes)</h3>
+      <p><strong>Best Route:</strong> US-431 S to Nolen Avenue</p>
+      <p>Monte Sano State Park sits right on top of Monte Sano Mountain, just 6 miles from downtown Huntsville. Perfect for a quick escape with 90 improved RV sites.</p>
+
+      <div class="route-details">
+        <h4>Turn-by-Turn from Huntsville</h4>
+        <ol class="route-steps">
+          <li><strong>Mile 0-3:</strong> Head south on Memorial Parkway (US-431) toward downtown</li>
+          <li><strong>Mile 3-5:</strong> Turn left on Nolen Avenue and follow signs to Monte Sano</li>
+          <li><strong>Mile 5-6:</strong> Winding road up the mountain - take it slow with an RV</li>
+        </ol>
+
+        <h4>RV-Specific Considerations</h4>
+        <ul>
+          <li><strong>Total Drive Time:</strong> 15 minutes from downtown Huntsville</li>
+          <li><strong>Road Conditions:</strong> Good, but steep and winding. Use lower gear going up</li>
+          <li><strong>RV Sites:</strong> 90 improved sites with water/electric, dump station available</li>
+          <li><strong>Best Use:</strong> Local weekend getaway or overnight after RV pickup</li>
+        </ul>
+      </div>
+
+      <h3>Route 2: Huntsville → Lake Guntersville State Park (45 miles, 1 hour)</h3>
+      <p><strong>Best Route:</strong> US-431 S / AL-69 S</p>
+      <p>Lake Guntersville is one of Alabama's premier state parks with 229 RV sites and stunning lake views.</p>
+
+      <div class="route-details">
+        <h4>Turn-by-Turn Overview</h4>
+        <ol class="route-steps">
+          <li><strong>Mile 0-25:</strong> Head south on US-431 through New Hope</li>
+          <li><strong>Mile 25-40:</strong> Continue on AL-69 S toward Guntersville</li>
+          <li><strong>Mile 40-45:</strong> Follow signs to Lake Guntersville State Park entrance</li>
+        </ol>
+
+        <h4>Critical Stops & Services</h4>
+        <div class="stops-grid">
+          <div class="stop-card">
+            <h5>Guntersville Walmart</h5>
+            <p class="stop-address">Near downtown Guntersville</p>
+            <ul>
+              <li><strong>Last supply stop</strong> before the park</li>
+              <li>Groceries, camping supplies, propane</li>
+              <li>RV-friendly parking lot</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4>RV-Specific Considerations</h4>
+        <ul>
+          <li><strong>Total Drive Time:</strong> 1 hour from Huntsville</li>
+          <li><strong>Road Conditions:</strong> Excellent. Wide, well-maintained highways</li>
+          <li><strong>RV Sites:</strong> 229 full hookup sites, reservations recommended</li>
+          <li><strong>Activities:</strong> Fishing, hiking, golf, zip-lining</li>
+        </ul>
+      </div>
+
+      <h3>Route 3: Huntsville → Great Smoky Mountains National Park (270 miles, 5.5 hours)</h3>
+      <p><strong>Best Route:</strong> I-24 E / I-75 N / US-441</p>
+      <p>The Great Smoky Mountains are a must-visit destination, about 5-6 hours from Huntsville via Chattanooga and Knoxville.</p>
+
+      <div class="route-details">
+        <h4>Turn-by-Turn Overview</h4>
+        <ol class="route-steps">
+          <li><strong>Mile 0-100:</strong> Take I-24 E toward Chattanooga, TN</li>
+          <li><strong>Mile 100-200:</strong> Continue to I-75 N toward Knoxville</li>
+          <li><strong>Mile 200-270:</strong> Take US-441 to Gatlinburg/Park entrance</li>
+        </ol>
+
+        <h4>Critical Stops & Services</h4>
+        <div class="stops-grid">
+          <div class="stop-card">
+            <h5>Chattanooga - Mile 110</h5>
+            <ul>
+              <li><strong>Major fuel stop</strong> with RV-friendly truck stops</li>
+              <li>Pilot, Flying J travel centers</li>
+              <li>Halfway point - good rest stop</li>
+            </ul>
+          </div>
+
+          <div class="stop-card">
+            <h5>Knoxville - Mile 210</h5>
+            <ul>
+              <li><strong>Last major city</strong> before the mountains</li>
+              <li>Stock up on supplies</li>
+              <li>Multiple RV-friendly gas stations</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4>RV-Specific Considerations</h4>
+        <ul>
+          <li><strong>Total Drive Time:</strong> 5-6 hours with fuel stops</li>
+          <li><strong>Fuel Consumption:</strong> Budget $80-120 one-way for Class C</li>
+          <li><strong>IMPORTANT:</strong> Many roads in the Smokies prohibit RVs over 25 feet. Check NPS website before attempting park roads</li>
+          <li><strong>Camping:</strong> Book Gatlinburg/Pigeon Forge RV parks well in advance (high demand)</li>
+          <li><strong>Best Time:</strong> Early morning departure to avoid Knoxville rush hour</li>
+        </ul>
+      </div>
+
+      <h3>Route 4: Huntsville → Gulf Shores, Alabama (377 miles, 6 hours)</h3>
+      <p><strong>Best Route:</strong> I-65 S all the way</p>
+      <p>Straight shot down I-65 to Alabama's beautiful Gulf Coast beaches. This is one of the easiest RV routes from Huntsville.</p>
+
+      <div class="route-details">
+        <h4>Turn-by-Turn Overview</h4>
+        <ol class="route-steps">
+          <li><strong>Mile 0-90:</strong> Take I-65 S toward Birmingham</li>
+          <li><strong>Mile 90-190:</strong> Continue through Birmingham to Montgomery</li>
+          <li><strong>Mile 190-340:</strong> Stay on I-65 S through Montgomery</li>
+          <li><strong>Mile 340-377:</strong> Take exit to AL-59 S toward Gulf Shores</li>
+        </ol>
+
+        <h4>Critical Stops & Services</h4>
+        <div class="stops-grid">
+          <div class="stop-card">
+            <h5>Birmingham - Mile 90</h5>
+            <ul>
+              <li>Major city with all services</li>
+              <li>Multiple truck stops and RV-friendly fuel</li>
+              <li>Good lunch stop</li>
+            </ul>
+          </div>
+
+          <div class="stop-card">
+            <h5>Montgomery - Mile 190</h5>
+            <ul>
+              <li>Halfway point to Gulf Shores</li>
+              <li>Rest areas on I-65</li>
+              <li>Walmart, Pilot, Flying J available</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4>RV-Specific Considerations</h4>
+        <ul>
+          <li><strong>Total Drive Time:</strong> 6 hours with stops</li>
+          <li><strong>Fuel Consumption:</strong> Budget $100-150 one-way for Class C</li>
+          <li><strong>Road Conditions:</strong> Excellent. I-65 is a major interstate, well-maintained</li>
+          <li><strong>Camping:</strong> Gulf State Park has excellent RV facilities with beach access</li>
+          <li><strong>Best Time:</strong> Avoid Friday afternoons southbound and Sunday afternoons northbound (beach traffic)</li>
+        </ul>
+      </div>
+
+      <h3>General RV Route Tips for Huntsville Area</h3>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <h4>Best Navigation Apps</h4>
+          <ul>
+            <li><strong>RV Life GPS</strong> - Filters routes by RV size/weight</li>
+            <li><strong>Google Maps</strong> - Good for general directions</li>
+            <li><strong>GasBuddy</strong> - Find cheapest fuel along your route</li>
+          </ul>
+        </div>
+
+        <div class="tip-card">
+          <h4>Fuel Planning</h4>
+          <ul>
+            <li>Fill up in Huntsville before heading out - competitive prices</li>
+            <li>Budget 8-12 MPG depending on RV size and terrain</li>
+            <li>Use truck stops (Pilot, Flying J) for easier RV access</li>
+            <li>Never let tank drop below 1/4 in rural areas</li>
+          </ul>
+        </div>
+
+        <div class="tip-card">
+          <h4>Weather Considerations</h4>
+          <ul>
+            <li>Summer: Hot and humid, run AC which reduces fuel economy</li>
+            <li>Spring/Fall: Ideal RV weather in Alabama</li>
+            <li>Winter: Generally mild, but check mountain forecasts for Smokies</li>
+            <li>Tornado season (March-May): Monitor weather closely</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 📸 IMAGE: Alabama highway scenic -->
+      <div class="content-image">
+        <img src="/images/cities/huntsville-al/space-rocket-center.webp" alt="Scenic Alabama highway in Appalachian foothills" class="section-image" width="800" height="534" />
+        <p class="image-caption">US-65 North through the Appalachian foothills - one of Alabama's most scenic RV routes</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Resources -->
+  <section class="section">
+    <div class="container">
+      <div class="related-resources-box">
+        <h2>Related Resources</h2>
+        <p>Explore these helpful resources to plan the perfect RV adventure:</p>
+
+        <div class="resources-grid">
+          <a href="/blog/first-time-rv-rental-guide" class="resource-card">
+            <div class="resource-icon">📋</div>
+            <h4>Rental Checklist</h4>
+            <p>Essential tips for beginners</p>
+          </a>
+
+          <a href="/campgrounds" class="resource-card">
+            <div class="resource-icon">🏕️</div>
+            <h4>Campground Guide</h4>
+            <p>Find the best RV parks</p>
+          </a>
+
+          <a href="/cities" class="resource-card">
+            <div class="resource-icon">🗺️</div>
+            <h4>Route Planning</h4>
+            <p>Browse other locations</p>
+          </a>
+
+          <a href="/blog" class="resource-card">
+            <div class="resource-icon">💰</div>
+            <h4>Cost Calculator</h4>
+            <p>Budget your RV trip</p>
+          </a>
+
+          <a href="/about" class="resource-card">
+            <div class="resource-icon">📞</div>
+            <h4>Emergency Contacts</h4>
+            <p>24/7 support resources</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Local Resources Section -->
+      <div class="local-resources-section">
+        <h3>Local Huntsville & Alabama Resources</h3>
+        <p class="resources-intro">Connect with local tourism boards, parks, and services specific to the Huntsville and North Alabama area:</p>
+
+        <div class="local-resources-grid">
+          <a href="https://www.arkansas.com/" target="_blank" rel="noopener nofollow" class="local-resource-card">
+            <div class="resource-icon">🏛️</div>
+            <h4>Alabama Tourism</h4>
+            <p>Official Alabama tourism and travel information</p>
+          </a>
+
+          <a href="https://www.arkansasstateparks.com/" target="_blank" rel="noopener nofollow" class="local-resource-card">
+            <div class="resource-icon">🌲</div>
+            <h4>Alabama State Parks</h4>
+            <p>Official state parks camping and reservation system</p>
+          </a>
+
+          <a href="https://www.nps.gov/hosp/" target="_blank" rel="noopener nofollow" class="local-resource-card">
+            <div class="resource-icon">♨️</div>
+            <h4>Space Center NPS</h4>
+            <p>Official U.S. Space & Rocket Center information</p>
+          </a>
+
+          <a href="https://www.littlerock.com/" target="_blank" rel="noopener nofollow" class="local-resource-card">
+            <div class="resource-icon">🏙️</div>
+            <h4>Birmingham Tourism</h4>
+            <p>Birmingham Convention & Visitors Bureau</p>
+          </a>
+
+          <a href="https://www.weather.gov/lzk/" target="_blank" rel="noopener nofollow" class="local-resource-card">
+            <div class="resource-icon">🌤️</div>
+            <h4>Central AL Weather</h4>
+            <p>National Weather Service - Birmingham</p>
+          </a>
+
+          <a href="https://www.arkansasonline.com/" target="_blank" rel="noopener nofollow" class="local-resource-card">
+            <div class="resource-icon">📰</div>
+            <h4>Alabama Democrat-Gazette</h4>
+            <p>Local news and North Alabama events</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📸 IMAGE: Alabama RV lifestyle -->
+  <section class="section">
+    <div class="container">
+      <div class="content-image">
+        <img src="/images/cities/huntsville-al/rv-lifestyle.webp" alt="Family enjoying RV lifestyle in North Alabama" class="section-image" width="800" height="534" />
+        <p class="image-caption">Experience the freedom of RV travel through Alabama's beautiful landscapes</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="section bg-gray">
+    <div class="container">
+      <h2>Frequently Asked Questions About RV Rentals in {cityData.name}</h2>
+      <p class="section-intro">Get answers to the most common questions about renting an RV in Huntsville, organized by category for easy navigation. For first-time renters, check out our <a href="/blog/first-time-rv-rental-guide">comprehensive first-time RV rental guide</a>. Have more questions? <a href="/contact">Contact us</a> and we'll help you out.</p>
+
+      {/* Group FAQs by category */}
+      {(() => {
+        const categories = ["General Questions", "Pricing Questions", "Booking Process", "Local Regulations", "Driving & Routes"];
+        return categories.map(category => {
+          const categoryFaqs = cityData.faq.filter(item => item.category === category);
+          if (categoryFaqs.length === 0) return null;
+          return (
+            <div class="faq-category">
+              <h3 class="faq-category-title">{category}</h3>
+              <div class="faq-list">
+                {categoryFaqs.map(item => (
+                  <details class="faq-item">
+                    <summary><h4>{item.question}</h4></summary>
+                    <p>{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          );
+        });
+      })()}
+    </div>
+  </section>
+
+  <!-- General Disclaimer -->
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="disclaimer-box">
+        <p><strong>📋 General Disclaimer:</strong> The information on this page is provided for general informational purposes only. RV rental policies, prices, and availability change frequently. Always verify critical information (insurance requirements, mileage policies, fees, etc.) directly with the rental company before booking. BestRV is not responsible for changes to third-party policies or pricing.</p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

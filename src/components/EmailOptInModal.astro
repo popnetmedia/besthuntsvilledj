@@ -1,0 +1,542 @@
+---
+// Email Opt-In Modal Component
+// Displays on all pages with exit-intent and time-delay triggers
+---
+
+<div id="email-modal-overlay" class="modal-overlay">
+  <div class="modal-container">
+    <button id="close-modal" class="close-button" aria-label="Close modal">&times;</button>
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Get Your Free RV Road Trip Checklist</h2>
+        <p class="modal-subheading">Join 5,000+ RV travelers getting exclusive tips, deals, and destination guides delivered to your inbox</p>
+      </div>
+
+      <div class="modal-benefits">
+        <ul>
+          <li>
+            <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Ultimate RV Road Trip Checklist (PDF)</span>
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Weekly RV rental deals & discounts</span>
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Curated campground recommendations</span>
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Expert RV rental tips & insider secrets</span>
+          </li>
+        </ul>
+      </div>
+
+      <form id="email-optin-form" class="optin-form" action="https://formspree.io/f/xgvrwrez" method="POST">
+        <div class="form-group">
+          <label for="subscriber-name" class="visually-hidden">First Name</label>
+          <input
+            type="text"
+            id="subscriber-name"
+            name="name"
+            placeholder="First Name"
+            required
+            autocomplete="given-name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="subscriber-email" class="visually-hidden">Email Address</label>
+          <input
+            type="email"
+            id="subscriber-email"
+            name="email"
+            placeholder="Email Address"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <input type="hidden" name="_subject" value="New Email Subscriber - BestRV" />
+        <input type="hidden" name="_next" value="https://www.bestrvrentalcompanies.com/thank-you" />
+        <input type="hidden" name="_gotcha" style="display:none" />
+
+        <button type="submit" class="submit-button">
+          Get My Free Checklist
+        </button>
+
+        <p class="privacy-note">We respect your privacy. Unsubscribe anytime.</p>
+      </form>
+
+      <div id="form-success" class="form-message success-message" style="display: none;">
+        <svg class="success-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        <h3>Success! Check Your Email</h3>
+        <p>Your free RV Road Trip Checklist is on its way to your inbox. Check your email in the next few minutes.</p>
+      </div>
+
+      <div id="form-error" class="form-message error-message" style="display: none;">
+        <p>Oops! Something went wrong. Please try again or email us at hello@bestrvrentalcompanies.com</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .modal-overlay.show {
+    display: flex;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .modal-container {
+    background: white;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: slideUp 0.4s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    color: #6b7280;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s;
+    z-index: 1;
+  }
+
+  .close-button:hover {
+    background: #f3f4f6;
+    color: #1f2937;
+  }
+
+  .modal-content {
+    padding: 48px 40px 40px;
+  }
+
+  .modal-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .modal-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 12px 0;
+    line-height: 1.2;
+  }
+
+  .modal-subheading {
+    font-size: 16px;
+    color: #4a5568;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .modal-benefits {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+
+  .modal-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .modal-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    color: #2d3748;
+  }
+
+  .modal-benefits li:last-child {
+    margin-bottom: 0;
+  }
+
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    color: #10b981;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .optin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .optin-form input[type="text"],
+  .optin-form input[type="email"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .optin-form input[type="text"]:focus,
+  .optin-form input[type="email"]:focus {
+    outline: none;
+    border-color: #4c51bf;
+    box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.1);
+  }
+
+  .submit-button {
+    width: 100%;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  }
+
+  .submit-button:active {
+    transform: translateY(0);
+  }
+
+  .privacy-note {
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280;
+    margin: 8px 0 0 0;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .form-message {
+    text-align: center;
+    padding: 24px;
+  }
+
+  .success-message {
+    color: #065f46;
+  }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    color: #10b981;
+    margin: 0 auto 16px;
+  }
+
+  .success-message h3 {
+    font-size: 24px;
+    margin: 0 0 12px 0;
+    color: #065f46;
+  }
+
+  .success-message p {
+    font-size: 16px;
+    margin: 0;
+    color: #047857;
+  }
+
+  .error-message {
+    background: #fef2f2;
+    border: 2px solid #fca5a5;
+    border-radius: 8px;
+    color: #991b1b;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 640px) {
+    .modal-container {
+      border-radius: 12px;
+      max-height: 95vh;
+    }
+
+    .modal-content {
+      padding: 40px 24px 24px;
+    }
+
+    .modal-header h2 {
+      font-size: 24px;
+    }
+
+    .modal-subheading {
+      font-size: 15px;
+    }
+
+    .modal-benefits {
+      padding: 20px;
+    }
+
+    .modal-benefits li {
+      font-size: 14px;
+    }
+
+    .submit-button {
+      font-size: 16px;
+      padding: 14px 20px;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Email Opt-In Modal Logic
+  document.addEventListener('DOMContentLoaded', function() {
+  const modalOverlay = document.getElementById('email-modal-overlay');
+  const closeButton = document.getElementById('close-modal');
+  const form = document.getElementById('email-optin-form');
+  const formSuccess = document.getElementById('form-success');
+  const formError = document.getElementById('form-error');
+
+  // Cookie helpers
+  function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  }
+
+  function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+
+  // Show modal function
+  function showModal() {
+    if (modalOverlay && !getCookie('email_modal_shown')) {
+      modalOverlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      setCookie('email_modal_shown', 'true', 7); // Don't show again for 7 days
+    }
+  }
+
+  // Close modal function
+  function closeModal() {
+    if (modalOverlay) {
+      modalOverlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Exit intent detection
+  let exitIntentTriggered = false;
+  document.addEventListener('mouseleave', (e) => {
+    if (e.clientY < 0 && !exitIntentTriggered && !getCookie('email_modal_shown')) {
+      exitIntentTriggered = true;
+      showModal();
+    }
+  });
+
+  // Time delay (5 seconds for testing)
+  setTimeout(() => {
+    if (!exitIntentTriggered && !getCookie('email_modal_shown')) {
+      showModal();
+    }
+  }, 5000);
+
+  // Scroll depth trigger (50% of page)
+  let scrollTriggered = false;
+  window.addEventListener('scroll', () => {
+    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    if (scrollPercent > 50 && !scrollTriggered && !exitIntentTriggered && !getCookie('email_modal_shown')) {
+      scrollTriggered = true;
+      showModal();
+    }
+  });
+
+  // Close button click
+  if (closeButton) {
+    closeButton.addEventListener('click', closeModal);
+  }
+
+  // Close on overlay click (not modal content)
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        closeModal();
+      }
+    });
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  // Form submission handling
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form as HTMLFormElement);
+      const submitButton = form.querySelector('.submit-button') as HTMLButtonElement;
+
+      // Disable button during submission
+      if (submitButton) {
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+      }
+
+      try {
+        const response = await fetch((form as HTMLFormElement).action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Show success message
+          form.style.display = 'none';
+          if (formSuccess) {
+            formSuccess.style.display = 'block';
+          }
+
+          // Track conversion (if you add analytics later)
+          if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'email_signup', {
+              'event_category': 'engagement',
+              'event_label': 'email_modal'
+            });
+          }
+
+          // Close modal after 3 seconds
+          setTimeout(() => {
+            closeModal();
+            // Reset form for next time
+            setTimeout(() => {
+              form.style.display = 'flex';
+              if (formSuccess) {
+                formSuccess.style.display = 'none';
+              }
+              (form as HTMLFormElement).reset();
+              if (submitButton) {
+                submitButton.textContent = 'Get My Free Checklist';
+                submitButton.disabled = false;
+              }
+            }, 500);
+          }, 3000);
+
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        // Show error message
+        form.style.display = 'none';
+        if (formError) {
+          formError.style.display = 'block';
+        }
+
+        // Reset after 3 seconds
+        setTimeout(() => {
+          form.style.display = 'flex';
+          if (formError) {
+            formError.style.display = 'none';
+          }
+          if (submitButton) {
+            submitButton.textContent = 'Get My Free Checklist';
+            submitButton.disabled = false;
+          }
+        }, 3000);
+      }
+    });
+  }
+  }); // End DOMContentLoaded
+</script>

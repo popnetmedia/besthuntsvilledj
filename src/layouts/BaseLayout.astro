@@ -1,0 +1,297 @@
+---
+import Navigation from '../components/Navigation.astro';
+import EmailOptInModal from '../components/EmailOptInModal.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  type?: 'website' | 'article' | 'profile';
+  image?: string;
+  schema?: any;
+}
+
+const {
+  title,
+  description,
+  type = 'website',
+  image = '/images/rv-rental-camping-guide-og.webp',
+  schema
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KGCV95H9TG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KGCV95H9TG');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" /> <!-- 📸 IMAGE: public/images/favicon.svg (32x32px) -->
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Extra Meta Tags Slot (for Google verification, etc.) -->
+    <slot name="extra-meta" />
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="BestRV" />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Critical CSS - Inlined for instant rendering -->
+    <style>
+      /* Critical above-the-fold styles */
+      *{margin:0;padding:0;box-sizing:border-box}:root{--primary:#667eea;--primary-dark:#5568d3;--secondary:#764ba2;--text:#2d3748;--text-light:#718096;--bg:#fff;--bg-gray:#f7fafc;--border:#e2e8f0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;line-height:1.6;color:var(--text);background:var(--bg)}.hero-city{position:relative;background:linear-gradient(135deg,rgba(102,126,234,.85) 0%,rgba(118,75,162,.85) 100%);color:#fff;padding:4rem 2rem;text-align:center;overflow:hidden;min-height:400px}.hero-city-image{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}.hero-city-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(102,126,234,.85) 0%,rgba(118,75,162,.85) 100%);z-index:1}.hero-content{position:relative;z-index:2}.hero-content h1{font-size:2.5rem;margin-bottom:1rem;line-height:1.2;font-weight:700}.subtitle{font-size:1.2rem;margin-bottom:2rem;opacity:.95}.breadcrumbs{margin-bottom:1.5rem;font-size:.9rem;opacity:.95}.breadcrumbs a{color:#fff;text-decoration:none}.trust-signals{display:flex;justify-content:center;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}.trust-signals .badge{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.2);padding:.5rem 1rem;border-radius:20px;font-size:.9rem;backdrop-filter:blur(10px)}.hero-stats{display:flex;justify-content:center;gap:3rem;margin-top:2rem;flex-wrap:wrap}.stat{display:flex;flex-direction:column;align-items:center}.stat strong{font-size:1.5rem}.hero{position:relative;background:linear-gradient(135deg,rgba(102,126,234,.9) 0%,rgba(118,75,162,.9) 100%);color:#fff;padding:4rem 2rem;text-align:center;min-height:450px;display:flex;align-items:center;justify-content:center;overflow:hidden}.hero-image{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}.hero-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(102,126,234,.9) 0%,rgba(118,75,162,.9) 100%);z-index:1}
+    </style>
+
+    <!-- Preload Critical Resources -->
+    <slot name="preload" />
+
+    <!-- Async CSS Loading Slot -->
+    <slot name="async-css" />
+
+    <!-- Schema.org JSON-LD -->
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+
+    <!-- Organization Schema (on every page) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "BestRV",
+      "url": "https://bestrv.com",
+      "logo": "https://bestrv.com/images/bestrvlogo1.webp", // 📸 IMAGE: public/images/bestrvlogo1.webp
+      "description": "Your trusted guide to RV rentals and camping across America",
+      "sameAs": [
+        "https://facebook.com/bestrv",
+        "https://twitter.com/bestrv",
+        "https://instagram.com/bestrv"
+      ]
+    })} />
+
+    <!-- Additional Head Content Slot (for page-specific schema, scripts, etc.) -->
+    <slot name="head" />
+
+    <style is:global>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #667eea;
+        --primary-dark: #5568d3;
+        --secondary: #764ba2;
+        --text: #2d3748;
+        --text-light: #718096;
+        --bg: #ffffff;
+        --bg-gray: #f7fafc;
+        --border: #e2e8f0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--bg);
+      }
+
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--primary-dark);
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
+      h3 { font-size: 1.5rem; }
+
+      p {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <Navigation />
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Best RV Rental Companies Award</h4>
+          <img src="/images/certifiedgold.webp" alt="BestRV Certified Gold - Your trusted RV rental guide" class="footer-logo" width="250" height="250" />
+          <p>Your trusted guide to RV rentals and camping across America.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/cities">RV Rentals by City</a></li>
+            <li><a href="/campgrounds">Campgrounds</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/sitemap">Sitemap</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="/reviews">RV Rental Reviews</a></li>
+            <li><a href="/how-we-review">How We Review</a></li>
+            <li><a href="/guides">RV Renters Guides</a></li>
+            <li><a href="/blog/first-time-rv-renters-guide">First Time RV Renters Guide</a></li>
+            <li><a href="/blog/rv-maintenance-for-renters">RV Maintenance Tips For Renters</a></li>
+            <li><a href="/blog/rv-renters-camping-essentials">RV Renters Camping Essentials</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 BestRV. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        <p class="disclaimer">We may earn a commission when you book through our affiliate links.</p>
+      </div>
+    </footer>
+
+    <style>
+      main {
+        min-height: 70vh;
+      }
+
+      footer {
+        background: #2d3748;
+        color: white;
+        margin-top: 4rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .footer-section h4 {
+        margin-bottom: 1rem;
+        color: #c4b5fd; /* Even lighter purple for dark background (WCAG AA 5.1:1) */
+        font-weight: 700;
+      }
+
+      .footer-logo {
+        display: block;
+        margin: 1rem 0;
+        max-width: 250px;
+        height: auto;
+        width: 100%;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section a {
+        color: #e2e8f0; /* Lighter gray for better contrast on dark bg (WCAG AA 7:1) */
+        transition: color 0.3s;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+      }
+
+      .footer-section a:hover {
+        color: white;
+        text-decoration-thickness: 2px;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #4a5568;
+        padding: 1.5rem 2rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #cbd5e0; /* Lighter gray for better contrast (WCAG AA 4.5:1) */
+      }
+
+      .footer-bottom a {
+        color: #e2e8f0; /* Lighter color for links on dark background */
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .footer-bottom a:hover {
+        color: white;
+      }
+
+      .disclaimer {
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        font-style: italic;
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.5rem; }
+      }
+    </style>
+
+    <!-- Email Opt-In Modal (site-wide) -->
+    <EmailOptInModal />
+  </body>
+</html>
