@@ -1,0 +1,154 @@
+{
+  "title": "Blog Writing Anti-AI Framework",
+  "description": "Guidelines to write blogs that avoid obvious AI patterns. This ensures authentic, human-friendly posts with real voice, natural flow, and credible insights.",
+  "guidelines": [
+    {
+      "id": 1,
+      "rule": "Word Count Realism",
+      "description": "Don't force neat round numbers (1000, 1500 words). Let depth of insight, not token padding, drive length."
+    },
+    {
+      "id": 2,
+      "rule": "Keep intros short",
+      "description": "Skip long generic scene-setting. Limit intros to 1–2 paragraphs and get to substance quickly."
+    },
+    {
+      "id": 3,
+      "rule": "Paragraph variety",
+      "description": "Avoid uniform 4–5 sentence paragraphs. Mix short one-liners with longer, more detailed sections."
+    },
+    {
+      "id": 4,
+      "rule": "Cut padding",
+      "description": "Don't restate ideas three different ways to hit length. Make the point once and move forward."
+    },
+    {
+      "id": 5,
+      "rule": "Insert visual breaks",
+      "description": "Every ~200 words, use subheads, examples, quotes, or lists to keep the text skimmable."
+    },
+    {
+      "id": 6,
+      "rule": "Anchor claims with sources",
+      "description": "Use quotes, data, or real references. Never hallucinate stats or expert names."
+    },
+    {
+      "id": 7,
+      "rule": "Subhead specificity",
+      "description": "Avoid filler headings like 'The Future of X.' Make subheads descriptive and curiosity-driven."
+    },
+    {
+      "id": 8,
+      "rule": "Ban generic blog titles",
+      "description": "Cut repetitive AI patterns like 'Top 10 Ways to…' or 'The Ultimate Guide.' Use titles with personality, context, or contrarian hooks."
+    },
+    {
+      "id": 9,
+      "rule": "Flow and rhythm",
+      "description": "Don't build perfectly symmetrical structures (intro → 3 bullets → conclusion). Mix pacing, break rhythm intentionally."
+    },
+    {
+      "id": 10,
+      "rule": "Perspective matters",
+      "description": "Avoid disembodied narration. Anchor sections in a viewpoint: lived pain, project learnings, or observed struggles."
+    },
+    {
+      "id": 11,
+      "rule": "Anchor in pain and context",
+      "description": "Tie benefits to real frustrations (e.g. 'spending weekends editing spreadsheets'), not abstract 'time savings.'"
+    },
+    {
+      "id": 12,
+      "rule": "CTA balance",
+      "description": "No spammy CTAs throughout. Use one strong, value-driven CTA at the end, or a natural one mid-post."
+    },
+    {
+      "id": 13,
+      "rule": "Tone consistency",
+      "description": "Don't mix corporate jargon with casual slang. Pick a voice and stick with it."
+    },
+    {
+      "id": 14,
+      "rule": "End with takeaways",
+      "description": "Don't finish with vague 'the future is bright' inspiration. Conclude with sharp takeaways, steps, or earned opinions."
+    },
+    {
+      "id": 15,
+      "rule": "Break the rule of 3",
+      "description": "Don't always present ideas in neat triplets. Humans don't structure that rigidly."
+    },
+    {
+      "id": 16,
+      "rule": "Avoid contrast clichés",
+      "description": "Cut formulaic 'while X, Y' or 'although X, Y' constructions. Use plain, direct phrasing."
+    },
+    {
+      "id": 17,
+      "rule": "Skip poetic scene-setters",
+      "description": "Ban phrases like 'in a world where' or 'in today's landscape.' They're AI tells."
+    },
+    {
+      "id": 18,
+      "rule": "Natural transitions",
+      "description": "Replace formulaic 'let's dive in' with contextual bridges."
+    },
+    {
+      "id": 19,
+      "rule": "No em dashes",
+      "description": "Use commas, periods, or parentheses. Avoid dramatic em dash overuse."
+    },
+    {
+      "id": 20,
+      "rule": "Allow imperfections",
+      "description": "Let fragments, side comments, or quirks through. Humans leave fingerprints."
+    },
+    {
+      "id": 21,
+      "rule": "No self-referential narration",
+      "description": "Cut lines like 'In this article, we'll explore' or 'This post covers'. Start directly with the insight or story.",
+      "example_bad": "In this post, we'll explore how teams can boost productivity.",
+      "example_good": "Last quarter our team hit a wall — here's what fixed it."
+    },
+    {
+      "id": 22,
+      "rule": "Ban symbolic or inflated phrasing",
+      "description": "Avoid abstract moralizing ('a testament to resilience', 'underscores the importance of'). Replace with plain, concrete outcomes.",
+      "example_bad": "This project stands as a testament to teamwork.",
+      "example_good": "We shipped 12 fixes in a week because everyone pulled late nights."
+    },
+    {
+      "id": 23,
+      "rule": "No vague authority",
+      "description": "Don't hide behind phrases like 'experts agree' or 'research shows.' Cite real names or share firsthand data.",
+      "example_bad": "Experts say storytelling boosts engagement.",
+      "example_good": "Nielsen's 2023 report found narrative-driven ads held attention 40% longer."
+    },
+    {
+      "id": 24,
+      "rule": "Avoid 'from X to Y' clichés",
+      "description": "Skip empty range metaphors like 'from burnout to balance.' Use specific before-and-after data or experience.",
+      "example_bad": "From struggle to success, it was a wild ride.",
+      "example_good": "Six drafts later, the post finally hit 100k reads."
+    },
+    {
+      "id": 25,
+      "rule": "No academic transitions",
+      "description": "Avoid 'Moreover', 'Furthermore', 'In conclusion', 'Overall.' End sections naturally or with a clear opinion.",
+      "example_bad": "In conclusion, creativity remains key to success.",
+      "example_good": "Creative work still wins — even when it's messy."
+    },
+    {
+      "id": 26,
+      "rule": "Skip moral or polite wrap-ups",
+      "description": "Don't end with 'Thanks for reading' or moral lessons ('Stay curious!'). Let the last sentence carry the punch.",
+      "example_bad": "Thanks for reading — remember, persistence pays off!",
+      "example_good": "The real trick? Showing up even when you hate your own draft."
+    },
+    {
+      "id": 27,
+      "rule": "Avoid Markdown residues",
+      "description": "Don't leave behind markdown symbols like ## or **bold** in plain-text exports. Keep formatting clean and minimal."
+    }
+  ],
+  "conclusion": "Blogs should read like they come from a person, not a machine. That means natural pacing, varied structure, anchored insights, and credible references — with no self-referential intros, inflated phrasing, vague authority, or polite moral wrap-ups. Imperfection is a feature, not a bug."
+}
