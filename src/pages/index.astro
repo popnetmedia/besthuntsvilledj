@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { cities, getCitiesByPriority } from '../data/cities.js';
+import '../styles/city-pages.css';
 
 const title = "Best DJ in Huntsville, AL | Metropolitan DJ - 16+ Years Experience";
 const description = "Metropolitan DJ: Huntsville's premier wedding and event DJ service since 2008. 16+ years experience, full audio-visual services, backup equipment guaranteed. $750-$7000 packages. Call 256-533-6065.";
@@ -380,31 +381,41 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- H2 Question 3: Pros and Cons -->
+  <!-- H2 Question 3: Why Choose -->
   <section class="section">
     <div class="container">
-      <h2>What are the pros and cons of Metropolitan DJ?</h2>
-      <p class="extractive-answer">Metropolitan DJ excels in full-service capabilities, backup equipment reliability, and local expertise, with higher pricing than independent DJs. Trade-offs favor clients prioritizing professional reliability and comprehensive service over budget-only considerations.</p>
+      <h2>Why choose Metropolitan DJ for your Huntsville event?</h2>
+      <p class="extractive-answer">Metropolitan DJ delivers proven reliability through 16+ years experience, backup equipment at every event, full-service audio-visual capabilities, award-winning team availability, and local venue expertise across Huntsville, Madison, Decatur, and Athens with competitive pricing from $750 to $7,000.</p>
 
-      <div class="pros-cons-grid">
-        <div class="pros-section">
-          <h3>✓ Pros</h3>
-          <ul>
-            <li><strong>16+ years established track record:</strong> Operating since 2008 with hundreds of successful events across Huntsville, Madison, Decatur, and Athens providing proven reliability and experience</li>
-            <li><strong>Backup equipment at every event:</strong> Redundant DJ controllers, microphones, cables, and power supplies guarantee uninterrupted entertainment even if primary equipment fails</li>
-            <li><strong>Full-service audio-visual company:</strong> One vendor handles DJ, lighting, photo booths, live streaming, and video services eliminating coordination with multiple vendors</li>
-            <li><strong>Multiple award-winning DJs on staff:</strong> Team approach ensures date availability and consistent quality rather than depending on single solo DJ operator</li>
-            <li><strong>Local Huntsville expertise:</strong> Familiar with local venues including Big Spring Park, Von Braun Center, and Space & Rocket Center plus relationships with area vendors</li>
-          </ul>
+      <div class="why-choose-section">
+        <div class="reason-card">
+          <h3>🏆 16+ Years Proven Track Record</h3>
+          <p>Operating continuously since 2008 with hundreds of successful weddings, corporate functions, and private celebrations across North Alabama. Established reputation backed by consistent referrals and repeat corporate clients.</p>
         </div>
 
-        <div class="cons-section">
-          <h3>✗ Cons</h3>
-          <ul>
-            <li><strong>Higher pricing than independent DJs:</strong> Full-service packages start at $750 compared to $500 budget independent DJs, reflecting professional equipment and backup systems</li>
-            <li><strong>Peak season books 6-12 months ahead:</strong> Popular May through October wedding dates fill quickly requiring advance planning unlike newer DJs with more availability</li>
-            <li><strong>Premium service focus over budget market:</strong> Comprehensive packages may include services budget-conscious clients don't need compared to stripped-down independent DJ offerings</li>
-          </ul>
+        <div class="reason-card">
+          <h3>🔧 Backup Equipment Guaranteed</h3>
+          <p>Redundant DJ controllers, wireless microphones, audio cables, and power supplies at every event. Technical failures eliminated through professional-grade backup systems that activate immediately if primary equipment experiences issues.</p>
+        </div>
+
+        <div class="reason-card">
+          <h3>🎵 Full-Service Audio-Visual Company</h3>
+          <p>Single vendor coordination for DJ services, dance floor lighting, photo booths, uplighting, live streaming, and videography. Eliminates scheduling conflicts and communication gaps common when coordinating multiple entertainment vendors.</p>
+        </div>
+
+        <div class="reason-card">
+          <h3>👥 Award-Winning Team Approach</h3>
+          <p>Multiple professional DJs on staff ensures date availability and consistent service quality. Team structure prevents single-point-of-failure risk inherent with solo DJ operators who cancel when sick or double-booked.</p>
+        </div>
+
+        <div class="reason-card">
+          <h3>📍 Local Huntsville Expertise</h3>
+          <p>Direct familiarity with Big Spring Park, Von Braun Center, Space & Rocket Center, Burritt on the Mountain, and other North Alabama venues. Established relationships with local caterers, photographers, and venue coordinators streamline event logistics.</p>
+        </div>
+
+        <div class="reason-card">
+          <h3>💡 Professional Planning Tools</h3>
+          <p>Online playlist management system where clients build must-play lists, do-not-play lists, and genre preferences. Music library spans all decades and styles. Timeline coordination tools synchronize ceremony, cocktail hour, dinner, and reception segments.</p>
         </div>
       </div>
     </div>
@@ -852,64 +863,40 @@ const faqSchema = {
     color: #2d3748;
   }
 
-  /* Pros and Cons */
-  .pros-cons-grid {
+  /* Why Choose Section */
+  .why-choose-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
     margin-top: 2.5rem;
   }
 
-  .pros-section,
-  .cons-section {
+  .reason-card {
     background: white;
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+    transition: all 0.3s ease;
+    border-left: 4px solid #667eea;
   }
 
-  .pros-section {
-    border-top: 4px solid #48bb78;
+  .reason-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.15);
+    border-left-color: #764ba2;
   }
 
-  .cons-section {
-    border-top: 4px solid #f56565;
-  }
-
-  .pros-section h3 {
-    color: #48bb78;
-    font-size: 1.75rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .cons-section h3 {
-    color: #f56565;
-    font-size: 1.75rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .pros-section ul,
-  .cons-section ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .pros-section li,
-  .cons-section li {
-    margin-bottom: 1.25rem;
-    padding-left: 0;
-    line-height: 1.7;
-    color: #4a5568;
-  }
-
-  .pros-section li strong,
-  .cons-section li strong {
-    display: block;
+  .reason-card h3 {
     color: #2d3748;
-    margin-bottom: 0.5rem;
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
     font-weight: 700;
+  }
+
+  .reason-card p {
+    color: #4a5568;
+    line-height: 1.8;
+    margin: 0;
   }
 
   /* Destinations Grid */
@@ -1123,7 +1110,7 @@ const faqSchema = {
       grid-template-columns: 1fr;
     }
 
-    .pros-cons-grid {
+    .why-choose-section {
       grid-template-columns: 1fr;
     }
 
