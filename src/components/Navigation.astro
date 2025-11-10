@@ -3,38 +3,10 @@ const currentPath = Astro.url.pathname;
 const isHomepage = Astro.url.pathname === '/';
 
 const navItems = [
-  { label: 'RV Rentals By City', href: '/cities' },
-  {
-    label: 'RV Rental Reviews',
-    href: '/reviews',
-    submenu: [
-      { label: 'How We Review', href: '/how-we-review' },
-      { label: 'Fireside RV Rental', href: '/reviews/fireside-rv-rental' },
-      { label: 'RVshare', href: '/reviews/rvshare' },
-      { label: 'Outdoorsy', href: '/reviews/outdoorsy' },
-      { label: 'Road Bear RV', href: '/reviews/road-bear' },
-      { label: 'El Monte RV', href: '/reviews/el-monte-rv' },
-      { label: 'Cruise America', href: '/reviews/cruise-america' }
-    ]
-  },
-  { label: 'Campground Reviews', href: '/campgrounds' },
-  {
-    label: 'RV Info Center',
-    href: '/blog',
-    submenu: [
-      { label: 'RV Renters Guides', href: '/guides' },
-      { label: 'Tips & Tricks', href: '/blog/category/tips' },
-      { label: 'RV Advice Blog', href: '/blog' }
-    ]
-  },
-  {
-    label: 'Company',
-    href: '/about',
-    submenu: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Contact', href: '/contact' }
-    ]
-  }
+  { label: 'DJs By City', href: '/cities' },
+  { label: 'DJ Reviews', href: '/reviews' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' }
 ];
 
 function isActive(href: string) {
@@ -48,7 +20,7 @@ function isActive(href: string) {
 <nav class="main-nav">
   <div class="nav-container">
     <a href="/" class="logo">
-      <img src="/images/bestrvlogo1.webp" alt="BestRV logo - RV rental and camping guide" class="logo-image" width="150" height="50" />
+      <span class="logo-text">Best Huntsville DJs</span>
     </a>
 
     <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -188,6 +160,13 @@ function isActive(href: string) {
   .logo-image {
     height: 50px;
     width: auto;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
   }
 
   .mobile-search-row {
