@@ -1,47 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { cities, getCitiesByPriority } from '../data/cities.js';
 
-const title = "Best Huntsville DJs - Find Top-Rated DJs in Huntsville, AL";
-const description = "Compare the best DJs in Huntsville, Alabama. Read reviews, check pricing, and find the perfect DJ for your wedding, party, or corporate event.";
+const title = "Metropolitan DJ - Premier DJ Services in Huntsville & North Alabama";
+const description = "Metropolitan DJ brings 16+ years of professional DJ and audio-visual services to weddings, corporate events, and parties across Huntsville, Madison, Decatur, Athens, and the Tennessee Valley. Call 256-533-6065.";
 
-const featuredDJs = [
-  {
-    name: "Elite Events DJ Service",
-    rating: 4.9,
-    reviews: 147,
-    price: "Starting at $800",
-    specialties: ["Weddings", "Corporate Events", "Birthdays"]
-  },
-  {
-    name: "Sound & Soul Productions",
-    rating: 4.8,
-    reviews: 203,
-    price: "Starting at $650",
-    specialties: ["Weddings", "Private Parties", "School Events"]
-  },
-  {
-    name: "Rocket City DJ Company",
-    rating: 4.7,
-    reviews: 189,
-    price: "Starting at $700",
-    specialties: ["Weddings", "Anniversaries", "Proms"]
-  }
-];
+const priorityCities = getCitiesByPriority(1);
 ---
 
 <BaseLayout title={title} description={description}>
   <!-- Hero Section -->
   <section class="hero-city">
     <div class="hero-content">
-      <h1>Find the Best DJs in Huntsville, AL</h1>
-      <p class="subtitle">Compare top-rated DJs, read honest reviews, and book the perfect entertainment for your event</p>
+      <h1>Metropolitan DJ</h1>
+      <p class="subtitle">Premier Event Entertainment for North Alabama & Tennessee Valley</p>
 
       <div class="trust-signals">
         <div class="badge">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
           </svg>
-          <span>100+ DJ Reviews</span>
+          <span>16+ Years Experience</span>
         </div>
         <div class="badge">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -50,34 +29,39 @@ const featuredDJs = [
             <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
             <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
-          <span>Expert Recommendations</span>
+          <span>Award-Winning Team</span>
         </div>
         <div class="badge">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"/>
             <polyline points="12 6 12 12 16 14"/>
           </svg>
-          <span>Updated Daily</span>
+          <span>Available 24/7</span>
         </div>
       </div>
 
       <div class="hero-stats">
         <div class="stat">
-          <strong>50+</strong>
-          <span>Verified DJs</span>
+          <strong>16+</strong>
+          <span>Years in Business</span>
         </div>
         <div class="stat">
-          <strong>$650-2000</strong>
-          <span>Average Event Price</span>
+          <strong>$750-7000</strong>
+          <span>Pricing Range</span>
         </div>
         <div class="stat">
-          <strong>4.8★</strong>
-          <span>Average Rating</span>
+          <strong>50 Miles</strong>
+          <span>Service Radius</span>
         </div>
       </div>
 
-      <div style="margin-top: 2rem;">
-        <a href="/cities" class="cta-button primary large">Browse DJs by City</a>
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="cta-button primary large">
+          Visit Our Website
+        </a>
+        <a href="tel:2565336065" class="cta-button secondary large">
+          Call: 256-533-6065
+        </a>
       </div>
     </div>
   </section>
@@ -85,208 +69,346 @@ const featuredDJs = [
   <!-- Quick Summary -->
   <section class="quick-summary">
     <div class="summary-box">
-      <h2>Why Choose a Huntsville DJ?</h2>
-      <p class="summary-subtitle">Professional entertainment for every occasion</p>
+      <h2>Experience the Metropolitan Difference</h2>
+      <p class="summary-subtitle">Full-service DJ and audio-visual company based in Huntsville, Alabama</p>
 
       <div class="summary-grid">
         <div class="summary-item">
-          <strong>Experience</strong>
-          <span>10-20+ years serving Huntsville events</span>
+          <strong>16+ Years</strong>
+          <span>Serving North Alabama & Tennessee Valley since 2008</span>
         </div>
         <div class="summary-item">
-          <strong>Equipment</strong>
-          <span>Professional sound systems & lighting</span>
+          <strong>Full Service</strong>
+          <span>DJ, lighting, photo booths, AV, live streaming</span>
         </div>
         <div class="summary-item">
-          <strong>Music Library</strong>
-          <span>50,000+ songs across all genres</span>
+          <strong>Professional</strong>
+          <span>Multiple DJs on staff, backup equipment always</span>
         </div>
         <div class="summary-item">
-          <strong>Flexibility</strong>
-          <span>Custom playlists & requests welcome</span>
+          <strong>Award Winning</strong>
+          <span>Industry recognition and hundreds of 5-star reviews</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured DJs -->
+  <!-- Services Section -->
   <section class="section">
     <div class="container">
-      <h2>Top-Rated DJs in Huntsville</h2>
-      <p class="section-intro">These DJs consistently receive the highest ratings from Huntsville residents for weddings, parties, and corporate events.</p>
+      <h2>Our DJ & Entertainment Services</h2>
+      <p class="section-intro">Complete event entertainment solutions for every occasion in Huntsville and surrounding areas.</p>
 
       <div class="companies-grid">
-        {featuredDJs.map((dj) => (
-          <div class="company-card">
-            <div class="company-header">
-              <div class="company-brand">
-                <h3>{dj.name}</h3>
-                <div class="rating">
-                  <span class="stars">★★★★★</span>
-                  <span class="rating-num">{dj.rating}/5.0</span>
-                  <span class="review-count">({dj.reviews} reviews)</span>
-                </div>
-              </div>
+        <div class="company-card">
+          <div class="company-header">
+            <div class="company-brand">
+              <h3>💍 Wedding DJ Services</h3>
             </div>
+          </div>
 
-            <div class="company-details">
-              <p><strong>Starting Price:</strong> {dj.price}</p>
-              <p><strong>Specializes in:</strong> {dj.specialties.join(", ")}</p>
+          <div class="company-details">
+            <p>Create unforgettable memories with professional wedding entertainment tailored to your special day.</p>
+          </div>
+
+          <div class="company-pros">
+            <strong>What's Included:</strong>
+            <ul>
+              <li>Professional DJ & MC services</li>
+              <li>Ceremony and reception music</li>
+              <li>Custom playlist planning</li>
+              <li>Dance floor lighting</li>
+              <li>Wireless microphones</li>
+              <li>Online planning tools</li>
+            </ul>
+          </div>
+
+          <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="cta-button primary">
+            View Wedding Packages
+          </a>
+        </div>
+
+        <div class="company-card">
+          <div class="company-header">
+            <div class="company-brand">
+              <h3>🏢 Corporate Events</h3>
             </div>
+          </div>
 
-            <div class="company-pros">
-              <strong>Why Choose Them:</strong>
-              <ul>
-                <li>Extensive music library with all genres</li>
-                <li>Professional-grade equipment included</li>
-                <li>Free consultation and planning</li>
-                <li>Backup equipment on-site</li>
-              </ul>
+          <div class="company-details">
+            <p>Professional audio-visual services for corporate functions, conferences, and business events.</p>
+          </div>
+
+          <div class="company-pros">
+            <strong>What's Included:</strong>
+            <ul>
+              <li>Corporate party entertainment</li>
+              <li>Conference audio support</li>
+              <li>Presentation equipment</li>
+              <li>Live streaming services</li>
+              <li>Professional sound systems</li>
+              <li>Custom lighting design</li>
+            </ul>
+          </div>
+
+          <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="cta-button primary">
+            Corporate Solutions
+          </a>
+        </div>
+
+        <div class="company-card">
+          <div class="company-header">
+            <div class="company-brand">
+              <h3>🎉 Private Parties</h3>
             </div>
+          </div>
 
-            <a href="/reviews" class="cta-button primary">
-              Read Full Review
-            </a>
+          <div class="company-details">
+            <p>Birthdays, anniversaries, graduations, and celebrations. We bring the energy and fun!</p>
+          </div>
+
+          <div class="company-pros">
+            <strong>What's Included:</strong>
+            <ul>
+              <li>All ages and music genres</li>
+              <li>Interactive entertainment</li>
+              <li>Photo booth rentals</li>
+              <li>Custom lighting packages</li>
+              <li>Sound system rentals</li>
+              <li>Karaoke available</li>
+            </ul>
+          </div>
+
+          <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="cta-button primary">
+            Party Packages
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Services -->
+  <section class="section bg-gray">
+    <div class="container">
+      <h2>Complete Event Production Services</h2>
+      <p class="section-intro">More than just DJs - we're your complete event entertainment solution</p>
+
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <h3>💡 Decorative Lighting</h3>
+          <ul>
+            <li>Uplighting for walls and ceilings</li>
+            <li>Dance floor lighting effects</li>
+            <li>Monogram projections</li>
+            <li>String lights and chandeliers</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h3>📸 Photo Booths</h3>
+          <ul>
+            <li>Professional photo booth rental</li>
+            <li>Unlimited prints</li>
+            <li>Custom backdrops and props</li>
+            <li>Digital copies included</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h3>🎙️ Audio Guestbook</h3>
+          <ul>
+            <li>Record guest messages</li>
+            <li>Vintage phone aesthetics</li>
+            <li>Digital audio delivery</li>
+            <li>Unique keepsake</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h3>📡 Live Streaming</h3>
+          <ul>
+            <li>Professional live streaming</li>
+            <li>Multi-camera setup available</li>
+            <li>Include remote guests</li>
+            <li>Recording included</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h3>🔊 Equipment Rental</h3>
+          <ul>
+            <li>Sound system rentals</li>
+            <li>Microphone packages</li>
+            <li>Projectors and screens</li>
+            <li>Delivery and setup</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h3>🎬 Video Services</h3>
+          <ul>
+            <li>Event videography</li>
+            <li>Highlight reels</li>
+            <li>Drone footage available</li>
+            <li>Professional editing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cities We Serve -->
+  <section class="section">
+    <div class="container">
+      <h2>Cities We Serve</h2>
+      <p class="section-intro">Professional DJ services throughout North Alabama and Tennessee Valley - within 50 miles of Huntsville</p>
+
+      <div class="destinations-grid">
+        {priorityCities.map((city) => (
+          <div class="destination-card">
+            <h3><a href={`/dj-services-${city.slug}`}>{city.name}, {city.stateAbbr}</a></h3>
+            <p class="distance">{city.population} residents • {city.distance}</p>
+            <p>Professional DJ services for {city.county}. Weddings, corporate events, parties, and more.</p>
           </div>
         ))}
       </div>
 
-      <div style="text-align: center; margin-top: 3rem;">
-        <a href="/reviews" class="cta-button primary large">View All DJ Reviews</a>
+      <div style="text-align: center; margin-top: 2rem;">
+        <p><strong>We Also Serve:</strong> Harvest, Meridianville, Owens Cross Roads, New Market, Hazel Green, Gurley, New Hope, Mooresville, Triana, Tanner, Belle Mina, Brownsboro, Laceys Spring, Valhermoso Springs, Somerville, Falkville, Elkmont, Fayetteville TN, Ardmore TN, and more!</p>
+        <p style="margin-top: 1rem; font-size: 0.95rem; color: #718096;">Click any city above to see specific information for that area</p>
       </div>
     </div>
   </section>
 
-  <!-- How It Works -->
+  <!-- Why Choose Us -->
   <section class="section bg-gray">
     <div class="container">
-      <h2>How to Choose the Right DJ</h2>
-      <p class="section-intro">Finding the perfect DJ for your event is easy with our step-by-step guide.</p>
+      <h2>Why Choose Metropolitan DJ?</h2>
 
       <div class="strategy-grid">
         <div class="strategy-card">
-          <h3>1. Define Your Event</h3>
-          <ul>
-            <li>Wedding reception or ceremony</li>
-            <li>Birthday party or anniversary</li>
-            <li>Corporate event or fundraiser</li>
-            <li>School dance or prom</li>
-          </ul>
+          <h3>1. Experience & Expertise</h3>
+          <p>Over 16 years of professional DJ and entertainment services. Multiple award-winning DJs on staff with hundreds of successful events.</p>
         </div>
 
         <div class="strategy-card">
-          <h3>2. Set Your Budget</h3>
-          <ul>
-            <li>Basic packages: $500-800 (3-4 hours)</li>
-            <li>Standard packages: $800-1,200 (4-6 hours)</li>
-            <li>Premium packages: $1,200-2,000+ (full service)</li>
-            <li>Add-ons: Lighting, photo booth, MC services</li>
-          </ul>
+          <h3>2. Full-Service Company</h3>
+          <p>One-stop shop for all your event needs. DJ, lighting, photo booths, AV equipment, live streaming - we handle everything.</p>
         </div>
 
         <div class="strategy-card">
-          <h3>3. Read Reviews</h3>
-          <ul>
-            <li>Check ratings and testimonials</li>
-            <li>Watch sample mixes/performances</li>
-            <li>Verify experience with your event type</li>
-            <li>Ask about equipment and backup plans</li>
-          </ul>
+          <h3>3. Professional Equipment</h3>
+          <p>Top-of-the-line sound systems, lighting, and equipment. Backup gear at every event ensures uninterrupted entertainment.</p>
         </div>
 
         <div class="strategy-card">
-          <h3>4. Book Early</h3>
-          <ul>
-            <li>Book 6-12 months ahead for weddings</li>
-            <li>Book 2-3 months ahead for parties</li>
-            <li>Get written contract with details</li>
-            <li>Confirm song requests and timeline</li>
-          </ul>
+          <h3>4. Local Experts</h3>
+          <p>Based in Huntsville, we know North Alabama and Tennessee Valley venues, vendors, and communities inside and out.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Browse by City -->
-  <section class="section">
-    <div class="container">
-      <h2>Find DJs Near You</h2>
-      <p class="section-intro">Browse our directory of professional DJs serving the greater Huntsville area.</p>
-
-      <div class="destinations-grid">
-        <div class="destination-card">
-          <h3><a href="/cities/huntsville-al">Huntsville, AL</a></h3>
-          <p class="distance">50+ verified DJs</p>
-          <p>Professional DJ services for weddings, parties, and corporate events in Rocket City.</p>
-        </div>
-
-        <div class="destination-card">
-          <h3><a href="/cities/madison-al">Madison, AL</a></h3>
-          <p class="distance">35+ verified DJs</p>
-          <p>Top-rated DJs serving Madison and surrounding communities.</p>
-        </div>
-
-        <div class="destination-card">
-          <h3><a href="/cities/decatur-al">Decatur, AL</a></h3>
-          <p class="distance">25+ verified DJs</p>
-          <p>Experienced DJs for all types of events in the River City.</p>
-        </div>
-
-        <div class="destination-card">
-          <h3><a href="/cities/athens-al">Athens, AL</a></h3>
-          <p class="distance">20+ verified DJs</p>
-          <p>Quality DJ entertainment for Athens area events.</p>
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 2rem;">
-        <a href="/cities" class="cta-button primary large">View All Cities</a>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="section bg-gray">
+  <section class="section">
     <div class="container">
       <h2>Frequently Asked Questions</h2>
 
       <div class="faq-list">
         <details class="faq-item">
-          <summary><h3>How much does a DJ cost in Huntsville?</h3></summary>
-          <p>DJ prices in Huntsville typically range from $500-2,000 depending on experience, equipment, and event duration. Wedding DJs average $1,200-1,800 for 4-6 hours, while birthday party DJs start around $500-800 for 3-4 hours. Premium packages with lighting and photo booths can go higher.</p>
+          <summary><h3>How much does Metropolitan DJ cost?</h3></summary>
+          <p>Our pricing ranges from $750 to $7,000+ depending on your event needs, duration, and services. Wedding packages typically range from $1,200-$3,500 for 4-6 hours including DJ services, lighting, and MC. We offer custom quotes tailored to your specific needs. Call 256-533-6065 for a personalized quote.</p>
         </details>
 
         <details class="faq-item">
-          <summary><h3>How far in advance should I book a DJ?</h3></summary>
-          <p>For weddings, book 6-12 months in advance, especially for peak season (May-October). For birthday parties and other events, 2-3 months ahead is usually sufficient. Popular DJs book quickly, so earlier is always better.</p>
+          <summary><h3>What areas do you serve?</h3></summary>
+          <p>We're based in Huntsville, Alabama and serve a 50-mile radius including Madison, Decatur, Athens, Hartselle, and all of North Alabama and Tennessee Valley. We cover Madison County, Limestone County, Morgan County, and parts of Tennessee. No travel fees within our service area!</p>
         </details>
 
         <details class="faq-item">
-          <summary><h3>What should I look for in a wedding DJ?</h3></summary>
-          <p>Look for: extensive experience with weddings (not just parties), professional equipment with backup systems, liability insurance, written contract, ability to MC and coordinate with vendors, flexibility with song requests, and excellent reviews from recent weddings.</p>
+          <summary><h3>How far in advance should I book?</h3></summary>
+          <p>For weddings, we recommend booking 6-12 months in advance, especially for peak season (May-October). Corporate events and private parties can typically be booked 2-3 months ahead. Popular dates fill quickly, so earlier is always better!</p>
         </details>
 
         <details class="faq-item">
-          <summary><h3>Do DJs provide their own equipment?</h3></summary>
-          <p>Yes, professional DJs bring all necessary equipment including sound systems, microphones, mixing equipment, and often lighting. Premium packages may include additional lighting effects, dance floor lighting, photo booths, or projectors.</p>
+          <summary><h3>What's included in your DJ packages?</h3></summary>
+          <p>All packages include: professional DJ services, MC/announcements, professional sound system, wireless microphones, dance floor lighting, online planning tools, and backup equipment. Wedding packages also include ceremony music coordination. Add-ons available: uplighting, photo booths, audio guestbook, live streaming, and more.</p>
         </details>
 
         <details class="faq-item">
-          <summary><h3>Can I request specific songs?</h3></summary>
-          <p>Absolutely! Most DJs welcome song requests and will work with you to create a custom playlist. Many provide online planning tools where you can specify must-play songs, do-not-play songs, and preferred genres. They can also take requests from guests during the event.</p>
+          <summary><h3>Do you provide equipment for outdoor events?</h3></summary>
+          <p>Yes! We have professional-grade outdoor sound systems and weatherproof equipment. We bring backup power sources, weather-protected DJ booths, and have experience with all types of outdoor venues across North Alabama.</p>
         </details>
 
         <details class="faq-item">
-          <summary><h3>What's included in a typical DJ package?</h3></summary>
-          <p>Standard packages typically include: DJ services for 4-6 hours, professional sound system, wireless microphones, basic lighting, music library access, online planning tools, and liability insurance. Premium packages add uplighting, photo booths, video screens, or additional hours.</p>
+          <summary><h3>Can I request specific songs and create a playlist?</h3></summary>
+          <p>Absolutely! We provide online planning tools where you can create must-play lists, do-not-play lists, and preferred genres. We work with you to create the perfect soundtrack for your event. Our extensive music library spans all decades and genres.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>Do you have backup equipment?</h3></summary>
+          <p>Yes! We bring backup equipment to every single event - including backup DJ controller, microphones, cables, and power supplies. Your event entertainment is guaranteed to run smoothly with no interruptions.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>How do I book Metropolitan DJ?</h3></summary>
+          <p>Easy! Call us at 256-533-6065 or email amy@metropolitandiscjockey.com. You can also visit our website at metropolitandiscjockey.com to request a quote. We'll discuss your event needs and provide a custom proposal.</p>
         </details>
       </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section bg-gray">
+    <div class="container" style="text-align: center;">
+      <h2>Ready to Book Your Event?</h2>
+      <p class="section-intro">Contact Metropolitan DJ today for a free consultation and custom quote</p>
+
+      <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <div class="contact-box">
+          <strong>📞 Call Us</strong>
+          <p><a href="tel:2565336065" style="font-size: 1.75rem; color: var(--primary); text-decoration: none; font-weight: 700;">256-533-6065</a></p>
+        </div>
+        <div class="contact-box">
+          <strong>📧 Email</strong>
+          <p><a href="mailto:amy@metropolitandiscjockey.com" style="font-size: 1.25rem; color: var(--primary);">amy@metropolitandiscjockey.com</a></p>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="cta-button primary large">
+          Visit Our Website
+        </a>
+      </div>
+
+      <div style="margin-top: 2rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+        <a href="https://www.facebook.com/ExperienceMetropolitan/" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+          <svg style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Facebook
+        </a>
+        <a href="https://www.instagram.com/metropolitandiscjockey/" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+          <svg style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Instagram
+        </a>
+        <a href="https://www.youtube.com/user/MetropolitanDJs" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+          <svg style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+          YouTube
+        </a>
+      </div>
+
+      <p style="margin-top: 2rem; color: #718096;">Based in Huntsville, AL • Serving North Alabama & Tennessee Valley • 16+ Years Experience</p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  /* Hero Section */
+  /* Reuse all the great homepage styles */
   .hero-city {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -315,22 +437,21 @@ const featuredDJs = [
   }
 
   .hero-city h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
     line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 
   .subtitle {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     margin-bottom: 2.5rem;
     opacity: 0.95;
     font-weight: 400;
     line-height: 1.6;
   }
 
-  /* Trust Signals */
   .trust-signals {
     display: flex;
     justify-content: center;
@@ -361,7 +482,6 @@ const featuredDJs = [
     height: 20px;
   }
 
-  /* Hero Stats */
   .hero-stats {
     display: flex;
     justify-content: center;
@@ -389,7 +509,6 @@ const featuredDJs = [
     font-weight: 500;
   }
 
-  /* Quick Summary Section */
   .quick-summary {
     background: linear-gradient(to bottom, #f7fafc 0%, #ffffff 100%);
     padding: 4rem 2rem;
@@ -402,21 +521,21 @@ const featuredDJs = [
   }
 
   .summary-box h2 {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     color: #2d3748;
     margin-bottom: 0.75rem;
     font-weight: 700;
   }
 
   .summary-subtitle {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: #718096;
     margin-bottom: 2.5rem;
   }
 
   .summary-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
   }
@@ -437,7 +556,7 @@ const featuredDJs = [
 
   .summary-item strong {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #667eea;
     margin-bottom: 0.5rem;
     font-weight: 700;
@@ -448,7 +567,6 @@ const featuredDJs = [
     line-height: 1.6;
   }
 
-  /* Section Styling */
   .section {
     padding: 5rem 2rem;
   }
@@ -479,7 +597,6 @@ const featuredDJs = [
     line-height: 1.7;
   }
 
-  /* Company Cards */
   .companies-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -507,34 +624,10 @@ const featuredDJs = [
   }
 
   .company-brand h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: #2d3748;
     margin-bottom: 0.75rem;
     font-weight: 700;
-  }
-
-  .rating {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .stars {
-    color: #f59e0b;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-  }
-
-  .rating-num {
-    font-weight: 700;
-    color: #2d3748;
-    font-size: 1.05rem;
-  }
-
-  .review-count {
-    color: #718096;
-    font-size: 0.95rem;
   }
 
   .company-details {
@@ -545,18 +638,9 @@ const featuredDJs = [
   }
 
   .company-details p {
-    margin-bottom: 0.75rem;
-    color: #4a5568;
-    line-height: 1.6;
-  }
-
-  .company-details p:last-child {
     margin-bottom: 0;
-  }
-
-  .company-details strong {
-    color: #2d3748;
-    font-weight: 600;
+    color: #4a5568;
+    line-height: 1.7;
   }
 
   .company-pros {
@@ -592,10 +676,9 @@ const featuredDJs = [
     font-size: 1.1rem;
   }
 
-  /* Strategy Grid */
   .strategy-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 2.5rem;
   }
@@ -620,6 +703,11 @@ const featuredDJs = [
     font-weight: 700;
   }
 
+  .strategy-card p {
+    color: #4a5568;
+    line-height: 1.7;
+  }
+
   .strategy-card ul {
     list-style: none;
     padding: 0;
@@ -641,10 +729,9 @@ const featuredDJs = [
     font-weight: 700;
   }
 
-  /* Destinations Grid */
   .destinations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2.5rem;
   }
@@ -693,7 +780,6 @@ const featuredDJs = [
     line-height: 1.7;
   }
 
-  /* FAQ Section */
   .faq-list {
     max-width: 900px;
     margin: 3rem auto 0;
@@ -756,7 +842,6 @@ const featuredDJs = [
     margin: 0;
   }
 
-  /* CTA Buttons */
   .cta-button {
     display: inline-block;
     padding: 1rem 2rem;
@@ -780,23 +865,46 @@ const featuredDJs = [
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
 
+  .cta-button.secondary {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    box-shadow: 0 4px 6px rgba(72, 187, 120, 0.25);
+  }
+
+  .cta-button.secondary:hover {
+    box-shadow: 0 8px 16px rgba(72, 187, 120, 0.35);
+  }
+
   .cta-button.large {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     padding: 1.2rem 2.5rem;
   }
 
-  /* Mobile Responsiveness */
+  .contact-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 280px;
+  }
+
+  .contact-box strong {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #2d3748;
+  }
+
   @media (max-width: 768px) {
     .hero-city {
       padding: 3rem 1.5rem 2.5rem;
     }
 
     .hero-city h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
 
     .subtitle {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
 
     .trust-signals {
@@ -840,11 +948,6 @@ const featuredDJs = [
       grid-template-columns: 1fr;
     }
 
-    .cta-button.large {
-      font-size: 1.1rem;
-      padding: 1rem 2rem;
-    }
-
     .faq-item summary {
       padding: 1.25rem 1.5rem;
     }
@@ -856,11 +959,11 @@ const featuredDJs = [
 
   @media (max-width: 480px) {
     .hero-city h1 {
-      font-size: 1.75rem;
+      font-size: 2rem;
     }
 
     .subtitle {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
     .hero-stats {
