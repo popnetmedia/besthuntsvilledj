@@ -1304,6 +1304,45 @@
       background: #030303;
     }
 
+    /* Section Text Colors - Critical for Readability */
+    .section h2 {
+      color: #A1844A;
+      text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
+    }
+
+    .section h3 {
+      color: #A1844A;
+      text-shadow: 0 1px 4px rgba(161, 132, 74, 0.3);
+    }
+
+    .section h4, .section h5, .section h6 {
+      color: rgba(255,255,255,0.95);
+    }
+
+    .section p {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .section ul, .section ol {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .section li {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .section strong {
+      color: rgba(255,255,255,0.95);
+    }
+
+    .section a {
+      color: #A1844A;
+    }
+
+    .section a:hover {
+      color: #B89A5B;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -1403,8 +1442,9 @@
 
     .company-title-section h3 {
       margin-bottom: 0.5rem;
-      color: var(--text);
+      color: #A1844A;
       font-size: 1.5rem;
+      text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
     }
 
     .rating-line {
@@ -1415,14 +1455,15 @@
     }
 
     .review-count {
-      color: var(--text-light);
+      color: rgba(255,255,255,0.7);
       font-size: 0.9rem;
       font-style: italic;
     }
 
     .company-header h3 {
       margin-bottom: 0.5rem;
-      color: var(--text);
+      color: #A1844A;
+      text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
     }
 
     .company-logo {
@@ -1444,7 +1485,7 @@
     }
 
     .rating-num {
-      color: var(--text-light);
+      color: rgba(255,255,255,0.9);
       font-weight: 600;
     }
 
