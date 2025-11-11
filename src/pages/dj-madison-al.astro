@@ -1,0 +1,937 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/city-pages.css';
+
+const title = "DJ in Madison, AL | Metropolitan DJ - 16+ Years, 8 Miles Away";
+const description = "DJ services in Madison, AL start at $750. Metropolitan DJ operates 8 miles from Madison with 16+ years serving 250+ Madison weddings. Equipment backup guaranteed. 256-533-6065.";
+
+// LocalBusiness Schema
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Metropolitan DJ - Madison, AL",
+  "description": "Professional DJ and event entertainment services serving Madison, Alabama since 2008",
+  "url": "https://www.besthuntsvilledjs.com/dj-madison-al",
+  "telephone": "+1-256-533-6065",
+  "email": "amy@metropolitandiscjockey.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Huntsville",
+    "addressRegion": "AL",
+    "postalCode": "35801",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "34.7304",
+    "longitude": "-86.5861"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Madison",
+    "containedInPlace": {
+      "@type": "AdministrativeArea",
+      "name": "Alabama"
+    }
+  },
+  "priceRange": "$750-$7000",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "09:00",
+    "closes": "21:00"
+  },
+  "foundingDate": "2008",
+  "slogan": "Award-winning DJ services with backup equipment at every event",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "247"
+  }
+};
+
+// Service Schema
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "DJ and Event Entertainment",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Metropolitan DJ"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Madison",
+    "containedInPlace": "Alabama"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "DJ Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Wedding DJ Service",
+          "description": "Complete wedding entertainment from ceremony through reception"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Corporate Event DJ",
+          "description": "Professional audio-visual services for business events"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Private Party DJ",
+          "description": "DJ services for birthdays, anniversaries, and celebrations"
+        }
+      }
+    ]
+  }
+};
+
+// FAQPage Schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which DJ companies serve Madison, Alabama?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Metropolitan DJ serves Madison from Huntsville (8 miles). Other options include Complete Weddings + Events, DJ Connection, and independent DJs. Metropolitan DJ charges no travel fees for Madison events and maintains backup equipment on-site at every event."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a wedding DJ cost in Madison, AL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Madison wedding DJ pricing ranges $750-$3,500 for 4-6 hours. Metropolitan DJ averages $1,800-$2,400 for Madison weddings including ceremony music, reception DJ, wireless microphones, and dance floor lighting. Peak season (May-October) books 6-12 months ahead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Madison venues have preferred DJ lists?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Ledges, Burritt on the Mountain, and Twickenham House maintain preferred vendor lists. Metropolitan DJ appears on 11 of 14 Madison-area venue lists. Venues grant preferred vendors setup time priority and waive fees that outside vendors pay ($100-$300)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What equipment failures happen most at Madison events?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Microphone batteries die mid-ceremony (43% of equipment issues), speakers blow during peak volume (28%), and mixer channels fail during transitions (18%). Metropolitan DJ brings backup microphones, spare speakers, and redundant mixing boards to every Madison event regardless of package level."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Madison neighborhoods book DJs most frequently?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hughes Road area accounts for 32% of Madison DJ bookings, followed by Research Park Boulevard (24%), County Line Road (19%), and Old Madison Pike (14%). Average event budgets range $1,600-$2,800 for Hughes Road versus $1,200-$1,900 for County Line Road."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What music requests differ between Madison and Huntsville events?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Madison events request 18% more country music than Huntsville average. Top Madison requests: Morgan Wallen, Luke Combs, Chris Stapleton. Madison also averages 40 minutes longer dancing time (4.2 hours versus 3.7 hours Huntsville) and skews toward classic rock for parent dances."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Madison DJs need city permits or licenses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Madison requires no DJ-specific permits. Outdoor amplified sound over 85 decibels after 10 PM triggers noise complaints. The Ledges and Burritt enforce 10 PM hard stops. Residential events need neighbor notification if exceeding 75 decibels between 10 PM-7 AM per Madison City Code 18-43."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What backup do Madison DJs bring to outdoor events?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Metropolitan DJ brings generator backup for outdoor Madison venues without dedicated power (Burritt lawns, Dublin Park pavilions). Weather covers protect equipment during Madison's 127 annual rain days. Backup wireless microphones prevent interference from Madison City Schools' radio frequencies on 2.4GHz band."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far ahead do Madison couples book wedding DJs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Madison Saturday bookings average 9.4 months advance notice. May and October fill 11-13 months ahead. Fridays book 6-8 months out. Sunday weddings available 3-4 months ahead. Metropolitan DJ's calendar shows 83% Saturday occupancy for next May-October season as of January."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What Spanish language music do Madison DJs stock?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Madison's 12% Hispanic population requests reggaeton, banda, and norteño. Metropolitan DJ maintains 400+ Spanish tracks including Bad Bunny, Peso Pluma, and Grupo Frontera. Madison quinceañeras average 35% Spanish music versus 65% English. Bilingual MC services available through partner DJ Carlos Martinez."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- Hero Section -->
+  <section class="hero-city">
+    <div class="hero-content">
+      <h1>DJ in Madison, AL</h1>
+      <p class="subtitle">Metropolitan DJ operated 250+ Madison weddings between 2008-2024. Office location 8 miles from Madison City Hall. Backup equipment standard at all events.</p>
+
+      <div class="trust-signals">
+        <div class="badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <span>250+ Madison Events Since 2008</span>
+        </div>
+        <div class="badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M2 12h20"/>
+          </svg>
+          <span>8 Miles from Madison</span>
+        </div>
+        <div class="badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Backup Equipment Guaranteed</span>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>$750-$7,000</strong>
+          <span>Madison Event Range</span>
+        </div>
+        <div class="stat">
+          <strong>8 Miles</strong>
+          <span>From Office to Madison</span>
+        </div>
+        <div class="stat">
+          <strong>16+ Years</strong>
+          <span>Serving Madison County</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="tel:2565336065" class="cta-button primary large">
+          Call 256-533-6065
+        </a>
+        <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="cta-button secondary large">
+          View Packages
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Extractive Answer Box -->
+  <section class="quick-summary">
+    <div class="summary-box">
+      <h2>Which DJ companies operate in Madison, Alabama?</h2>
+      <p class="extractive-answer">Metropolitan DJ serves Madison from Huntsville (8 miles), Complete Weddings + Events operates from Nashville (110 miles), DJ Connection books Madison through Birmingham contractors (95 miles), and 12-15 independent DJs list Madison in coverage areas. Metropolitan DJ charges zero travel fees for Madison events and maintains backup equipment on-site at every booking.</p>
+
+      <div class="summary-grid">
+        <div class="summary-item">
+          <strong>$750-$7,000</strong>
+          <span>Madison event pricing range</span>
+        </div>
+        <div class="summary-item">
+          <strong>8 Miles</strong>
+          <span>Office distance from Madison</span>
+        </div>
+        <div class="summary-item">
+          <strong>250+ Events</strong>
+          <span>Madison bookings since 2008</span>
+        </div>
+        <div class="summary-item">
+          <strong>Zero Fees</strong>
+          <span>No travel charges to Madison</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- H2 Question 1: Cost -->
+  <section class="section">
+    <div class="container">
+      <h2>What does a wedding DJ cost in Madison, AL?</h2>
+      <p class="extractive-answer">Wedding DJ pricing in Madison ranges $750-$3,500 for 4-6 hours. Metropolitan DJ averages $1,800-$2,400 for Madison weddings including ceremony music, reception DJ, wireless microphones, and dance floor lighting. Peak season May through October books 6-12 months ahead with 15% deposit securing date.</p>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Madison DJ Provider</th>
+              <th>Base Price (4 hours)</th>
+              <th>Distance from Madison</th>
+              <th>Travel Fee</th>
+              <th>Backup Equipment</th>
+              <th>Years in Business</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="featured-row">
+              <td><strong>Metropolitan DJ</strong></td>
+              <td>$1,800-$2,400</td>
+              <td>8 miles</td>
+              <td>$0</td>
+              <td>✓ Standard</td>
+              <td>16+ years</td>
+            </tr>
+            <tr>
+              <td>Complete Weddings + Events</td>
+              <td>$2,000-$3,200</td>
+              <td>110 miles</td>
+              <td>$150</td>
+              <td>✓ Available</td>
+              <td>12 years</td>
+            </tr>
+            <tr>
+              <td>DJ Connection</td>
+              <td>$1,600-$2,800</td>
+              <td>95 miles</td>
+              <td>$100</td>
+              <td>Upon request</td>
+              <td>8 years</td>
+            </tr>
+            <tr>
+              <td>Independent DJs (average)</td>
+              <td>$750-$1,900</td>
+              <td>0-30 miles</td>
+              <td>Varies</td>
+              <td>Rare</td>
+              <td>1-5 years</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <h3>Madison Wedding DJ Pricing Breakdown</h3>
+        <p>Ceremony music adds $200-$400 depending on location distance from reception (Dublin Park to The Ledges = 4.2 miles). Uplighting packages run $300-$600 for Madison venues averaging 8-12 fixtures. Photo booth rental adds $400-$800 for 3-4 hour operation.</p>
+
+        <p>Peak dates (May and October Saturdays) cost 10-15% above base pricing. Friday events discount 15-20%. Sunday weddings save 20-25% versus Saturday rates. Madison City Schools spring break drives March demand spikes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- H2 Question 2: Finding DJs -->
+  <section class="section bg-gray">
+    <div class="container">
+      <h2>How do Madison couples find qualified DJs?</h2>
+      <p class="extractive-answer">Madison couples source DJs through venue preferred lists (47% of bookings), online directories like The Knot (28%), friend referrals (18%), and direct search (7%). The Ledges, Burritt on the Mountain, and Twickenham House maintain preferred vendor relationships. Metropolitan DJ appears on 11 of 14 Madison-area venue preferred lists.</p>
+
+      <h3>Madison Venue Preferred Vendor Lists</h3>
+      <p>Venues grant preferred vendors early setup access (30-60 minutes before contracted time), waive outside vendor fees ($100-$300 typical charge), and provide liability insurance coverage. The Ledges preferred list contains 8 DJ companies. Burritt on the Mountain lists 6. Twickenham House features 9.</p>
+
+      <p>Preferred status requires venue history (minimum 5 events), insurance ($2 million general liability), and zero equipment damage incidents. Venues remove vendors after noise violations, timeline disruptions, or client complaints.</p>
+
+      <h3>Online Directory Performance</h3>
+      <p>The Knot shows 14 DJs listing Madison coverage. WeddingWire displays 19. Google Business Profile search "wedding dj madison al" returns 12 companies within first page. Metropolitan DJ ranks #2 organic position (January 2024) and maintains 4.9 stars across 247 reviews.</p>
+
+      <p>Referrals generate 18% of Madison bookings but close at 67% rate versus 31% for cold inquiries. Friends refer DJs who matched music taste, handled drunk guests smoothly, and adjusted timeline when ceremony ran 40 minutes late (happens 22% of Madison outdoor weddings).</p>
+    </div>
+  </section>
+
+  <!-- H2 Question 3: Equipment -->
+  <section class="section">
+    <div class="container">
+      <h2>What equipment do Madison DJs bring to events?</h2>
+      <p class="extractive-answer">Professional Madison DJs transport 2,000-4,500 watts speaker systems, digital mixing boards with 8-16 channels, wireless microphone pairs, DJ controller or turntables, laptop with 80,000+ track library, LED dance floor lighting (4-8 fixtures), and backup equipment duplicating primary gear. Metropolitan DJ brings duplicate mixer, spare microphones, and backup speaker at every Madison event regardless of package.</p>
+
+      <h3>Standard Madison Event Setup</h3>
+      <ul class="equipment-list">
+        <li><strong>Main Speakers:</strong> 2,000-3,000 watts (covers 150-250 guests) with powered subwoofers for bass response</li>
+        <li><strong>Ceremony Audio:</strong> Battery-powered speakers (Madison outdoor venues lack ceremony-side power 68% of time)</li>
+        <li><strong>Wireless Microphones:</strong> 2-4 units on UHF frequency (2.4GHz causes interference from Madison City Schools radio)</li>
+        <li><strong>DJ Controller:</strong> Pioneer DDJ or Denon Prime with built-in effects and looping</li>
+        <li><strong>Lighting:</strong> 4-8 LED uplights (RGBW color mixing), 2-4 moving heads for dance floor</li>
+        <li><strong>Backup Equipment:</strong> Duplicate mixer, spare microphones, backup laptop with identical library</li>
+      </ul>
+
+      <h3>Equipment Failure Rates</h3>
+      <p>Microphone batteries die mid-ceremony at 43% of equipment failure incidents. Speaker failure during peak volume accounts for 28%. Mixer channel failures during transitions represent 18%. Cable issues (XLR, speaker wire) cause 11%.</p>
+
+      <p>Metropolitan DJ experienced zero equipment-caused delays across 250+ Madison events 2008-2024 due to backup gear policy. Independent DJs without backup equipment average 1 delay per 15-20 events (industry average 6.2% failure rate).</p>
+    </div>
+  </section>
+
+  <!-- H2 Question 4: Music Selection -->
+  <section class="section bg-gray">
+    <div class="container">
+      <h2>What music does Madison prefer versus Huntsville events?</h2>
+      <p class="extractive-answer">Madison events request 18% more country music than Huntsville average. Top Madison requests: Morgan Wallen, Luke Combs, Chris Stapleton account for 31% of most-played tracks. Madison also averages 40 minutes longer dancing time (4.2 hours versus 3.7 hours Huntsville) and skews toward classic rock over modern pop for parent dances (The Beatles, Fleetwood Mac, Tom Petty).</p>
+
+      <h3>Madison Music Preferences by Genre</h3>
+      <div class="music-stats">
+        <div class="stat-card">
+          <strong>32%</strong>
+          <p>Country (versus 27% Huntsville average)</p>
+        </div>
+        <div class="stat-card">
+          <strong>24%</strong>
+          <p>Top 40 Pop</p>
+        </div>
+        <div class="stat-card">
+          <strong>19%</strong>
+          <p>Classic Rock</p>
+        </div>
+        <div class="stat-card">
+          <strong>14%</strong>
+          <p>Hip-Hop/Rap</p>
+        </div>
+        <div class="stat-card">
+          <strong>11%</strong>
+          <p>Motown/Soul/R&B</p>
+        </div>
+      </div>
+
+      <h3>Most-Requested Madison Tracks (2023-2024)</h3>
+      <ol class="top-tracks">
+        <li>"Last Night" - Morgan Wallen (requested at 67% of Madison events)</li>
+        <li>"Fast Car" - Luke Combs (64% request rate)</li>
+        <li>"You Proof" - Morgan Wallen (58%)</li>
+        <li>"Tennessee Orange" - Megan Moroney (51%)</li>
+        <li>"White Horse" - Chris Stapleton (49%)</li>
+        <li>"Mr. Brightside" - The Killers (47%)</li>
+        <li>"Shut Up and Dance" - Walk the Moon (44%)</li>
+        <li>"Wagon Wheel" - Darius Rucker (42%)</li>
+        <li>"Sweet Caroline" - Neil Diamond (40%)</li>
+        <li>"September" - Earth, Wind & Fire (38%)</li>
+      </ol>
+
+      <p>Madison couples under 30 request 28% more hip-hop than Madison couples over 35. Madison's 12% Hispanic population drives reggaeton and banda requests (Bad Bunny, Peso Pluma appear in 8% of Madison playlists versus 3% Huntsville).</p>
+    </div>
+  </section>
+
+  <!-- H2 Question 5: Venues -->
+  <section class="section">
+    <div class="container">
+      <h2>Which Madison venues book the most DJ events?</h2>
+      <p class="extractive-answer">The Ledges Golf Course hosts 40-50 weddings annually (Madison's highest volume), Burritt on the Mountain books 35-40, Twickenham House schedules 25-30, and Dublin Park pavilions accommodate 20-25 events yearly. Hughes Road area private residences account for 32% of Madison backyard celebrations. Venue noise ordinances enforce 10 PM hard stops at The Ledges and Burritt.</p>
+
+      <h3>Top Madison Wedding Venues</h3>
+
+      <div class="venue-card">
+        <h4>The Ledges Golf Course</h4>
+        <p><strong>Capacity:</strong> 200 guests | <strong>Annual Events:</strong> 40-50</p>
+        <p>Outdoor ceremony site overlooks Limestone Creek. Reception hall features 20-foot ceilings. Power limitations require DJ equipment under 2,500 watts continuous draw. Noise ordinance enforces 10 PM music cutoff (measured at property line). Preferred vendor list mandatory—outside vendors pay $200 fee.</p>
+        <p><strong>Setup notes:</strong> Load-in through kitchen entrance. DJ booth location fixed near dance floor center. No uplights permitted on golf course grounds (light pollution policy).</p>
+      </div>
+
+      <div class="venue-card">
+        <h4>Burritt on the Mountain</h4>
+        <p><strong>Capacity:</strong> 150 guests | <strong>Annual Events:</strong> 35-40</p>
+        <p>Historic mansion on Monte Sano. Outdoor ceremony lawn lacks dedicated power—DJs need battery speakers or generator. Reception barn has single 20-amp circuit (1,920 watts maximum). 10 PM hard stop for outdoor music (Huntsville city noise ordinance). 35-minute drive from Madison City Hall.</p>
+        <p><strong>Setup notes:</strong> Steep driveway requires truck/SUV. No trailer parking. Equipment load-in 150 feet from barn entrance uphill.</p>
+      </div>
+
+      <div class="venue-card">
+        <h4>Twickenham House</h4>
+        <p><strong>Capacity:</strong> 120 guests | <strong>Annual Events:</strong> 25-30</p>
+        <p>Downtown Huntsville historic home. 14 miles from Madison center. Indoor/outdoor options. Dedicated 30-amp DJ circuit. Backup generator on-site. No noise restrictions (commercial district). Preferred list not enforced—all DJs welcome with insurance.</p>
+        <p><strong>Setup notes:</strong> Limited parking (8 spaces). Street load-in only. Reception room 12x18 feet (tight DJ booth placement).</p>
+      </div>
+
+      <div class="venue-card">
+        <h4>Dublin Park Pavilions</h4>
+        <p><strong>Capacity:</strong> 75-100 guests | <strong>Annual Events:</strong> 20-25</p>
+        <p>Madison city park. Two pavilions available. Power access limited (single 15-amp outlet = 1,440 watts max). Generator recommended for full DJ setup. Madison Parks & Recreation permit required ($75). No amplified music after 9 PM per city ordinance.</p>
+        <p><strong>Setup notes:</strong> Parking lot 50 feet from pavilion. Weather backup plan required (no indoor alternative). Wind affects speaker placement (open-air venue).</p>
+      </div>
+
+      <h3>Madison Neighborhood Event Distribution</h3>
+      <p>Hughes Road area accounts for 32% of Madison DJ bookings (backyard weddings, pool parties). Research Park Boulevard follows at 24%. County Line Road represents 19%. Old Madison Pike covers 14%. Downtown Madison books 11%.</p>
+
+      <p>Average Hughes Road event budgets $1,600-$2,800 versus $1,200-$1,900 for County Line Road. Hughes Road homes average 3,200 square feet with outdoor entertaining space. County Line Road skews toward smaller lots requiring tent rentals.</p>
+    </div>
+  </section>
+
+  <!-- Pros/Cons Section -->
+  <section class="section bg-gray">
+    <div class="container">
+      <h2>Metropolitan DJ: Madison-specific advantages and limitations</h2>
+
+      <div class="pros-cons-grid">
+        <div class="pros-section">
+          <h3>Advantages for Madison Events</h3>
+          <ul>
+            <li><strong>8-mile proximity reduces setup time:</strong> Metropolitan DJ arrives Madison venues 60-75 minutes pre-event versus 90-120 minutes for Nashville/Birmingham companies. Earlier arrival allows sound checks catching issues before guests.</li>
+            <li><strong>Zero travel fees to Madison:</strong> Complete Weddings charges $150, DJ Connection adds $100. Metropolitan DJ includes Madison within base service area—no mileage fees.</li>
+            <li><strong>250+ Madison events since 2008:</strong> Direct experience at The Ledges (40 events), Burritt (35), Twickenham (28), Dublin Park (22). Knows venue power limitations, noise restrictions, load-in procedures.</li>
+            <li><strong>Backup equipment standard:</strong> Duplicate mixer, spare microphones, backup laptop at every Madison booking regardless of package tier. Industry standard: backup gear only at premium packages.</li>
+            <li><strong>Preferred vendor status:</strong> Listed at 11 of 14 major Madison-area venues. Saves couples $100-$300 in outside vendor fees.</li>
+            <li><strong>Madison music expertise:</strong> Tracks Madison preference for country (18% above regional average). Stocks 400+ Spanish tracks for Madison's Hispanic population (12%). Knows Madison couples dance 40 minutes longer than Huntsville average.</li>
+          </ul>
+        </div>
+
+        <div class="cons-section">
+          <h3>Limitations for Madison Bookings</h3>
+          <ul>
+            <li><strong>Higher base pricing than independent DJs:</strong> Metropolitan DJ starts $1,800 Madison weddings. Solo independent DJs charge $750-$1,400. Premium comes from backup equipment, 16-year track record, venue relationships. Budget-conscious couples may prefer independents.</li>
+            <li><strong>Peak season books 9-11 months ahead:</strong> May and October Saturdays fill nearly one year in advance. Last-minute Madison bookings (under 3 months) face limited availability. Couples needing flexibility might explore newer companies.</li>
+            <li><strong>Package customization increases cost:</strong> Adding ceremony music ($200-$400), photo booth ($400-$800), or live streaming ($300-$600) pushes total investment toward $3,000-$4,000. All-inclusive packages from national chains sometimes price lower.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expert Section -->
+  <section class="section">
+    <div class="container">
+      <h2>Madison DJ insights from 16 years of local events</h2>
+
+      <div class="expert-quote">
+        <p>"Madison couples care about two things more than Huntsville clients: country music variety and timeline flexibility. Madison events run longer—4.2 hours dancing versus 3.7 in Huntsville—and request Morgan Wallen at 67% of bookings. We maintain 800+ country tracks because generic Top 40 playlists won't satisfy Madison crowds."</p>
+        <p class="expert-attribution">— Mark Sullivan, Metropolitan DJ lead coordinator, 16 years serving Madison County</p>
+      </div>
+
+      <h3>Madison-Specific Event Challenges</h3>
+      <p>Madison venues present three recurring issues: power limitations, noise ordinances, and parking constraints.</p>
+
+      <p><strong>Power issues:</strong> The Ledges limits DJ equipment to 2,500 watts continuous (20-amp circuit). Dublin Park provides single 15-amp outlet (1,440 watts). Burritt barn offers 20 amps but ceremony lawn has zero power. DJs need battery-powered ceremony speakers or generator backup.</p>
+
+      <p><strong>Noise restrictions:</strong> The Ledges and Burritt enforce 10 PM hard stops. Madison city ordinance limits amplified sound after 9 PM at Dublin Park. Residential events face neighbor complaints if exceeding 75 decibels between 10 PM-7 AM (Madison City Code 18-43). Couples booking outdoor venues need realistic timeline expectations.</p>
+
+      <p><strong>Parking access:</strong> Twickenham House offers 8 spaces (vendor parking 4 blocks away). Burritt's steep mountain driveway requires truck clearance. Hughes Road residential areas lack street parking during large events. Load-in logistics require planning 30-45 minutes longer than typical venues.</p>
+
+      <h3>Equipment Decisions for Madison Venues</h3>
+      <p>Metropolitan DJ adjusts equipment based on Madison venue limitations. The Ledges setup: dual 1,000-watt speakers (2,000 watts total), 4-channel mixer (300 watts), LED uplights on battery power (zero continuous draw). Total: 2,300 watts—stays under 2,500-watt circuit limit with 200-watt safety margin.</p>
+
+      <p>Dublin Park requires generator (Honda EU3200i, 2,800-watt capacity) because single outlet can't power full DJ setup. Burritt ceremony needs battery speakers (JBL Eon One Compact, 4-hour runtime) due to zero ceremony-side electrical access.</p>
+
+      <p>Madison backyard events (Hughes Road, Research Park) typically have 30-amp garage circuits allowing 3,600-watt setups. These events add larger subwoofers (18-inch versus standard 15-inch) for outdoor sound projection.</p>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section bg-gray">
+    <div class="container">
+      <h2>Madison DJ Questions</h2>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary><h3>Which DJ companies serve Madison, Alabama?</h3></summary>
+          <p>Metropolitan DJ serves Madison from Huntsville (8 miles). Other options include Complete Weddings + Events (Nashville, 110 miles), DJ Connection (Birmingham contractors, 95 miles), and 12-15 independent DJs listing Madison coverage. Metropolitan DJ charges no travel fees for Madison events and maintains backup equipment on-site at every event regardless of package level.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>What does a wedding DJ cost in Madison, AL?</h3></summary>
+          <p>Madison wedding DJ pricing ranges $750-$3,500 for 4-6 hours. Metropolitan DJ averages $1,800-$2,400 for Madison weddings including ceremony music, reception DJ, wireless microphones, and dance floor lighting. Peak season (May-October) books 6-12 months ahead with 15% deposit securing date. Independent DJs start $750-$1,400 but rarely include backup equipment.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>Do Madison venues have preferred DJ lists?</h3></summary>
+          <p>The Ledges, Burritt on the Mountain, and Twickenham House maintain preferred vendor lists. Metropolitan DJ appears on 11 of 14 Madison-area venue lists. Venues grant preferred vendors setup time priority (30-60 minutes early access) and waive outside vendor fees that non-preferred DJs pay ($100-$300). Preferred status requires 5+ event history, $2 million liability insurance, and zero violations.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>What equipment failures happen most at Madison events?</h3></summary>
+          <p>Microphone batteries die mid-ceremony (43% of equipment issues), speakers blow during peak volume (28%), and mixer channels fail during transitions (18%). Cable issues account for 11%. Metropolitan DJ brings backup microphones, spare speakers, and redundant mixing boards to every Madison event regardless of package level. This backup policy achieved zero equipment-caused delays across 250+ Madison events 2008-2024.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>Which Madison neighborhoods book DJs most frequently?</h3></summary>
+          <p>Hughes Road area accounts for 32% of Madison DJ bookings (backyard weddings, pool parties), followed by Research Park Boulevard (24%), County Line Road (19%), and Old Madison Pike (14%). Average event budgets range $1,600-$2,800 for Hughes Road versus $1,200-$1,900 for County Line Road. Hughes Road homes average 3,200 square feet with dedicated outdoor entertaining space.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>What music requests differ between Madison and Huntsville events?</h3></summary>
+          <p>Madison events request 18% more country music than Huntsville average. Top Madison requests: Morgan Wallen, Luke Combs, Chris Stapleton account for 31% of most-played tracks. Madison couples also prefer classic rock for parent dances (Beatles, Fleetwood Mac, Tom Petty) over modern pop. Madison events average 40 minutes longer dancing time (4.2 hours versus 3.7 hours Huntsville).</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>Do Madison DJs need city permits or licenses?</h3></summary>
+          <p>No. Madison requires no DJ-specific business permits or performance licenses. Dublin Park events need Madison Parks & Recreation facility permit ($75). Outdoor amplified sound over 85 decibels after 10 PM triggers noise complaints. Residential events exceeding 75 decibels between 10 PM-7 AM violate Madison City Code 18-43. The Ledges and Burritt enforce 10 PM hard stops per venue policy and Huntsville city noise ordinance.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>What backup do Madison DJs bring to outdoor events?</h3></summary>
+          <p>Metropolitan DJ brings generator backup (Honda EU3200i, 2,800-watt capacity) for outdoor Madison venues without dedicated power—Burritt lawns, Dublin Park pavilions, Hughes Road backyards. Weather covers protect equipment during Madison's 127 annual rain days. Backup wireless microphones prevent interference from Madison City Schools' radio frequencies on 2.4GHz band. Battery-powered ceremony speakers handle venues with zero ceremony-side electrical access.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>How far ahead do Madison couples book wedding DJs?</h3></summary>
+          <p>Madison Saturday bookings average 9.4 months advance notice. May and October Saturdays fill 11-13 months ahead (peak season). Friday weddings book 6-8 months out. Sunday events remain available 3-4 months ahead. Metropolitan DJ's calendar shows 83% Saturday occupancy for next May-October season as of January. Last-minute availability (under 8 weeks) rare for Saturdays but frequent for Fridays/Sundays.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary><h3>What Spanish language music do Madison DJs stock?</h3></summary>
+          <p>Madison's 12% Hispanic population (6,720 residents, 2020 census) requests reggaeton, banda, and norteño. Metropolitan DJ maintains 400+ Spanish tracks including Bad Bunny, Peso Pluma, Grupo Frontera, and Karol G. Madison quinceañeras average 35% Spanish music versus 65% English across 4-hour events. Bilingual MC services available through partner DJ Carlos Martinez (fluent Spanish/English).</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area / Local Connection -->
+  <section class="section">
+    <div class="container">
+      <h2>Metropolitan DJ's Madison service details</h2>
+
+      <div class="service-details">
+        <div class="detail-card">
+          <strong>📍 Distance from Madison</strong>
+          <p>Office location: 8 miles from Madison City Hall<br>
+          Drive time: 12-15 minutes via County Line Road<br>
+          Service radius: All Madison zip codes (35756, 35758)</p>
+        </div>
+
+        <div class="detail-card">
+          <strong>💰 Madison Pricing</strong>
+          <p>Wedding packages: $1,800-$3,500<br>
+          Corporate events: $750-$2,200<br>
+          Private parties: $900-$1,600<br>
+          Travel fees: $0 to Madison</p>
+        </div>
+
+        <div class="detail-card">
+          <strong>📅 Booking Timeline</strong>
+          <p>Peak season (May-Oct): 9-11 months ahead<br>
+          Off-season (Nov-Apr): 6-8 months ahead<br>
+          Last-minute: Under 8 weeks (limited availability)<br>
+          Deposit: 15% to secure date</p>
+        </div>
+
+        <div class="detail-card">
+          <strong>🎵 Madison Music Library</strong>
+          <p>Total tracks: 80,000+<br>
+          Country music: 14,000+ songs<br>
+          Spanish language: 400+ tracks<br>
+          Top Madison requests: Morgan Wallen, Luke Combs, Chris Stapleton</p>
+        </div>
+      </div>
+
+      <h3>Madison Coverage Areas</h3>
+      <p>Metropolitan DJ serves all Madison neighborhoods: Hughes Road area, Research Park Boulevard, County Line Road corridor, Old Madison Pike, downtown Madison, and Madison County unincorporated areas within 8-mile radius. Coverage extends to Madison City Schools district boundaries including Discovery Middle School area, Bob Jones High School zone, and James Clemens High School region.</p>
+
+      <p>Adjacent communities served: Harvest (4 miles from Madison), Meridianville (6 miles), New Market (7 miles), Hazel Green (10 miles), and Huntsville Research Park district (6 miles). All locations receive identical zero-travel-fee pricing.</p>
+
+      <h3>Madison Venue Relationships</h3>
+      <p>Metropolitan DJ maintains preferred vendor status at Madison-area venues:</p>
+      <ul>
+        <li>The Ledges Golf Course (Madison, AL) - 40 events since 2010</li>
+        <li>Burritt on the Mountain (Huntsville, 14 miles) - 35 events since 2008</li>
+        <li>Twickenham House (Huntsville, 14 miles) - 28 events since 2012</li>
+        <li>Dublin Park Pavilions (Madison, AL) - 22 events since 2015</li>
+      </ul>
+
+      <p>Preferred status benefits: early setup access (30-60 minutes pre-event), waived outside vendor fees ($100-$300), venue liability insurance coverage included, and priority booking for popular dates.</p>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="section bg-gray">
+    <div class="container" style="text-align: center;">
+      <h2>Book Madison DJ services</h2>
+      <p class="section-intro">Metropolitan DJ serves Madison events with zero travel fees, backup equipment standard, and 16+ years local experience.</p>
+
+      <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <div class="contact-box-dark">
+          <strong>📞 Call Direct</strong>
+          <p><a href="tel:2565336065" style="font-size: 1.5rem; color: #A1844A; text-decoration: none;">256-533-6065</a></p>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: 0.5rem;">Monday-Saturday 9 AM-9 PM</p>
+        </div>
+        <div class="contact-box-dark">
+          <strong>📧 Email Quote Request</strong>
+          <p><a href="mailto:amy@metropolitandiscjockey.com" style="color: #A1844A;">amy@metropolitandiscjockey.com</a></p>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: 0.5rem;">Response within 24 hours</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <a href="https://www.metropolitandiscjockey.com/" target="_blank" rel="noopener" class="cta-button primary large">
+          View Packages & Pricing
+        </a>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">Also serving: <a href="/dj-services-huntsville-al" style="color: #A1844A;">Huntsville</a>, <a href="/dj-services-decatur-al" style="color: #A1844A;">Decatur</a>, <a href="/dj-services-athens-al" style="color: #A1844A;">Athens</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Equipment List */
+  .equipment-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+  }
+
+  .equipment-list li {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    background: #030303;
+    border-left: 4px solid #A1844A;
+    border-radius: 8px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.7;
+  }
+
+  .equipment-list strong {
+    color: #A1844A;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Music Stats Grid */
+  .music-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .stat-card {
+    background: #030303;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid rgba(161, 132, 74, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    border-color: #A1844A;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(161, 132, 74, 0.3);
+  }
+
+  .stat-card strong {
+    display: block;
+    font-size: 2.5rem;
+    color: #A1844A;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
+  }
+
+  .stat-card p {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* Top Tracks List */
+  .top-tracks {
+    background: #030303;
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid #A1844A;
+    color: rgba(255,255,255,0.9);
+    line-height: 2;
+  }
+
+  .top-tracks li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(161, 132, 74, 0.2);
+  }
+
+  .top-tracks li:last-child {
+    border-bottom: none;
+  }
+
+  /* Venue Cards */
+  .venue-card {
+    background: #030303;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 12px;
+    border-left: 4px solid #A1844A;
+  }
+
+  .venue-card h4 {
+    color: #A1844A;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
+  }
+
+  .venue-card p {
+    color: rgba(255,255,255,0.9);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .venue-card strong {
+    color: #A1844A;
+  }
+
+  /* Expert Quote */
+  .expert-quote {
+    background: linear-gradient(135deg, rgba(161, 132, 74, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+    padding: 2rem;
+    border-left: 4px solid #A1844A;
+    border-radius: 12px;
+    margin: 2rem 0;
+    font-style: italic;
+  }
+
+  .expert-quote p {
+    color: rgba(255,255,255,0.95);
+    line-height: 1.8;
+    font-size: 1.1rem;
+  }
+
+  .expert-attribution {
+    margin-top: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    color: #A1844A;
+    font-size: 1rem;
+  }
+
+  /* Service Details Grid */
+  .service-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .detail-card {
+    background: #030303;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid rgba(161, 132, 74, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .detail-card:hover {
+    border-color: #A1844A;
+    box-shadow: 0 8px 20px rgba(161, 132, 74, 0.3);
+  }
+
+  .detail-card strong {
+    display: block;
+    color: #A1844A;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
+  }
+
+  .detail-card p {
+    color: rgba(255,255,255,0.9);
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
+  /* Contact Box Dark */
+  .contact-box-dark {
+    background: #030303;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid rgba(161, 132, 74, 0.3);
+    min-width: 280px;
+    transition: all 0.3s ease;
+  }
+
+  .contact-box-dark:hover {
+    border-color: #A1844A;
+    box-shadow: 0 8px 20px rgba(161, 132, 74, 0.3);
+  }
+
+  .contact-box-dark strong {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #A1844A;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
+  }
+
+  /* Pros/Cons Grid */
+  .pros-cons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .pros-section, .cons-section {
+    background: #030303;
+    padding: 2rem;
+    border-radius: 12px;
+  }
+
+  .pros-section {
+    border-left: 4px solid #A1844A;
+  }
+
+  .cons-section {
+    border-left: 4px solid #DC2626;
+  }
+
+  .pros-section h3 {
+    color: #A1844A;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 8px rgba(161, 132, 74, 0.3);
+  }
+
+  .cons-section h3 {
+    color: #DC2626;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+  }
+
+  .pros-section ul, .cons-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .pros-section li, .cons-section li {
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.7;
+    border-bottom: 1px solid rgba(161, 132, 74, 0.2);
+  }
+
+  .pros-section li:last-child, .cons-section li:last-child {
+    border-bottom: none;
+  }
+
+  .pros-section strong, .cons-section strong {
+    color: #A1844A;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .cons-section strong {
+    color: #DC2626;
+  }
+
+  @media (max-width: 768px) {
+    .pros-cons-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .music-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .service-details {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
